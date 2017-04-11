@@ -105,7 +105,7 @@
     $('#lab_type_options').change(function () {
         $.ajax({
             type: "POST",
-            url: "/Results/LaboratoryResults",
+            url: '@Url.Action("LaboratoryResults", "Results")',
             data: {
                 lab_order_name: $('#lab_type_options').val()
             },
