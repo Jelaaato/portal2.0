@@ -164,6 +164,17 @@ a {
     color: white;
 }
 
+.regular-btn {
+    border: 1px solid #FFE033;
+    background-color:transparent;
+    color:white;
+}
+
+    .regular-btn:hover {
+        color:white;
+        background-color:#00A640;
+    }
+
 .remove-button-style {
     background:none;
     border: none;
@@ -295,7 +306,7 @@ a {
 }
 
 .background {
-    background-color:#4BBF6B;
+    background-color:#73AE6A;
     background-size: cover;
     background-repeat : no-repeat;
     background-attachment:fixed;
@@ -325,7 +336,7 @@ a {
     font-family:source-sans-pro;
     font-size:12px;
     text-transform:uppercase;
-    color:#19AE52;
+    color:white;
 }
 
 .footer-text {

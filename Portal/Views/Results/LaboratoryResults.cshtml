@@ -70,7 +70,7 @@
                         {
                             <tr>
                                 <td>@file.Name.Splitter('_', 2)</td>
-                                <td>@file.Name.Splitter('_', 5)</td>
+                                <td>@file.Name.Splitter('_', 5).Splitter('.', 0)</td>
                                 <td>@file.Name.Splitter('_', 1)</td>
                                 <td>
                                     <a href="@Url.Action("ValidatePassword", "Validate", new { id = @file.Name.Splitter('_', 3), accessed_in = "browser"})">View Result</a>
