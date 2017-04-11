@@ -3,9 +3,9 @@
 @{
     ViewBag.Title = "Laboratory";
 }
-
-<div canvas="container">
-    <div class="lab-overlay-1">
+<div id="resultContainer">
+    <div canvas="container">
+        <div class="lab-overlay-1">
             <div class="container">
                 <nav class="navbar navbar-inverse custom-nav">
                     <div class="navbar-header">
@@ -27,71 +27,72 @@
             </div>
         </div>
 
-    <div class="container">
-        <br /><br />
-        <div class="row">
-            @using (Html.BeginForm())
-            {
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        @Html.DropDownListFor(a => a.lab_order_name, new SelectList(Model.results_references, "Value", "Text"), new { @class = "form-control"})
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="form-group">
-                        <div class="input-group">
-                            @Html.TextBox("search", ViewBag.CurrentFilter as String, new { @placeholder = "Search", @class = "form-control" })
-                            <span class="input-group-btn" style="padding-left:30px;"><button type="submit" class="btn" style="background-color:#00A640;color:white;"><i class="fa fa-search"></i></button></span>
+        <div class="container">
+            <br /><br />
+            <div class="row">
+                @using (Html.BeginForm())
+                {
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            @Html.DropDownListFor(a => a.lab_order_name, new SelectList(Model.results_references, "Value", "Text"), new { @class = "form-control", id = "lab_type_options" })
                         </div>
                     </div>
-                </div>
+                    <div class="col-lg-8">
+                        <div class="form-group">
+                            <div class="input-group">
+                                @Html.TextBox("search", ViewBag.CurrentFilter as String, new { @placeholder = "Search", @class = "form-control" })
+                                <span class="input-group-btn"><button type="submit" class="btn" style="background-color:#00A640;color:white;"><i class="fa fa-search"></i></button></span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <br />
+
+            @if (Model.allLabResults.Count() == 0)
+            {
+
             }
-        </div>
-        
-        <br />
-
-        @if (Model.allLabResults.Count() == 0)
-        {
-
-        }
-        else
-        {
-            <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;">
-                <thead class="table-bordered" style="background-color:#73AE6A;">
-                    <tr>
-                        <th style="text-align:center;font-weight:400;">Lab Order</th>
-                        <th style="text-align:center;font-weight:400;">Date</th>
-                        <th style="text-align:center;font-weight:400;">Name</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody class="table-bordered" style="color:black;">
-                    @foreach (FileInfo file in Model.allLabResults)
-                    {
+            else
+            {
+                <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;">
+                    <thead class="table-bordered" style="background-color:#73AE6A;">
                         <tr>
-                            <td>@file.Name.Splitter('_', 2)</td>
-                            <td>@file.Name.Splitter('_', 5)</td>
-                            <td>@file.Name.Splitter('_', 1)</td>
-                            <td>
-                                <a href="@Url.Action("ValidatePassword", "Validate", new { id = @file.Name.Splitter('_', 3), accessed_in = "browser"})">View Result</a>
-                                <div class="modal fade" id="alllabresult@(file.Name.Splitter('_', 3))" role="dialog" tabindex="-1" data-backdrop="false">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" data-toggle="tooltip" title="Close"><i class="fa fa-remove"></i></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <embed src="~/Results/Laboratory/@file.Name" width="850" height="1000" type="application/pdf" />
+                            <th style="text-align:center;font-weight:400;">Lab Order</th>
+                            <th style="text-align:center;font-weight:400;">Date</th>
+                            <th style="text-align:center;font-weight:400;">Name</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-bordered" style="color:black;">
+                        @foreach (FileInfo file in Model.allLabResults)
+                        {
+                            <tr>
+                                <td>@file.Name.Splitter('_', 2)</td>
+                                <td>@file.Name.Splitter('_', 5)</td>
+                                <td>@file.Name.Splitter('_', 1)</td>
+                                <td>
+                                    <a href="@Url.Action("ValidatePassword", "Validate", new { id = @file.Name.Splitter('_', 3), accessed_in = "browser"})">View Result</a>
+                                    <div class="modal fade" id="alllabresult@(file.Name.Splitter('_', 3))" role="dialog" tabindex="-1" data-backdrop="false">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" data-toggle="tooltip" title="Close"><i class="fa fa-remove"></i></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <embed src="~/Results/Laboratory/@file.Name" width="850" height="1000" type="application/pdf" />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
     </div>
 </div>
 
@@ -100,4 +101,17 @@
     {
         @:$(document).ready(function () { $('#alllabresult@(Model.fileID)').modal('show'); })
     }
+    
+    $('#lab_type_options').change(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Results/LaboratoryResults",
+            data: {
+                lab_order_name: $('#lab_type_options').val()
+            },
+            success: function (data) {
+                $('#resultContainer').html(data);
+            }
+        });
+    });
 </script>
