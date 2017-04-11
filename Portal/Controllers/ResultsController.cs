@@ -37,6 +37,16 @@ namespace Portal.Controllers
 
             string path = Server.MapPath("~/Results/Laboratory");
 
+            if (Request.IsAjaxRequest())
+            {
+                model.results_references = lab.PopulateResultsDropdown();
+                model.allLabResults = lab.GetResults(path, lab_order_name, search);
+
+                model.fileID = fileid;
+                model.isValidated = isvalidated;
+                return PartialView("_LabResult", model);
+            }
+
             model.results_references = lab.PopulateResultsDropdown();
             model.allLabResults = lab.GetResults(path, lab_order_name, search);
 

@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Laboratory";
 }
-<div id="resultContainer">
+@*<div id="resultContainer">*@
     <div canvas="container">
         <div class="lab-overlay-1">
             <div class="container">
@@ -56,7 +56,7 @@
             }
             else
             {
-                <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;">
+                <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;" id="resultContainer">
                     <thead class="table-bordered" style="background-color:#73AE6A;">
                         <tr>
                             <th style="text-align:center;font-weight:400;">Lab Order</th>
@@ -94,7 +94,7 @@
             }
         </div>
     </div>
-</div>
+@*</div>*@
 
 <script>
     @if (Model.isValidated == true)

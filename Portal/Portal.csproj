@@ -277,6 +277,7 @@
     <Content Include="Views\Results\LaboratoryResults.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Validate\ValidatePassword.cshtml" />
+    <Content Include="Views\Results\_LabResult.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
