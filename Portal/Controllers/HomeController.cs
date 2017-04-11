@@ -14,10 +14,5 @@ namespace Portal.Controllers
         {
             return View();
         }
-
-        public ActionResult Test()
-        {
-            return View();
-        }
     }
 }
