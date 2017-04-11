@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<div canvas="container">
+    <div class="landing-page-background">
+        <div class="overlay">
+            <div class="container">
+                <nav class="navbar navbar-inverse custom-nav">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                            <span class="logo hidden-xs">Asian Hospital and Medical Center</span>
+                            <span class="logo visible-xs">AHMC</span>
+                        </a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right hidden-xs">
+                        <li><a href="#" class="user" id="toggleUserSidebar">Welcome @User.Identity.Name</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right visible-xs" style="position:fixed !important;top:30px !important;right:20px !important;">
+                        <li><a href="#" class="user" id="toggleUserSidebarMobile"><i class="fa fa-user-circle-o fa-2x"></i></a></li>
+                    </ul>
+                </nav>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div class="row">
+                    <p class="header">
+                        Asian Hospital and Medical Center's Official Portal
+                    </p>
+                </div>
+                <hr />
+                <div class="row">
+                    <p class="sub-header">
+                        Enhancing <span class="highlight">PATIENT EXPERIENCE</span> through digitalization
+                    </p>
+                </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <center>
+                    <button type="button" class="btn call-to-action-button" id="toggleSidebar"><span class="call-to-action-text">Explore</span></button>
+                </center>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

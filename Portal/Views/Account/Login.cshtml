@@ -1,0 +1,68 @@
+﻿@model Portal.Models.IdentityDBModel_TemporaryLogin_.LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/site.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 hidden-xs hidden-sm login-page-left-side"></div>
+            <div class="col-lg-4 col-md-4 login-page-right-side">
+                <center>
+                    <div class="mobile-wrapper">
+                        <div class="form-bottom">
+                            <div class="form-box">
+                                <span class="green-font">Asian Hospital and Medical Center</span>
+                                <br /><br />
+                                @Html.ValidationSummary(false)
+                                <br />
+
+                                @using (Html.BeginForm(new { returnUrl = ViewBag.returnUrl }))
+                                {
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                            @Html.TextBoxFor(a => a.username, new { @class = "form-control", @placeholder = "USER ID" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                            @Html.PasswordFor(a => a.password, new { @class = "form-control", @placeholder = "PASSWORD" })
+                                        </div>
+                                        <div>
+                                            <span class="subtext">Forgot your password?</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-success" type="submit" style="float:right;">SIGN IN</button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </center>
+                <div class="black-font page-bottom">
+                    <i class="fa fa-facebook-square fa-2x"></i>&nbsp;
+                    <i class="fa fa-twitter-square fa-2x"></i>&nbsp;
+                    <i class="fa fa-instagram fa-2x"></i>
+                </div>
+            </div>
+        </div>   
+    </div>
+</body>
+</html>
+
+
+<script src="~/Scripts/jQuery/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/bootstrap/bootstrap.min.js"></script>

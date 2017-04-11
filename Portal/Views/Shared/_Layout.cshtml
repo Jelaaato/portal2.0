@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/opensourcedll/slidebars/slidebars.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jQuery/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/bootstrap/bootstrap.min.js"></script>
+    <script src="~/Content/opensourcedll/slidebars/slidebars.min.js"></script>
+</head>
+<body>
+
+    <div class="loader"></div>
+
+    <div off-canvas="sideBar left reveal">
+        <span class="close-button" id="closeBtn">&times;</span>
+        <br />
+        <br />
+        <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;RESULTS</span></a>
+        <a href="@Url.Action("LaboratoryResults", "Results")" class="sub-menu"><span class="sub-menu-font">Laboratory</span></a>
+        <a href="#" class="sub-menu"><span class="sub-menu-font">Radiology</span></a>
+        <a href="#" class="sub-menu"><span class="sub-menu-font">Diagnosis</span></a>
+        <a href="#" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;REPORTS</span></a>
+        <a href="#" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+    </div>
+
+    <div off-canvas="userSidebar right push">
+        <span class="close-button" id="userCloseBtn">&times;</span>
+        <br />
+        <br />
+        <br />
+        <span class="visible-xs" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:15px;">Welcome, @User.Identity.Name</span>
+        <br />
+        <a href="#" class="menu"><span class="menu-font">ACCOUNT</span></a>
+        <a href="#" class="sub-menu"><span class="sub-menu-font">Change Password</span></a>
+        <a href="@Url.Action("Logout", "Account")" class="sub-menu"><span class="sub-menu-font">Log Out</span></a>
+    </div>
+
+    @RenderBody()
+
+</body>
+</html>
+
+<script>
+    jQuery(document).ready(function () {
+        $(".loader").fadeOut("slow");
+        var controller = new slidebars();
+        controller.init();
+
+        //controller.open('sideBar');
+
+        $('#toggleSidebar').on('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            controller.toggle('sideBar');
+        });
+
+        $('#toggleUserSidebar').on('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            controller.toggle('userSidebar');
+        });
+
+        $('#toggleUserSidebarMobile').on('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            controller.toggle('userSidebar');
+        });
+
+        $('#closeBtn').on('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            controller.toggle('sideBar');
+        });
+
+        $('#userCloseBtn').on('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            controller.toggle('userSidebar');
+        });
+    });      
+</script>
