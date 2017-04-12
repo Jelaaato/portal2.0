@@ -107,6 +107,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Vereyon.Web.FlashMessage">
+      <HintPath>..\packages\Vereyon.Web.FlashMessage.1.0.1\lib\net40\Vereyon.Web.FlashMessage.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -242,6 +245,7 @@
     <Compile Include="Models\APIModel\RegisterUserModel.cs" />
     <Compile Include="Models\BusinessLogic\Laboratory.cs" />
     <Compile Include="Models\Helpers\Helper.cs" />
+    <Compile Include="Models\IdentityDBModel%28TemporaryLogin%29\AccountModel.cs" />
     <Compile Include="Models\IdentityDBModel%28TemporaryLogin%29\IdentityDB.cs" />
     <Compile Include="Models\IdentityDBModel%28TemporaryLogin%29\LoginModel.cs" />
     <Compile Include="Models\IdentityDBModel%28TemporaryLogin%29\roles.cs" />
@@ -278,6 +282,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Validate\ValidatePassword.cshtml" />
     <Content Include="Views\Results\_LabResult.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

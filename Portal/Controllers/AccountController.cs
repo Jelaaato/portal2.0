@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
+using Vereyon.Web;
 
 namespace Portal.Controllers
 {
@@ -49,6 +50,45 @@ namespace Portal.Controllers
             Session.Abandon();
             AuthenticationMgr.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Login", "Account");
+        }
+
+        [Authorize]
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<ActionResult> ChangePassword(ChangePasswordModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = UserManager.ChangePassword(User.Identity.GetUserId(), model.oldPassword, model.newPassword);
+
+                if (result.Succeeded)
+                {
+                    var user = UserManager.FindById(User.Identity.GetUserId());
+                    if (user != null)
+                    {
+                        await SignInAsync(user, isPersistent: false);
+                    }
+                    FlashMessage.Info("You have successfully changed your password. Please Login again.");
+                    return RedirectToAction("Logout", "Account");
+                }
+                AddErrorsFromResult(result);
+                return View(model);
+            }
+
+            return View(model);
+        }
+
+        private void AddErrorsFromResult(IdentityResult result)
+        {
+            foreach (string error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
         }
 
         private UsersManager UserManager

@@ -32,7 +32,7 @@ namespace Portal.Models.BusinessLogic
         {
             dir = new DirectoryInfo(path);
 
-            files = dir.GetFiles("*.pdf").Where(a => a.Name.IndexOf(search, StringComparison.OrdinalIgnoreCase) != -1 && a.Name.Contains(currentuser) && a.Name.Contains(lab_order_name)).OrderByDescending(a => a.CreationTime);
+            files = dir.GetFiles("*.pdf").Where(a => a.Name.Contains(currentuser) && a.Name.Contains(lab_order_name) && a.Name.IndexOf(search, StringComparison.CurrentCultureIgnoreCase) == 3).OrderByDescending(a => a.CreationTime);
 
             return files;
         }

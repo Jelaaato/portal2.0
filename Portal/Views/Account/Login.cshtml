@@ -1,4 +1,5 @@
 ﻿@model Portal.Models.IdentityDBModel_TemporaryLogin_.LoginModel
+@using Vereyon.Web
 @{
     Layout = null;
 }
@@ -22,6 +23,10 @@
                     <div class="mobile-wrapper">
                         <div class="form-bottom">
                             <div class="form-box">
+                                @foreach (var msg in FlashMessage.Retrieve(Html.ViewContext.HttpContext))
+                                {
+                                    <div id="flashAlert" class="alert alert-danger" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:13px;text-align:center;">@msg.Message</div>
+                                }
                                 <span class="green-font">Asian Hospital and Medical Center</span>
                                 <br /><br />
                                 @Html.ValidationSummary(false)
@@ -41,7 +46,7 @@
                                             @Html.PasswordFor(a => a.password, new { @class = "form-control", @placeholder = "PASSWORD" })
                                         </div>
                                         <div>
-                                            <span class="subtext">Forgot your password?</span>
+                                            <span class="subtext" style="color:#19AE52;">Forgot your password?</span>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -66,3 +71,9 @@
 
 <script src="~/Scripts/jQuery/jquery-3.1.1.min.js"></script>
 <script src="~/Scripts/bootstrap/bootstrap.min.js"></script>
+
+<script>
+    $("#flashAlert").fadeTo(3000, 500).slideUp(500, function () {
+        $("#flashAlert").slideUp(500);
+    });
+</script>

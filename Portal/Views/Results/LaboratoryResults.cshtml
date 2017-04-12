@@ -14,14 +14,19 @@
                             <span class="logo visible-xs">AHMC</span>
                         </a>
                     </div>
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right hidden-xs">
                         <li><a href="#" class="user" id="toggleSidebar">Explore</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right hidden-xs">
                         <li><a href="#" class="user" id="toggleUserSidebar">Welcome @User.Identity.Name</a></li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right visible-xs" style="position:fixed !important;top:30px !important;right:20px !important;">
-                        <li><a href="#" class="user" id="toggleUserSidebarMobile"><i class="fa fa-user-circle-o fa-2x"></i></a></li>
+                    <ul class="nav navbar-nav navbar-right visible-xs">
+                        <li>
+                            <a href="#" class="user" id="toggleUserSidebarMobile" style="position:fixed !important;top:35px !important;right:50px !important;"><i class="fa fa-user-circle-o fa-2x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#" class="user" id="toggleSidebarMobile" style="position:fixed !important;top:35px !important;right:15px !important;"><i class="fa fa-navicon fa-2x"></i></a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -56,41 +61,43 @@
             }
             else
             {
-                <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;" id="resultContainer">
-                    <thead class="table-bordered" style="background-color:#73AE6A;">
-                        <tr>
-                            <th style="text-align:center;font-weight:400;">Lab Order</th>
-                            <th style="text-align:center;font-weight:400;">Date</th>
-                            <th style="text-align:center;font-weight:400;">Name</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-bordered" style="color:black;">
-                        @foreach (FileInfo file in Model.allLabResults)
-                        {
+                <div class="table-responsive">
+                    <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;" id="resultContainer">
+                        <thead class="table-bordered" style="background-color:#73AE6A;">
                             <tr>
-                                <td>@file.Name.Splitter('_', 2)</td>
-                                <td>@file.Name.Splitter('_', 5).Splitter('.', 0)</td>
-                                <td>@file.Name.Splitter('_', 1)</td>
-                                <td>
-                                    <a href="@Url.Action("ValidatePassword", "Validate", new { id = @file.Name.Splitter('_', 3), accessed_in = "browser"})">View Result</a>
-                                    <div class="modal fade" id="alllabresult@(file.Name.Splitter('_', 3))" role="dialog" tabindex="-1" data-backdrop="false">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" data-toggle="tooltip" title="Close"><i class="fa fa-remove"></i></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <embed src="~/Results/Laboratory/@file.Name" width="850" height="1000" type="application/pdf" />
+                                <th style="text-align:center;font-weight:400;">Lab Order</th>
+                                <th style="text-align:center;font-weight:400;">Date</th>
+                                <th style="text-align:center;font-weight:400;">Name</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-bordered" style="color:black;">
+                            @foreach (FileInfo file in Model.allLabResults)
+                            {
+                                <tr>
+                                    <td>@file.Name.Splitter('_', 2)</td>
+                                    <td>@file.Name.Splitter('_', 5).Splitter('.', 0)</td>
+                                    <td>@file.Name.Splitter('_', 1)</td>
+                                    <td>
+                                        <a href="@Url.Action("ValidatePassword", "Validate", new { id = @file.Name.Splitter('_', 3), accessed_in = "browser"})">View Result</a>
+                                        <div class="modal fade" id="alllabresult@(file.Name.Splitter('_', 3))" role="dialog" tabindex="-1" data-backdrop="false">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" data-toggle="tooltip" title="Close"><i class="fa fa-remove"></i></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <embed src="~/Results/Laboratory/@file.Name" width="850" height="1000" type="application/pdf" />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             }
         </div>
     </div>

@@ -37,7 +37,7 @@
         <span class="visible-xs" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:15px;">Welcome, @User.Identity.Name</span>
         <br />
         <a href="#" class="menu"><span class="menu-font">ACCOUNT</span></a>
-        <a href="#" class="sub-menu"><span class="sub-menu-font">Change Password</span></a>
+        <a href="@Url.Action("ChangePassword", "Account")" class="sub-menu"><span class="sub-menu-font">Change Password</span></a>
         <a href="@Url.Action("Logout", "Account")" class="sub-menu"><span class="sub-menu-font">Log Out</span></a>
     </div>
 
@@ -55,6 +55,12 @@
         //controller.open('sideBar');
 
         $('#toggleSidebar').on('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            controller.toggle('sideBar');
+        });
+
+        $('#toggleSidebarMobile').on('click', function (event) {
             event.stopPropagation();
             event.preventDefault();
             controller.toggle('sideBar');
