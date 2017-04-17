@@ -17,17 +17,31 @@
 
     <div class="loader"></div>
 
-    <div off-canvas="sideBar left reveal">
-        <span class="close-button" id="closeBtn">&times;</span>
-        <br />
-        <br />
-        <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;RESULTS</span></a>
-        <a href="@Url.Action("LaboratoryResults", "Results")" class="sub-menu"><span class="sub-menu-font">Laboratory</span></a>
-        <a href="#" class="sub-menu"><span class="sub-menu-font">Radiology</span></a>
-        <a href="#" class="sub-menu"><span class="sub-menu-font">Diagnosis</span></a>
-        <a href="#" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;REPORTS</span></a>
-        <a href="#" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
-    </div>
+    @if (User.IsInRole("Employee"))
+    {
+        <div off-canvas="sideBar left reveal">
+            <span class="close-button" id="closeBtn">&times;</span>
+            <br />
+            <br />
+            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;REPORTS</span></a>
+            <a href="@Url.Action("OMCP", "Reports")" class="sub-menu"><span class="sub-menu-font">OMCP</span></a>
+            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+        </div>
+    }
+    else
+    {
+        <div off-canvas="sideBar left reveal">
+            <span class="close-button" id="closeBtn">&times;</span>
+            <br />
+            <br />
+            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;RESULTS</span></a>
+            <a href="@Url.Action("LaboratoryResults", "Results")" class="sub-menu"><span class="sub-menu-font">Laboratory</span></a>
+            <a href="#" class="sub-menu"><span class="sub-menu-font">Radiology</span></a>
+            <a href="#" class="sub-menu"><span class="sub-menu-font">Diagnosis</span></a>
+            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;REPORTS</span></a>
+            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+        </div>
+    }
 
     <div off-canvas="userSidebar right push">
         <span class="close-button" id="userCloseBtn">&times;</span>
