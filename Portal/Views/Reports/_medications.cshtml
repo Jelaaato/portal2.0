@@ -1,0 +1,29 @@
+﻿@model PagedList.IPagedList<Portal.Models.Reports.patient_medications>
+@using PagedList.Mvc;
+@using PagedList;
+
+<div id="tbl-wrapper4">
+    <div class="table-responsive">
+        <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;" id="resultContainer">
+            <thead class="table-bordered" style="background-color:#73AE6A;">
+                <tr>
+                    <th style="text-align:center;font-weight:400;">Date</th>
+                    <th style="text-align:center;font-weight:400;">Details</th>
+                </tr>
+            </thead>
+            <tbody class="table-bordered" style="color:black;">
+                <tr></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <center>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("OMCPMedications", new { page, currentfilter = ViewBag.CurrentFilter }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+        new AjaxOptions()
+        {
+            HttpMethod = "GET",
+            UpdateTargetId = "tbl-wrapper4"
+        }))
+    </center>
+</div>

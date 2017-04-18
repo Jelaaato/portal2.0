@@ -75,6 +75,12 @@
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -154,6 +160,7 @@
     <Content Include="Content\opensourcedll\slidebars\slidebars.min.js" />
     <Content Include="Content\opensourcedll\squaremenu\jquery.square_menu.min.js" />
     <Content Include="Content\opensourcedll\squaremenu\square_menu.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\pageloader\loader.css" />
     <Content Include="Content\perspectivepageview\classie.js" />
     <Content Include="Content\perspectivepageview\component.css" />
@@ -198,6 +205,23 @@
       <DependentUpon>ResultsReferenceModel.edmx</DependentUpon>
       <LastGenOutput>ResultsReferenceModel.cs</LastGenOutput>
     </Content>
+    <EntityDeploy Include="Models\Reports\ReportsModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ReportsModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Reports\ReportsModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ReportsModel.edmx</DependentUpon>
+      <LastGenOutput>ReportsModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Reports\ReportsModel.edmx.diagram">
+      <DependentUpon>ReportsModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Reports\ReportsModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ReportsModel.edmx</DependentUpon>
+      <LastGenOutput>ReportsModel.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\portal.pubxml" />
     <None Include="Scripts\jQuery\jquery-3.1.1.intellisense.js" />
     <Content Include="Images\background.jpg" />
@@ -231,6 +255,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ResultsController.cs" />
     <Compile Include="Controllers\ValidateController.cs" />
     <Compile Include="Global.asax.cs">
@@ -244,6 +269,7 @@
     <Compile Include="Models\APIModel\Register.cs" />
     <Compile Include="Models\APIModel\RegisterUserModel.cs" />
     <Compile Include="Models\BusinessLogic\Laboratory.cs" />
+    <Compile Include="Models\BusinessLogic\OMCP.cs" />
     <Compile Include="Models\Helpers\Helper.cs" />
     <Compile Include="Models\IdentityDBModel%28TemporaryLogin%29\AccountModel.cs" />
     <Compile Include="Models\IdentityDBModel%28TemporaryLogin%29\IdentityDB.cs" />
@@ -252,6 +278,39 @@
     <Compile Include="Models\IdentityDBModel%28TemporaryLogin%29\RolesManager.cs" />
     <Compile Include="Models\IdentityDBModel%28TemporaryLogin%29\Users.cs" />
     <Compile Include="Models\IdentityDBModel%28TemporaryLogin%29\UsersManager.cs" />
+    <Compile Include="Models\Reports\patient.cs">
+      <DependentUpon>ReportsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Reports\patient_allergies.cs">
+      <DependentUpon>ReportsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Reports\patient_diagnosis.cs">
+      <DependentUpon>ReportsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Reports\patient_medications.cs">
+      <DependentUpon>ReportsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Reports\patient_previous_hospitalizations.cs">
+      <DependentUpon>ReportsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Reports\patient_previous_surgeries.cs">
+      <DependentUpon>ReportsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Reports\ReportsModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportsModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Reports\ReportsModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Reports\ReportsModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportsModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Results\ResultsReferenceModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -283,6 +342,12 @@
     <Content Include="Views\Validate\ValidatePassword.cshtml" />
     <Content Include="Views\Results\_LabResult.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Reports\OMCP.cshtml" />
+    <Content Include="Views\Reports\_allergies.cshtml" />
+    <Content Include="Views\Reports\_medications.cshtml" />
+    <Content Include="Views\Reports\_diagnosis.cshtml" />
+    <Content Include="Views\Reports\_surgeries.cshtml" />
+    <Content Include="Views\Reports\_hospitalizations.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

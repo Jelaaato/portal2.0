@@ -1,0 +1,30 @@
+﻿@model PagedList.IPagedList<Portal.Models.Reports.patient_previous_hospitalizations>
+@using PagedList.Mvc;
+@using PagedList;
+
+<div id="tbl-wrapper3">
+    <div class="table-responsive">
+        <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;" id="resultContainer">
+            <thead class="table-bordered" style="background-color:#73AE6A;">
+                <tr>
+                    <th style="text-align:center;font-weight:400;">Visit Date</th>
+                    <th style="text-align:center;font-weight:400;">Visit Type</th>
+                    <th style="text-align:center;font-weight:400;">Primary Service</th>
+                </tr>
+            </thead>
+            <tbody class="table-bordered" style="color:black;">
+                <tr></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <center>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("OMCPHospitalizations", new { page, currentfilter = ViewBag.CurrentFilter }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+        new AjaxOptions()
+        {
+            HttpMethod = "GET",
+            UpdateTargetId = "tbl-wrapper3"
+        }))
+    </center>
+</div>

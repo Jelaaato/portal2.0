@@ -254,6 +254,7 @@ a {
     border-bottom: 2px solid #DDD;
     text-align:center;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-size:15px;
 }
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { 
@@ -272,8 +273,10 @@ a {
 
 .nav-tabs > li.active > a, .nav-tabs > li > a:hover { 
     border: none; 
-    color: #34888C !important; 
-    background: transparent; 
+    color: #73AE6A !important; 
+    background: transparent;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-size:15px;
 }
 
 .nav-tabs > li > a::after { 
@@ -416,6 +419,23 @@ a {
    transform: translate3d(0, 0, 0);
 }
 
+.generate-PDF {
+    position:fixed;
+    right:100px;
+    bottom:50px;
+}
+
+.generate-PDF-Btn {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-size:16px !important;
+    color:white !important;
+    background-color:#00A640;
+}
+
+    .generate-PDF-Btn:hover {
+        color:white !important;
+        background-color:#00A640;
+    }
 
 @media (max-width: 767px) {
     .header {
@@ -452,5 +472,20 @@ a {
         bottom:50px;
         left:30px;
         text-align:center;
+    }
+
+    .nav-tabs { 
+        border-bottom: 2px solid #DDD;
+        text-align:center;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        font-size:13px;
+    }
+
+    .nav-tabs > li.active > a, .nav-tabs > li > a:hover { 
+        border: none; 
+        color: #73AE6A !important; 
+        background: transparent;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        font-size:13px;
     }
 }

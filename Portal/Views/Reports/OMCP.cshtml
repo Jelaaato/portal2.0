@@ -1,0 +1,136 @@
+﻿@using Vereyon.Web
+@{
+    ViewBag.Title = "OMCP";
+}
+
+<div canvas="container">
+    <div class="lab-overlay-1">
+        <div class="container">
+            <nav class="navbar navbar-inverse custom-nav">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                        <span class="logo hidden-xs">Asian Hospital and Medical Center</span>
+                        <span class="logo visible-xs">AHMC</span>
+                    </a>
+                </div>
+                <ul class="nav navbar-nav navbar-right hidden-xs">
+                    <li><a href="#" class="user" id="toggleSidebar">Explore</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right hidden-xs">
+                    <li><a href="#" class="user" id="toggleUserSidebar">Welcome @User.Identity.Name</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right visible-xs">
+                    <li>
+                        <a href="#" class="user" id="toggleUserSidebarMobile" style="position:fixed !important;top:35px !important;right:50px !important;"><i class="fa fa-user-circle-o fa-2x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" class="user" id="toggleSidebarMobile" style="position:fixed !important;top:35px !important;right:15px !important;"><i class="fa fa-navicon fa-2x"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <br /><br />
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    @foreach (var msg in FlashMessage.Retrieve(Html.ViewContext.HttpContext))
+                    {
+                        <div id="flashAlert" class="alert alert-danger" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:13px;text-align:center;">@msg.Message</div>
+                    }
+                    @using (Html.BeginForm())
+                    {
+                        <div class="form-group">
+                            <div class="input-group">
+                                @Html.TextBox("search", ViewBag.CurrentFilter as String, new { @placeholder = "Search", @class = "form-control" })
+                                <span class="input-group-btn"><button type="submit" class="btn" style="background-color:#00A640;color:white;"><i class="fa fa-search"></i></button></span>
+                            </div>
+                        </div>   
+                    }
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="nav nav-tabs" role="tablist">
+                        @*<li role="presentation" class="active"><a href="#overview" role="tab" data-toggle="tab">Overview</a></li>*@
+                        <li role="presentation" class="active"><a href="#allergies" role="tab" data-toggle="tab">Allergies</a></li>
+                        <li role="presentation"><a href="#diagnosis" role="tab" data-toggle="tab">Medications</a></li>
+                        <li role="presentation"><a href="#hospitalizations" role="tab" data-toggle="tab">Diagnosis</a></li>
+                        <li role="presentation"><a href="#medications" role="tab" data-toggle="tab">Previous Surgeries</a></li>
+                        <li role="presentation"><a href="#surgeries" role="tab" data-toggle="tab">Previous Hospitalizations</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        @*<div role="tabpanel" class="tab-pane active" id="overview">
+                            <h5>Overview Here</h5>
+                        </div>*@
+                        <div role="tabpanel" class="tab-pane active" id="allergies">
+                            @if (ViewBag.DisplayPartialViews == "true")
+                            { 
+                                @Html.Action("OMCPAllergies", "Reports")
+                            }
+                            else
+                            {
+                                <h5>No available records</h5>
+                            }
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="diagnosis">
+                            @if (ViewBag.DisplayPartialViews == "true")
+                            {
+                            @Html.Action("OMCPDiagnosis", "Reports")
+                            }
+                            else
+                            {
+                                <h5>No available records</h5>
+                            }
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="hospitalizations">
+                            @if (ViewBag.DisplayPartialViews == "true")
+                            {
+                            @Html.Action("OMCPHospitalizations", "Reports")
+                            }
+                            else
+                            {
+                                <h5>No available records</h5>
+                            }
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="medications">
+                            @if (ViewBag.DisplayPartialViews == "true")
+                            {
+                            @Html.Action("OMCPMedications", "Reports")
+                            }
+                            else
+                            {
+                                <h5>No available records</h5>
+                            }
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="surgeries">
+                            @if (ViewBag.DisplayPartialViews == "true")
+                            {
+                            @Html.Action("OMCPSurgeries", "Reports")
+                            }
+                            else
+                            {
+                                <h5>No available records</h5>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="generate-PDF hidden-xs">
+             <button class="btn generate-PDF-Btn">Generate Report</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#flashAlert").fadeTo(3000, 500).slideUp(500, function () {
+        $("#flashAlert").slideUp(500);
+    });
+</script>
+
