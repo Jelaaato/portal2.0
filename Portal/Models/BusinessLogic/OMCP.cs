@@ -1,6 +1,9 @@
-﻿using Portal.Models.Reports;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Portal.Models.Reports;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -22,6 +25,13 @@ namespace Portal.Models.BusinessLogic
             var patientId = db.patients.Where(a => a.hospital_number == hn).Select(a => a.patient_id).First();
 
             return patientId;
+        }
+
+        public IEnumerable<patient> GetPatient(string hn)
+        {
+            var patient = db.patients.Where(a => a.hospital_number == hn).ToList();
+
+            return patient;
         }
 
         public IEnumerable<patient_allergies> GetAllergies(Guid patient_id)
@@ -58,5 +68,38 @@ namespace Portal.Models.BusinessLogic
 
             return surgeries;
         }
+
+        public void InitializePDF(Document doc, MemoryStream mst)
+        {
+            PdfWriter writer = PdfWriter.GetInstance(doc, mst);
+            writer.CloseStream = false;
+
+            doc.SetPageSize(PageSize.A4);
+
+            doc.Open();
+        }
+
+        public PdfPTable CreateTable(int column_size)
+        {
+            PdfPTable table = new PdfPTable(column_size);
+            table.WidthPercentage = 100;
+            table.DefaultCell.Padding = 8;
+
+            return table;
+        }
+
+        public PdfPTable ImageHeader()
+        {
+            Image logo = Image.GetInstance(@"C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\Portal\Images\pdf_logo.png");
+            //Image logo = Image.GetInstance(@"C:\inetpub\wwwroot\pdf_logo.png");
+
+            PdfPTable headerImg = new PdfPTable(1);
+            headerImg.WidthPercentage = 30;
+            headerImg.DefaultCell.Border = Rectangle.NO_BORDER;
+            headerImg.AddCell(logo);
+
+            return headerImg;
+        }
+
     }
 }

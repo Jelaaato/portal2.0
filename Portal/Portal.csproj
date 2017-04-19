@@ -44,6 +44,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.5.5.11\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -189,6 +192,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ResultsReferenceModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Images\pdf_logo.png" />
     <Content Include="Images\slider1.jpeg" />
     <Content Include="Images\slider2.jpg" />
     <Content Include="Images\slider3.jpg" />
@@ -348,6 +352,7 @@
     <Content Include="Views\Reports\_diagnosis.cshtml" />
     <Content Include="Views\Reports\_surgeries.cshtml" />
     <Content Include="Views\Reports\_hospitalizations.cshtml" />
+    <Content Include="Views\Reports\_patient.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

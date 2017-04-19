@@ -2,8 +2,10 @@
 @using PagedList.Mvc;
 @using PagedList;
 
-<div id="tbl-wrapper1">
-    @*<div class="table-responsive">*@
+@if (Model.Count() != 0)
+{
+    <div id="tbl-wrapper1">
+        @*<div class="table-responsive">*@
         <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;" id="resultContainer">
             <thead class="table-bordered" style="background-color:#73AE6A;">
                 <tr>
@@ -23,16 +25,22 @@
                 }
             </tbody>
         </table>
-    @*</div>*@
+        @*</div>*@
 
-    <br /><br />
-    <center>
-        @Html.PagedListPager(Model, page => Url.Action("OMCPAllergies", new { page, currentfilter = ViewBag.CurrentFilter }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+        <br /><br />
+        <center>
+            @Html.PagedListPager(Model, page => Url.Action("OMCPAllergies", new { page, currentfilter = ViewBag.CurrentFilter }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
         new AjaxOptions()
         {
             HttpMethod = "GET",
             UpdateTargetId = "tbl-wrapper1"
         }))
-        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-    </center>
-</div>
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        </center>
+    </div>
+}
+else
+{
+    <h5>No available records</h5>
+}
+
