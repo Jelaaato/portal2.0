@@ -427,6 +427,9 @@ namespace Portal.Controllers
 
                 #endregion
 
+                doc.Add(hr);
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Phrase(DateTime.Now.ToString(), defaultFont));
                 doc.Close();
 
                 mst.Flush();

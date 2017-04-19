@@ -226,6 +226,23 @@
       <DependentUpon>ReportsModel.edmx</DependentUpon>
       <LastGenOutput>ReportsModel.cs</LastGenOutput>
     </Content>
+    <EntityDeploy Include="Models\AuditModel\AuditTrailModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AuditTrailModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\AuditModel\AuditTrailModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AuditTrailModel.edmx</DependentUpon>
+      <LastGenOutput>AuditTrailModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\AuditModel\AuditTrailModel.edmx.diagram">
+      <DependentUpon>AuditTrailModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\AuditModel\AuditTrailModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AuditTrailModel.edmx</DependentUpon>
+      <LastGenOutput>AuditTrailModel.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\portal.pubxml" />
     <None Include="Scripts\jQuery\jquery-3.1.1.intellisense.js" />
     <Content Include="Images\background.jpg" />
@@ -272,8 +289,27 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\APIModel\Register.cs" />
     <Compile Include="Models\APIModel\RegisterUserModel.cs" />
+    <Compile Include="Models\AuditModel\AuditTrailModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTrailModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AuditModel\AuditTrailModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTrailModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AuditModel\AuditTrailModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTrailModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AuditModel\audit_trail.cs">
+      <DependentUpon>AuditTrailModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BusinessLogic\Laboratory.cs" />
     <Compile Include="Models\BusinessLogic\OMCP.cs" />
+    <Compile Include="Models\Helpers\AuditAttribute.cs" />
     <Compile Include="Models\Helpers\Helper.cs" />
     <Compile Include="Models\IdentityDBModel%28TemporaryLogin%29\AccountModel.cs" />
     <Compile Include="Models\IdentityDBModel%28TemporaryLogin%29\IdentityDB.cs" />

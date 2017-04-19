@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
 using Vereyon.Web;
+using Portal.Models.Helpers;
 
 namespace Portal.Controllers
 {
