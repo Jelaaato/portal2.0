@@ -226,6 +226,8 @@ namespace Portal.Controllers
                 var previous_surgeries = omcp.GetSurgeries(patient_id);
                 var previous_hospitalizations = omcp.GetHospitalizations(patient_id);
 
+                var fileName = "Outpatient Medical Care Profile - " + searchstring;
+
                 Document doc = new Document();
                 MemoryStream mst = new MemoryStream();
 
@@ -430,7 +432,7 @@ namespace Portal.Controllers
                 mst.Flush();
                 mst.Position = 0;
 
-                Response.AddHeader("content-disposition", string.Format("inline; filename=Sample"));
+                Response.AddHeader("content-disposition", string.Format("inline; filename={0}", fileName));
                 return File(mst, "application/pdf");
             }
             else 
