@@ -28,7 +28,7 @@
             <a href="#" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
         </div>
     }
-    else
+    else if(User.IsInRole("Patient") || User.IsInRole("Doctor"))
     {
         <div off-canvas="sideBar left reveal">
             <span class="close-button" id="closeBtn">&times;</span>
@@ -40,6 +40,21 @@
             <a href="#" class="sub-menu"><span class="sub-menu-font">Diagnosis</span></a>
             <a href="#" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;REPORTS</span></a>
             <a href="#" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+        </div>
+    }
+    else if(User.IsInRole("Administrator"))
+    {
+        <div off-canvas="sideBar left reveal">
+            <span class="close-button" id="closeBtn">&times;</span>
+            <br />
+            <br />
+            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;USER MANAGEMENT</span></a>
+            <a href="@Url.Action("LaboratoryResults", "Results")" class="sub-menu"><span class="sub-menu-font">User Roles</span></a>
+            <a href="@Url.Action("ViewUsers", "Admin")" class=" sub-menu"><span class="sub-menu-font">Delete Users</span></a>
+            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;PREFERENCES</span></a>
+            <a href="@Url.Action("AddFileRetention", "Admin")" class="sub-menu"><span class="sub-menu-font">File Retention</span></a>
+            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+            <a href="@Url.Action("LaboratoryResults", "Results")" class="sub-menu"><span class="sub-menu-font">Audit Trail</span></a>
         </div>
     }
 

@@ -243,6 +243,23 @@
       <DependentUpon>AuditTrailModel.edmx</DependentUpon>
       <LastGenOutput>AuditTrailModel.cs</LastGenOutput>
     </Content>
+    <EntityDeploy Include="Models\FileRetentionModel\FileRetentionModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FileRetentionModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\FileRetentionModel\FileRetentionModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FileRetentionModel.edmx</DependentUpon>
+      <LastGenOutput>FileRetentionModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\FileRetentionModel\FileRetentionModel.edmx.diagram">
+      <DependentUpon>FileRetentionModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\FileRetentionModel\FileRetentionModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FileRetentionModel.edmx</DependentUpon>
+      <LastGenOutput>FileRetentionModel.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\portal.pubxml" />
     <None Include="Scripts\jQuery\jquery-3.1.1.intellisense.js" />
     <Content Include="Images\background.jpg" />
@@ -274,6 +291,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
@@ -285,6 +303,10 @@
     <Compile Include="Migrations\201704060605387_IdentityDB.cs" />
     <Compile Include="Migrations\201704060605387_IdentityDB.Designer.cs">
       <DependentUpon>201704060605387_IdentityDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704210609223_IdentityDB1.cs" />
+    <Compile Include="Migrations\201704210609223_IdentityDB1.Designer.cs">
+      <DependentUpon>201704210609223_IdentityDB1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\APIModel\Register.cs" />
@@ -307,8 +329,30 @@
     <Compile Include="Models\AuditModel\audit_trail.cs">
       <DependentUpon>AuditTrailModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BusinessLogic\Files.cs" />
     <Compile Include="Models\BusinessLogic\Laboratory.cs" />
     <Compile Include="Models\BusinessLogic\OMCP.cs" />
+    <Compile Include="Models\FileRetentionModel\file.cs">
+      <DependentUpon>FileRetentionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FileRetentionModel\FileRetentionModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FileRetentionModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FileRetentionModel\FileRetentionModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FileRetentionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FileRetentionModel\FileRetentionModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FileRetentionModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FileRetentionModel\file_retention.cs">
+      <DependentUpon>FileRetentionModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Helpers\AuditAttribute.cs" />
     <Compile Include="Models\Helpers\Helper.cs" />
     <Compile Include="Models\IdentityDBModel%28TemporaryLogin%29\AccountModel.cs" />
@@ -370,6 +414,7 @@
       <DependentUpon>ResultsReferenceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\ResultsModel.cs" />
+    <Compile Include="Models\ViewModels\RetentionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -389,6 +434,12 @@
     <Content Include="Views\Reports\_surgeries.cshtml" />
     <Content Include="Views\Reports\_hospitalizations.cshtml" />
     <Content Include="Views\Reports\_patient.cshtml" />
+    <Content Include="Views\Admin\ViewUsers.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Admin\AddFileRetention.cshtml" />
+    <Content Include="Views\Admin\FileRetention.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -405,6 +456,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704060605387_IdentityDB.resx">
       <DependentUpon>201704060605387_IdentityDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704210609223_IdentityDB1.resx">
+      <DependentUpon>201704210609223_IdentityDB1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

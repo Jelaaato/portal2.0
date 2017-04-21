@@ -20,8 +20,8 @@ namespace Portal.Models.IdentityDBModel_TemporaryLogin_
             UsersManager manager = new UsersManager(new UserStore<Users>(db));
 
             manager.UserValidator = new UserValidator<Users>(manager) { AllowOnlyAlphanumericUserNames = false };
+            manager.EmailService = new Portal.App_Start.IdentityConfig.EmailService();
 
-            //manager.EmailService = new WebPortal.IdentityConfig.EmailService();
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {

@@ -84,6 +84,87 @@ namespace Portal.Controllers
             return View(model);
         }
 
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ForgotPassword(ForgotPasswordModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = UserManager.FindByEmail(model.email);
+
+                if (user == null)
+                {
+                    ModelState.AddModelError("", "You have entered an invalid email");
+                    return View(model);
+                }
+                else
+                {
+                    string code = UserManager.GeneratePasswordResetToken(user.Id);
+                    code = HttpUtility.UrlEncode(code);
+                    var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    UserManager.SendEmail(user.Id, "ResetPassword", Helper.ResetPasswordEmailMessage(callbackUrl));
+                    return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                }
+            }
+
+            return View(model);
+        }
+
+        public ActionResult ForgotPasswordConfirmation()
+        {
+            return View();    
+        }
+
+        public ActionResult ResetPassword(string code)
+        {
+            if (code != null)
+            {
+                code = HttpUtility.UrlDecode(code);
+                return View();
+            }
+            else
+            {
+                ModelState.AddModelError("", "Invalid token");
+                return View(ModelState);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ResetPassword(ResetPasswordModel model, string code)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = UserManager.FindByName(model.username);
+                if (user == null)
+                {
+                    return RedirectToAction("ResetPasswordConfirmation", "Account");
+                }
+                else
+                {
+                    var result = UserManager.ResetPassword(user.Id, code, model.password);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("ResetPasswordConfirmation", "Account");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Resetting your password failed.");
+                        return View(model);
+                    }
+                }
+            }
+            return View(model);
+        }
+
+        public ActionResult ResetPasswordConfirmation()
+        {
+            return View();
+        }
+
         private void AddErrorsFromResult(IdentityResult result)
         {
             foreach (string error in result.Errors)

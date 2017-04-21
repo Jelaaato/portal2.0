@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Portal.Models.FileRetentionModel.file_retention>
+@using Portal.Models.Helpers
+@{
+    ViewBag.Title = "FileRetention";
+}
+
+<div canvas="container">
+    <div class="lab-overlay-1">
+        <div class="container">
+            <nav class="navbar navbar-inverse custom-nav">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                        <span class="logo hidden-xs">Asian Hospital and Medical Center</span>
+                        <span class="logo visible-xs">AHMC</span>
+                    </a>
+                </div>
+                <ul class="nav navbar-nav navbar-right hidden-xs">
+                    <li><a href="#" class="user" id="toggleSidebar">Explore</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right hidden-xs">
+                    <li><a href="#" class="user" id="toggleUserSidebar">Welcome @User.Identity.Name</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right visible-xs">
+                    <li>
+                        <a href="#" class="user" id="toggleUserSidebarMobile" style="position:fixed !important;top:18px !important;right:50px !important;"><i class="fa fa-user-circle-o fa-2x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" class="user" id="toggleSidebarMobile" style="position:fixed !important;top:18px !important;right:15px !important;"><i class="fa fa-navicon fa-2x"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;" id="resultContainer">
+                <thead class="table-bordered" style="background-color:#73AE6A;">
+                    <tr>
+                        <th style="text-align:center;font-weight:400;">File Type</th>
+                        <th style="text-align:center;font-weight:400;">Retention Period</th>
+                        <th style="text-align:center;font-weight:400;">Action</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-bordered" style="color:black;">
+                    @foreach (var period in Model)
+                    {
+                        <tr>
+                            <td>@period.file_id.GetFileTypeName()</td>
+                            <td>@period.retention_period days</td>
+                            <td></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+

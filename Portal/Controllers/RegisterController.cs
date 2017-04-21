@@ -21,7 +21,7 @@ namespace Portal.Controllers
         {
             if (ModelState.IsValid)
             {
-                Users user = new Users { UserName = model.firstCredential };
+                Users user = new Users { UserName = model.firstCredential, Email = model.email};
                 IdentityResult result = UserManager.Create(user, model.password);
                 if (result.Succeeded)
                 {

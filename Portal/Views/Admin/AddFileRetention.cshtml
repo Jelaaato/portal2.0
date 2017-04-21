@@ -1,4 +1,4 @@
-﻿@model Portal.Models.IdentityDBModel_TemporaryLogin_.ChangePasswordModel
+﻿@model Portal.Models.ViewModels.FileRetentionModel
 @{
     Layout = null;
 }
@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Change Result</title>
+    <title>File Retention</title>
     <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/fontawesome/font-awesome.css" rel="stylesheet" />
     <link href="~/Content/site.css" rel="stylesheet" />
@@ -21,7 +21,11 @@
                     <div class="mobile-wrapper">
                         <div class="form-bottom">
                             <div class="form-box">
-                                <span style="color:white;">Change your password</span>
+                                @foreach (var msg in Vereyon.Web.FlashMessage.Retrieve(Html.ViewContext.HttpContext))
+                                {
+                                    <div id="flashAlert" class="alert alert-danger" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:13px;text-align:center;">@msg.Message</div>
+                                }
+                                <span style="color:white;">Set Retention Period For</span>
                                 <br /><br />
                                 @Html.ValidationSummary(false)
                                 <br />
@@ -29,24 +33,11 @@
                                 @using (Html.BeginForm(new { returnUrl = ViewBag.returnUrl }))
                                 {
                                     <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                            @Html.PasswordFor(a => a.oldPassword, new { @class = "form-control", @placeholder = "CURRENT PASSWORD" })
-                                        </div>
+                                        @Html.DropDownListFor(a => a.file_type, new SelectList(Model.file_types, "Value", "Text"), new { @class = "form-control", id = "file_type_options" })
                                     </div>
                                     <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                            @Html.PasswordFor(a => a.newPassword, new { @class = "form-control", @placeholder = "NEW PASSWORD" })
-                                        </div>
+                                        @Html.TextBoxFor(a => a.retention_period, new { @class = "form-control", @placeholder = "RETENTION PERIOD", @Value = ""})
                                     </div>
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                            @Html.PasswordFor(a => a.confirmPassword, new { @class = "form-control", @placeholder = "CONFIRM PASSWORD" })
-                                        </div>
-                                    </div>
-                                    <br />
                                     <div class="form-group">
                                         <button class="btn btn-block regular-btn" type="submit">PROCEED</button>
                                     </div>
