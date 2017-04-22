@@ -29,5 +29,12 @@ namespace Portal.Models.Helpers
 
             return file_name;
         }
+
+        public static int ReturnAbsoluteValue(this int num)
+        {
+            var absoluteValue = (num * -1);
+
+            return absoluteValue;
+        }
     }
 }

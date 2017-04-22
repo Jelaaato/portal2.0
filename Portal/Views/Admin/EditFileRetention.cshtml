@@ -1,4 +1,5 @@
 ﻿@model Portal.Models.ViewModels.FileRetentionModel
+@using Portal.Models.Helpers
 @{
     Layout = null;
 }
@@ -8,7 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>File Retention</title>
+    <title>Edit File Retention</title>
     <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/fontawesome/font-awesome.css" rel="stylesheet" />
     <link href="~/Content/site.css" rel="stylesheet" />
@@ -25,7 +26,7 @@
                                 {
                                     <div id="flashAlert" class="alert alert-danger" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:13px;text-align:center;">@msg.Message</div>
                                 }
-                                <span style="color:white;">Set Retention Period For</span>
+                                <span style="color:white;">Change Retention Period</span>
                                 <br /><br />
                                 @Html.ValidationSummary(false)
                                 <br />
@@ -33,11 +34,18 @@
                                 @using (Html.BeginForm(new { returnUrl = ViewBag.returnUrl }))
                                 {
                                     <div class="form-group">
-                                        @Html.DropDownListFor(a => a.file_type, new SelectList(Model.file_types, "Value", "Text"), new { @class = "form-control", id = "file_type_options" })
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                            @Html.TextBoxFor(a => a.file_type, new { @class = "form-control", @readonly = true})
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        @Html.TextBoxFor(a => a.retention_period, new { @class = "form-control", @placeholder = "RETENTION PERIOD", @Value = ""})
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                            @Html.TextBoxFor(a => a.retention_period, new { @class = "form-control", @placeholder = "NEW PASSWORD" })
+                                        </div>
                                     </div>
+                                    <br />
                                     <div class="form-group">
                                         <button class="btn btn-block regular-btn" type="submit">PROCEED</button>
                                     </div>

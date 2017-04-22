@@ -22,7 +22,7 @@ namespace Portal.Models.BusinessLogic
 
         #region Methods
 
-        private IEnumerable<FileInfo> GetSearchResults(string path, string search, DateTime minDate)
+        private IEnumerable<FileInfo> GetSearchResults(string path, string search, DateTime? minDate)
         {
             dir = new DirectoryInfo(path);
 
@@ -31,7 +31,7 @@ namespace Portal.Models.BusinessLogic
             return files;
         }
 
-        private IEnumerable<FileInfo> GetSearchResultsFilterByLabOrder(string path, string lab_order_name, string search, DateTime minDate)
+        private IEnumerable<FileInfo> GetSearchResultsFilterByLabOrder(string path, string lab_order_name, string search, DateTime? minDate)
         {
             dir = new DirectoryInfo(path);
 
@@ -40,7 +40,7 @@ namespace Portal.Models.BusinessLogic
             return files;
         }
 
-        private IEnumerable<FileInfo> GetResultsFilterByLabOrder(string path, string lab_order_name, DateTime minDate)
+        private IEnumerable<FileInfo> GetResultsFilterByLabOrder(string path, string lab_order_name, DateTime? minDate)
         {
             dir = new DirectoryInfo(path);
 
@@ -49,7 +49,7 @@ namespace Portal.Models.BusinessLogic
             return files;
         }
 
-        public IEnumerable<FileInfo> GetAllResults(string path, DateTime minDate)
+        public IEnumerable<FileInfo> GetAllResults(string path, DateTime? minDate)
         {
             dir = new DirectoryInfo(path);
 
@@ -58,7 +58,7 @@ namespace Portal.Models.BusinessLogic
             return files;
         }
 
-        public IEnumerable<FileInfo> GetResults(string path, string lab_order_name, string search, DateTime minDate)
+        public IEnumerable<FileInfo> GetResults(string path, string lab_order_name, string search, DateTime? minDate)
         {
             if (search != null && lab_order_name == "All Laboratory Results")
             {
@@ -93,9 +93,16 @@ namespace Portal.Models.BusinessLogic
 
         public int GetRetentionPeriod(int file_id)
         {
-            var period = retention.file_retention.Where(a => a.file_id == file_id).Select(a => a.retention_period).First();
-
-            return period;
+            int period;
+            try 
+            {
+                period = retention.file_retention.Where(a => a.file_id == file_id).Select(a => a.retention_period).First();
+                return period;
+            }
+            catch(Exception)
+            {
+                return period = -30;
+            }
         }
 
         #endregion

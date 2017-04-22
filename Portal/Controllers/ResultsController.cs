@@ -12,13 +12,22 @@ namespace Portal.Controllers
     {
         // GET: Results
         private Laboratory lab = new Laboratory();
+        private Files files = new Files();
 
         [Authorize(Roles = "Patient, Doctor, Administrator")]
-        public ActionResult LaboratoryResults(string fileid, bool? isvalidated, LaboratoryModel model)
+        public ActionResult LaboratoryResults(string fileid, bool? isvalidated, LaboratoryModel model, DateTime? minDate)
         {
             string path = Server.MapPath("~/Results/Laboratory");
-            var retention_period = lab.GetRetentionPeriod(2);
-            DateTime minDate = DateTime.Today.AddDays(retention_period);
+            var retention_period = lab.GetRetentionPeriod(1);
+
+            if (retention_period == 0)
+            {
+                minDate = DateTime.Today.AddDays(-30);
+            }
+            else
+            {
+                minDate = DateTime.Today.AddDays(retention_period);
+            }
 
             model.results_references = lab.PopulateResultsDropdown();
             model.allLabResults = lab.GetAllResults(path, minDate);
@@ -31,12 +40,20 @@ namespace Portal.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Patient, Doctor, Administrator")]
-        public ActionResult LaboratoryResults(string fileid, bool? isvalidated, string search, string lab_order_name, LaboratoryModel model)
+        public ActionResult LaboratoryResults(string fileid, bool? isvalidated, string search, string lab_order_name, LaboratoryModel model, DateTime? minDate)
         {
 
             string path = Server.MapPath("~/Results/Laboratory");
             var retention_period = lab.GetRetentionPeriod(2);
-            DateTime minDate = DateTime.Today.AddDays(retention_period);
+
+            if (retention_period == 0)
+            {
+                minDate = DateTime.Today.AddDays(30);
+            }
+            else
+            {
+                minDate = DateTime.Today.AddDays(retention_period);
+            }
 
             if (Request.IsAjaxRequest())
             {
