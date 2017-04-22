@@ -123,7 +123,7 @@ namespace Portal.Controllers
         {
             if (code != null)
             {
-                code = HttpUtility.UrlDecode(code);
+                //userId.GetUsername();
                 return View();
             }
             else
@@ -134,7 +134,7 @@ namespace Portal.Controllers
         }
 
         [HttpPost]
-        public ActionResult ResetPassword(ResetPasswordModel model, string code)
+        public ActionResult ResetPassword(ResetPasswordModel model)
         {
             if (ModelState.IsValid)
             {
@@ -145,7 +145,7 @@ namespace Portal.Controllers
                 }
                 else
                 {
-                    var result = UserManager.ResetPassword(user.Id, code, model.password);
+                    var result = UserManager.ResetPassword(user.Id, HttpUtility.UrlDecode(model.code), model.password);
                     if (result.Succeeded)
                     {
                         return RedirectToAction("ResetPasswordConfirmation", "Account");

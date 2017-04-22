@@ -1,5 +1,6 @@
 ﻿using Portal.Models.AuditModel;
 using Portal.Models.FileRetentionModel;
+using Portal.Models.IdentityDBModel_TemporaryLogin_;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,15 @@ namespace Portal.Models.Helpers
             var absoluteValue = (num * -1);
 
             return absoluteValue;
+        }
+
+        public static string GetUsername(this string Id)
+        {
+            IdentityDB db = new IdentityDB();
+
+            var username = db.Users.Where(a => a.Id == Id).Select(a => a.UserName).First();
+
+            return username;
         }
     }
 }

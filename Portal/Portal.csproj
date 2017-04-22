@@ -441,6 +441,7 @@
     <Content Include="Views\Admin\AddFileRetention.cshtml" />
     <Content Include="Views\Admin\FileRetention.cshtml" />
     <Content Include="Views\Admin\EditFileRetention.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

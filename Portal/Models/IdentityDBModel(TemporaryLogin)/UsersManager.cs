@@ -26,7 +26,9 @@ namespace Portal.Models.IdentityDBModel_TemporaryLogin_
             if (dataProtectionProvider != null)
             {
                 manager.UserTokenProvider =
-                    new DataProtectorTokenProvider<Users>(dataProtectionProvider.Create("Portal"));
+                    new DataProtectorTokenProvider<Users>(dataProtectionProvider.Create("Portal")) { 
+                        TokenLifespan = TimeSpan.FromMinutes(30)
+                    };
             }
 
             return manager;
