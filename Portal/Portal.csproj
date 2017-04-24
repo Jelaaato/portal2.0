@@ -195,6 +195,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ResultsReferenceModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Images\gears.gif" />
     <Content Include="Images\pdf_logo.png" />
     <Content Include="Images\slider1.jpeg" />
     <Content Include="Images\slider2.jpg" />
@@ -286,7 +287,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_MainLayout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -437,7 +438,7 @@
     <Content Include="Views\Reports\_surgeries.cshtml" />
     <Content Include="Views\Reports\_hospitalizations.cshtml" />
     <Content Include="Views\Reports\_patient.cshtml" />
-    <Content Include="Views\Admin\ViewUsers.cshtml" />
+    <Content Include="Views\Admin\DeleteUsers.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
@@ -445,6 +446,8 @@
     <Content Include="Views\Admin\FileRetention.cshtml" />
     <Content Include="Views\Admin\EditFileRetention.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Shared\_FormsLayout.cshtml" />
+    <Content Include="Views\Shared\_ModuleLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

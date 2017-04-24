@@ -1,68 +1,42 @@
 ﻿@model Portal.Models.ViewModels.FileRetentionModel
 @using Portal.Models.Helpers
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_FormsLayout.cshtml";
 }
 
-<!DOCTYPE html>
+<div class="mobile-wrapper">
+    <div class="form-bottom">
+        <div class="form-box" style="background-color:white;box-shadow: rgba(0,0,0, 0.2) 6px 6px;">
+            <span style="color:#73AE6A;font-size:16px;text-align:center;" class="subtext">Change Retention Period</span>
+            <br /><br />
+            @Html.ValidationSummary(false)
+            <br />
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit File Retention</title>
-    <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/fontawesome/font-awesome.css" rel="stylesheet" />
-    <link href="~/Content/site.css" rel="stylesheet" />
-    <link href="~/Content/opensourcedll/animate/animate.css" rel="stylesheet" />
-</head>
-<body class="background">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-3">
-                <center>
-                    <div class="mobile-wrapper">
-                        <div class="form-bottom">
-                            <div class="form-box" style="background-color:white;box-shadow: rgba(0,0,0, 0.2) 6px 6px;">
-                                <span style="color:#73AE6A;font-size:16px;text-align:center;" class="subtext">Change Retention Period</span>
-                                <br /><br />
-                                @Html.ValidationSummary(false)
-                                <br />
-
-                                @using (Html.BeginForm(new { returnUrl = ViewBag.returnUrl }))
-                                {
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                            @Html.TextBoxFor(a => a.file_type, new { @class = "form-control", @readonly = true })
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                            @Html.TextBoxFor(a => a.retention_period, new { @class = "form-control", @placeholder = "NEW PASSWORD" })
-                                        </div>
-                                    </div>
-                                    <br />
-                                    <div class="form-group">
-                                        <button class="btn btn-block regular-btn" type="submit">PROCEED</button>
-                                    </div>
-                                    <div class="form-group">
-                                        <center><a href="@Url.Action("FileRetention", "Admin")"><span class="subtext" style="color:#73AE6A;">Cancel</span></a></center>
-                                    </div>
-                                }
-                            </div>
-                        </div>
+            @using (Html.BeginForm(new { returnUrl = ViewBag.returnUrl }))
+            {
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        @Html.TextBoxFor(a => a.file_type, new { @class = "form-control", @readonly = true })
                     </div>
-                </center>
-            </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        @Html.TextBoxFor(a => a.retention_period, new { @class = "form-control", @placeholder = "NEW PASSWORD" })
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <button class="btn btn-block regular-btn" type="submit">PROCEED</button>
+                </div>
+                <div class="form-group">
+                    <center><a href="@Url.Action("FileRetention", "Admin")"><span class="subtext" style="color:#73AE6A;">Cancel</span></a></center>
+                </div>
+            }
         </div>
     </div>
-</body>
-</html>
-
-<script src="~/Scripts/jQuery/jquery-3.1.1.min.js"></script>
-<script src="~/Scripts/bootstrap/bootstrap.min.js"></script>
-<script src="~/Content/opensourcedll/notify/bootstrap-notify.min.js"></script>
+</div>
 
 @foreach (var message in Vereyon.Web.FlashMessage.Retrieve(Html.ViewContext.HttpContext))
 {

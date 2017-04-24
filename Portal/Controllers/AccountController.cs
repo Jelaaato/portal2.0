@@ -33,7 +33,7 @@ namespace Portal.Controllers
                 Users user = await UserManager.FindAsync(model.username, model.password);
                 if (user == null)
                 {
-                    ModelState.AddModelError("", "Invalid name or password.");
+                    FlashMessage.Danger("Invalid User ID or Password");
                 }
                 else
                 {

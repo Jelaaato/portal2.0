@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/opensourcedll/slidebars/slidebars.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jQuery/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/bootstrap/bootstrap.min.js"></script>
+    <script src="~/Content/opensourcedll/slidebars/slidebars.min.js"></script>
+    <link href="~/Content/opensourcedll/animate/animate.css" rel="stylesheet" />
+    <link href="~/Content/opensourcedll/sidebar/simple-sidebar.css" rel="stylesheet" /> 
+    <script src="~/Content/opensourcedll/notify/bootstrap-notify.min.js"></script>
+</head>
+<body>
+        <div off-canvas="userSidebar right push">
+            <span class="close-button" id="userCloseBtn">&times;</span>
+            <br />
+            <br />
+            <br />
+            <span class="visible-xs" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:15px;">Welcome, @User.Identity.Name</span>
+            <br />
+            <a href="#" class="menu"><span class="menu-font">ACCOUNT</span></a>
+            <a href="@Url.Action("ChangePassword", "Account")" class="sub-menu"><span class="sub-menu-font">Change Password</span></a>
+            <a href="@Url.Action("Logout", "Account")" class="sub-menu"><span class="sub-menu-font">Log Out</span></a>
+        </div>
+        <div canvas="container">
+            <div id="wrapper">
+                <div id="sidebar-wrapper">
+                    @if (User.IsInRole("Employee"))
+                    {
+                        <div>
+                            <br />
+                            <br />
+                            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;REPORTS</span></a>
+                            <a href="@Url.Action("OMCP", "Reports")" class="sub-menu"><span class="sub-menu-font">OMCP</span></a>
+                            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+                        </div>
+                    }
+                    else if (User.IsInRole("Patient") || User.IsInRole("Doctor"))
+                    {
+                        <div>
+                            <br />
+                            <br />
+                            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;RESULTS</span></a>
+                            <a href="@Url.Action("LaboratoryResults", "Results")" class="sub-menu"><span class="sub-menu-font">Laboratory</span></a>
+                            <a href="#" class="sub-menu"><span class="sub-menu-font">Radiology</span></a>
+                            <a href="#" class="sub-menu"><span class="sub-menu-font">Diagnosis</span></a>
+                            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;REPORTS</span></a>
+                            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+                        </div>
+                    }
+                    else if (User.IsInRole("Administrator"))
+                    {
+                        <div>
+                            <br />
+                            <br />
+                            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;USER MANAGEMENT</span></a>
+                            <a href="@Url.Action("")" class="sub-menu"><span class="sub-menu-font">User Roles</span></a>
+                            <a href="@Url.Action("DeleteUsers", "Admin")" class=" sub-menu"><span class="sub-menu-font">Delete Users</span></a>
+                            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;PREFERENCES</span></a>
+                            <a href="@Url.Action("FileRetention", "Admin")" class="sub-menu"><span class="sub-menu-font">File Retention</span></a>
+                            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+                            <a href="@Url.Action("")" class="sub-menu"><span class="sub-menu-font">Audit Trail</span></a>
+                        </div>
+                    }
+                </div>
+                <div id="page-content-wrapper">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                    <div class="lab-overlay-1">
+                                        <nav class="navbar navbar-inverse custom-nav">
+                                                <div class="navbar-header">
+                                                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                                                        <span class="logo hidden-xs">Asian Hospital and Medical Center</span>
+                                                        <span class="logo visible-xs">AHMC</span>
+                                                    </a>
+                                                </div>
+                                                <ul class="nav navbar-nav navbar-right hidden-xs">
+                                                    <li><a href="#" class="user" id="toggleUserSidebar">Welcome @User.Identity.Name</a></li>
+                                                </ul>
+                                                <ul class="nav navbar-nav navbar-right visible-xs">
+                                                    <li>
+                                                        <a href="#" class="user" id="toggleUserSidebarMobile" style="position:fixed !important;top:18px !important;right:50px !important;"><i class="fa fa-user-circle-o fa-2x"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="user" id="toggleSidebarMobile" style="position:fixed !important;top:18px !important;right:15px !important;"><i class="fa fa-navicon fa-2x"></i></a>
+                                                    </li>
+                                                </ul>
+                                        </nav>
+                                    </div>
+                                    @RenderBody()
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
+
+<script>
+    jQuery(document).ready(function () {
+        $(".loader").fadeOut("slow");
+        var controller = new slidebars();
+        controller.init();
+
+        //controller.open('sideBar');
+
+        $('#toggleSidebar').on('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            controller.toggle('sideBar');
+        });
+
+        $('#toggleSidebarMobile').on('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            controller.toggle('sideBar');
+        });
+
+        $('#toggleUserSidebar').on('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            controller.toggle('userSidebar');
+        });
+
+        $('#toggleUserSidebarMobile').on('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            controller.toggle('userSidebar');
+        });
+
+        $('#closeBtn').on('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            controller.toggle('sideBar');
+        });
+
+        $('#userCloseBtn').on('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            controller.toggle('userSidebar');
+        });
+    });
+</script>

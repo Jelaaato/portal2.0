@@ -1,0 +1,121 @@
+﻿@model IEnumerable<Portal.Models.IdentityDBModel_TemporaryLogin_.Users>
+@using Portal.Models.IdentityDBModel_TemporaryLogin_;
+@{
+    ViewBag.Title = "ViewUsers";
+}
+<div canvas="container">
+    <div class="lab-overlay-1">
+        <div class="container">
+            <nav class="navbar navbar-inverse custom-nav">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                        <span class="logo hidden-xs">Asian Hospital and Medical Center</span>
+                        <span class="logo visible-xs">AHMC</span>
+                    </a>
+                </div>
+                <ul class="nav navbar-nav navbar-right hidden-xs">
+                    <li><a href="#" class="user" id="toggleSidebar">Explore</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right hidden-xs">
+                    <li><a href="#" class="user" id="toggleUserSidebar">Welcome @User.Identity.Name</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right visible-xs">
+                    <li>
+                        <a href="#" class="user" id="toggleUserSidebarMobile" style="position:fixed !important;top:18px !important;right:50px !important;"><i class="fa fa-user-circle-o fa-2x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" class="user" id="toggleSidebarMobile" style="position:fixed !important;top:18px !important;right:15px !important;"><i class="fa fa-navicon fa-2x"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <br /><br />
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
+                @using (Html.BeginForm())
+                {
+                    <div class="form-group">
+                        <div class="input-group">
+                            @Html.TextBox("search", ViewBag.CurrentFilter as String, new { @placeholder = "Search Hospital Number", @class = "form-control" })
+                            <span class="input-group-btn"><button type="submit" class="btn" style="background-color:#00A640;color:white;"><i class="fa fa-search"></i></button></span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="panel-success">
+            <div class="panel-heading">
+                <div class="panel-title">Users</div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>User ID</th>
+                    </tr>
+                    @if (Model.Count() == 0)
+                    {
+                        <tr><td class="text-center">No User Accounts</td></tr>
+                    }
+                    else
+                    {
+                        foreach (Users user in Model)
+                        {
+                            <tr>
+                                <td>@user.UserName</td>
+                                <td>
+                                    <button type="button" data-toggle="modal" data-target="#deleteconfirmation" class="btn btn-danger btn-xs">Delete</button>
+                                    <div class="modal fade" id="deleteconfirmation" role="dialog" tabindex="-1">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" data-toggle="tooltip" title="Close"><span class="fa fa-close"></span></button>
+                                                    <span class="text-center subtext" style="color:#00A640;font-size:14px;">Are you sure?</span>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @Html.ActionLink("Delete", "Delete", new { id = user.Id }, new { @class = "btn btn-block btn-danger" })
+                                                    <br />
+                                                    <a href="@Url.Action("Index")" class="btn btn-block btn-default">Cancel</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@foreach (var message in Vereyon.Web.FlashMessage.Retrieve(Html.ViewContext.HttpContext))
+{
+    <script>
+        $.notify({
+            message: '@message.Message'
+        }, {
+            type: 'success',
+            showProgressbar: true,
+            animate: {
+                enter: 'animated fadeInRight',
+                exit: 'animated fadeOutRight'
+            },
+            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+		                    '<button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="color:black;font-size:12px;"><span class="fa fa-close"></span></button>' +
+		                    '<span data-notify="message" class="notification">{2}</span>' +
+		                    '<div class="progress" data-notify="progressbar">' +
+			                    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+		                    '</div>' +
+	                  '</div>'
+        });
+    </script>
+}
+
+
+
