@@ -123,7 +123,6 @@ namespace Portal.Controllers
         {
             if (code != null)
             {
-                //userId.GetUsername();
                 return View();
             }
             else
@@ -148,7 +147,8 @@ namespace Portal.Controllers
                     var result = UserManager.ResetPassword(user.Id, HttpUtility.UrlDecode(model.code), model.password);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("ResetPasswordConfirmation", "Account");
+                        FlashMessage.Info("You have successfully reset your password. Please Login.");
+                        return RedirectToAction("Login", "Account");
                     }
                     else
                     {

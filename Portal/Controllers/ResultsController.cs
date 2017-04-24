@@ -14,7 +14,7 @@ namespace Portal.Controllers
         private Laboratory lab = new Laboratory();
         private Files files = new Files();
 
-        [Authorize(Roles = "Patient, Doctor, Administrator")]
+        [Authorize(Roles = "Patient, Doctor")]
         public ActionResult LaboratoryResults(string fileid, bool? isvalidated, LaboratoryModel model, DateTime? minDate)
         {
             string path = Server.MapPath("~/Results/Laboratory");
@@ -39,7 +39,7 @@ namespace Portal.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Patient, Doctor, Administrator")]
+        [Authorize(Roles = "Patient, Doctor")]
         public ActionResult LaboratoryResults(string fileid, bool? isvalidated, string search, string lab_order_name, LaboratoryModel model, DateTime? minDate)
         {
 

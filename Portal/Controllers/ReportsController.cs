@@ -25,7 +25,7 @@ namespace Portal.Controllers
         private string searchstring;
         private Guid patient_id;
 
-        [Authorize]
+        [Authorize(Roles="Employee")]
         public ActionResult OMCP(string search)
         {
             try
@@ -61,7 +61,7 @@ namespace Portal.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Employee")]
         public ActionResult OMCPAllergies(int? page, string currentfilter)
         {
             try
@@ -91,7 +91,7 @@ namespace Portal.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Employee")]
         public ActionResult OMCPDiagnosis(int? page, string currentfilter)
         {
             try
@@ -121,7 +121,7 @@ namespace Portal.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Employee")]
         public ActionResult OMCPHospitalizations(int? page, string currentfilter)
         {
             try
@@ -151,7 +151,7 @@ namespace Portal.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Employee")]
         public ActionResult OMCPMedications(int? page, string currentfilter)
         {
             try
@@ -181,7 +181,7 @@ namespace Portal.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Employee")]
         public ActionResult OMCPSurgeries(int? page, string currentfilter)
         {
             try
@@ -211,7 +211,7 @@ namespace Portal.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Employee")]
         public ActionResult GenerateOMCPReport()
         {
             if (Session["searchstring"] != null || Session["patient_id"] != null)

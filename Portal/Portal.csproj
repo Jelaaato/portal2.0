@@ -150,6 +150,9 @@
     <Content Include="Content\bootstrap\bootstrap.min.css" />
     <Content Include="Content\fontawesome\font-awesome.css" />
     <Content Include="Content\fontawesome\font-awesome.min.css" />
+    <Content Include="Content\opensourcedll\animate\animate.css" />
+    <Content Include="Content\opensourcedll\notify\bootstrap-notify.js" />
+    <Content Include="Content\opensourcedll\notify\bootstrap-notify.min.js" />
     <Content Include="Content\opensourcedll\sidr\jquery.sidr.bare.css" />
     <Content Include="Content\opensourcedll\sidr\jquery.sidr.dark.css" />
     <Content Include="Content\opensourcedll\sidr\jquery.sidr.dark.min.css" />

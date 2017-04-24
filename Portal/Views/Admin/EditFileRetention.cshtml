@@ -13,6 +13,7 @@
     <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/fontawesome/font-awesome.css" rel="stylesheet" />
     <link href="~/Content/site.css" rel="stylesheet" />
+    <link href="~/Content/opensourcedll/animate/animate.css" rel="stylesheet" />
 </head>
 <body class="background">
     <div class="container">
@@ -21,12 +22,8 @@
                 <center>
                     <div class="mobile-wrapper">
                         <div class="form-bottom">
-                            <div class="form-box">
-                                @foreach (var msg in Vereyon.Web.FlashMessage.Retrieve(Html.ViewContext.HttpContext))
-                                {
-                                    <div id="flashAlert" class="alert alert-danger" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:13px;text-align:center;">@msg.Message</div>
-                                }
-                                <span style="color:white;">Change Retention Period</span>
+                            <div class="form-box" style="background-color:white;box-shadow: rgba(0,0,0, 0.2) 6px 6px;">
+                                <span style="color:#73AE6A;font-size:16px;text-align:center;" class="subtext">Change Retention Period</span>
                                 <br /><br />
                                 @Html.ValidationSummary(false)
                                 <br />
@@ -36,7 +33,7 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                            @Html.TextBoxFor(a => a.file_type, new { @class = "form-control", @readonly = true})
+                                            @Html.TextBoxFor(a => a.file_type, new { @class = "form-control", @readonly = true })
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -49,17 +46,43 @@
                                     <div class="form-group">
                                         <button class="btn btn-block regular-btn" type="submit">PROCEED</button>
                                     </div>
+                                    <div class="form-group">
+                                        <center><a href="@Url.Action("FileRetention", "Admin")"><span class="subtext" style="color:#73AE6A;">Cancel</span></a></center>
+                                    </div>
                                 }
                             </div>
                         </div>
                     </div>
                 </center>
-                <div>
-                    <br />
-                    <center><a href="@Url.Action("FileRetention", "Admin")"><span class="subtext">CANCEL</span></a></center>
-                </div>
             </div>
         </div>
     </div>
 </body>
 </html>
+
+<script src="~/Scripts/jQuery/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/bootstrap/bootstrap.min.js"></script>
+<script src="~/Content/opensourcedll/notify/bootstrap-notify.min.js"></script>
+
+@foreach (var message in Vereyon.Web.FlashMessage.Retrieve(Html.ViewContext.HttpContext))
+{
+    <script>
+        $.notify({
+            message: '@message.Message'
+        }, {
+            type: 'danger',
+            showProgressbar: true,
+            animate: {
+                enter: 'animated fadeInRight',
+                exit: 'animated fadeOutRight'
+            },
+            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+		                    '<button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="color:black;font-size:12px;"><span class="fa fa-close"></span></button>' +
+		                    '<span data-notify="message" class="notification">{2}</span>' +
+		                    '<div class="progress" data-notify="progressbar">' +
+			                    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+		                    '</div>' +
+	                  '</div>'
+        });
+    </script>
+}
