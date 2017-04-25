@@ -9,7 +9,7 @@
         <div class="form-box" style="background-color:white;box-shadow: rgba(0,0,0, 0.2) 6px 6px;">
             <span style="color:#73AE6A;font-size:16px;text-align:center;" class="subtext">Change Retention Period</span>
             <br /><br />
-            @Html.ValidationSummary(false)
+            @Html.ValidationSummary(true)
             <br />
 
             @using (Html.BeginForm(new { returnUrl = ViewBag.returnUrl }))

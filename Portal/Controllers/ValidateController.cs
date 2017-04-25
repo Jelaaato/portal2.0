@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
 using System.IO;
+using Vereyon.Web;
 
 namespace Portal.Controllers
 {
@@ -47,7 +48,15 @@ namespace Portal.Controllers
                     ModelState.AddModelError("", "Invalid Password");
                 }
             }
-            return View(model);
+            var error = (from item in ModelState
+                         where item.Value.Errors.Any()
+                         select item.Value.Errors[0].ErrorMessage).ToList();
+
+            foreach (var err in error)
+            {
+                FlashMessage.Danger(err);
+            }
+            return View();
         }
 
         private void AddErrorsFromResult(IdentityResult result)

@@ -42,7 +42,15 @@ namespace Portal.Controllers
                     return RedirectToLocal(returnUrl);
                 }
             }
-            return View(model);
+            var error = (from item in ModelState
+                        where item.Value.Errors.Any()
+                        select item.Value.Errors[0].ErrorMessage).ToList();
+
+            foreach (var err in error)
+            {
+                FlashMessage.Danger(err);
+            }
+            return View();
         }
 
         [Authorize]
@@ -80,8 +88,15 @@ namespace Portal.Controllers
                 AddErrorsFromResult(result);
                 return View(model);
             }
+            var error = (from item in ModelState
+                         where item.Value.Errors.Any()
+                         select item.Value.Errors[0].ErrorMessage).ToList();
 
-            return View(model);
+            foreach (var err in error)
+            {
+                FlashMessage.Danger(err);
+            }
+            return View();
         }
 
         public ActionResult ForgotPassword()
@@ -110,8 +125,15 @@ namespace Portal.Controllers
                     return RedirectToAction("ForgotPasswordConfirmation", "Account");
                 }
             }
+            var error = (from item in ModelState
+                         where item.Value.Errors.Any()
+                         select item.Value.Errors[0].ErrorMessage).ToList();
 
-            return View(model);
+            foreach (var err1 in error)
+            {
+                FlashMessage.Danger(err1);
+            }
+            return View();
         }
 
         public ActionResult ForgotPasswordConfirmation()
@@ -157,7 +179,15 @@ namespace Portal.Controllers
                     }
                 }
             }
-            return View(model);
+            var error = (from item in ModelState
+                         where item.Value.Errors.Any()
+                         select item.Value.Errors[0].ErrorMessage).ToList();
+
+            foreach (var err in error)
+            {
+                FlashMessage.Danger(err);
+            }
+            return View();
         }
 
         public ActionResult ResetPasswordConfirmation()
