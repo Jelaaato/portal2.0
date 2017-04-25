@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
+using System.IO;
 
 namespace Portal.Controllers
 {
@@ -26,7 +27,16 @@ namespace Portal.Controllers
             if (ModelState.IsValid)
             {
                 var user = UserManager.Find(User.Identity.Name, model.password);
-                if (user != null)
+                if (user != null && accessed_in == "mobile")
+                {
+                    string path = Server.MapPath("~/Results/Laboratory/");
+                    DirectoryInfo dir = new DirectoryInfo(path);
+
+                    var filename = dir.GetFiles("*.pdf*").Where(a => a.Name.Contains(id)).Select(b => b.Name).First();
+                    return File(path + filename, "application/pdf");
+
+                }
+                else if (user != null && accessed_in == "browser")
                 {
                     model.isValidated = true;
                     return RedirectToAction("LaboratoryResults", "Results", new { fileid = id, isvalidated = model.isValidated });

@@ -17,6 +17,46 @@
     <script src="~/Content/opensourcedll/notify/bootstrap-notify.min.js"></script>
 </head>
 <body>
+        @if (User.IsInRole("Employee"))
+        {
+            <div off-canvas="sideBar left reveal">
+                <span class="close-button" id="closeBtn">&times;</span>
+                <br />
+                <br />
+                <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;REPORTS</span></a>
+                <a href="@Url.Action("OMCP", "Reports")" class="sub-menu"><span class="sub-menu-font">OMCP</span></a>
+                <a href="#" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+            </div>
+        }
+        else if (User.IsInRole("Patient") || User.IsInRole("Doctor"))
+        {
+            <div off-canvas="sideBar left reveal">
+                <span class="close-button" id="closeBtn">&times;</span>
+                <br />
+                <br />
+                <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;RESULTS</span></a>
+                <a href="@Url.Action("LaboratoryResults", "Results")" class="sub-menu"><span class="sub-menu-font">Laboratory</span></a>
+                <a href="#" class="sub-menu"><span class="sub-menu-font">Radiology</span></a>
+                <a href="#" class="sub-menu"><span class="sub-menu-font">Diagnosis</span></a>
+                <a href="#" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;REPORTS</span></a>
+                <a href="#" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+            </div>
+        }
+        else if (User.IsInRole("Administrator"))
+        {
+            <div off-canvas="sideBar left reveal">
+                <span class="close-button" id="closeBtn">&times;</span>
+                <br />
+                <br />
+                <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;USER MANAGEMENT</span></a>
+                <a href="@Url.Action("UserRoles", "Admin")" class="sub-menu"><span class="sub-menu-font">User Roles</span></a>
+                <a href="@Url.Action("DeleteUsers", "Admin")" class=" sub-menu"><span class="sub-menu-font">Delete Users</span></a>
+                <a href="#" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;PREFERENCES</span></a>
+                <a href="@Url.Action("FileRetention", "Admin")" class="sub-menu"><span class="sub-menu-font">File Retention</span></a>
+                <a href="#" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+                <a href="@Url.Action("")" class="sub-menu"><span class="sub-menu-font">Audit Trail</span></a>
+            </div>
+        }
         <div off-canvas="userSidebar right push">
             <span class="close-button" id="userCloseBtn">&times;</span>
             <br />
@@ -28,6 +68,8 @@
             <a href="@Url.Action("ChangePassword", "Account")" class="sub-menu"><span class="sub-menu-font">Change Password</span></a>
             <a href="@Url.Action("Logout", "Account")" class="sub-menu"><span class="sub-menu-font">Log Out</span></a>
         </div>
+
+
         <div canvas="container">
             <div id="wrapper">
                 <div id="sidebar-wrapper">
@@ -60,7 +102,7 @@
                             <br />
                             <br />
                             <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;USER MANAGEMENT</span></a>
-                            <a href="@Url.Action("")" class="sub-menu"><span class="sub-menu-font">User Roles</span></a>
+                            <a href="@Url.Action("UserRoles", "Admin")" class="sub-menu"><span class="sub-menu-font">User Roles</span></a>
                             <a href="@Url.Action("DeleteUsers", "Admin")" class=" sub-menu"><span class="sub-menu-font">Delete Users</span></a>
                             <a href="#" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;PREFERENCES</span></a>
                             <a href="@Url.Action("FileRetention", "Admin")" class="sub-menu"><span class="sub-menu-font">File Retention</span></a>
@@ -69,38 +111,42 @@
                         </div>
                     }
                 </div>
-                <div id="page-content-wrapper">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                    <div class="lab-overlay-1">
-                                        <nav class="navbar navbar-inverse custom-nav">
-                                                <div class="navbar-header">
-                                                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                                                        <span class="logo hidden-xs">Asian Hospital and Medical Center</span>
-                                                        <span class="logo visible-xs">AHMC</span>
-                                                    </a>
-                                                </div>
-                                                <ul class="nav navbar-nav navbar-right hidden-xs">
-                                                    <li><a href="#" class="user" id="toggleUserSidebar">Welcome @User.Identity.Name</a></li>
-                                                </ul>
-                                                <ul class="nav navbar-nav navbar-right visible-xs">
-                                                    <li>
-                                                        <a href="#" class="user" id="toggleUserSidebarMobile" style="position:fixed !important;top:18px !important;right:50px !important;"><i class="fa fa-user-circle-o fa-2x"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="user" id="toggleSidebarMobile" style="position:fixed !important;top:18px !important;right:15px !important;"><i class="fa fa-navicon fa-2x"></i></a>
-                                                    </li>
-                                                </ul>
-                                        </nav>
+                    <div id="page-content-wrapper">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12" style="padding-left:0 !important;padding-right:0 !important;">
+                                        <div class="lab-overlay-1">
+                                            <div style="padding-left:30px;padding-right:30px;">
+                                                <nav class="navbar navbar-inverse custom-nav">
+                                                    <div class="navbar-header">
+                                                        <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                                                            <span class="logo hidden-xs hidden-sm">Asian Hospital and Medical Center</span>
+                                                            <span class="logo visible-xs visible-sm">AHMC</span>
+                                                        </a>
+                                                    </div>
+                                                    <ul class="nav navbar-nav navbar-right hidden-xs hidden-sm">
+                                                        <li><a href="#" class="user" id="toggleUserSidebar">Welcome @User.Identity.Name</a></li>
+                                                    </ul>
+                                                    <ul class="nav navbar-nav navbar-right visible-xs visible-sm">
+                                                        <li>
+                                                            <a href="#" class="user" id="toggleUserSidebarMobile" style="position:fixed !important;top:2px !important;right:35px !important;font-size:60px;"><i class="fa fa-user-circle-o"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="user" id="toggleSidebarMobile" style="position:fixed !important;top:2px !important;right:15px !important;font-size:60px;"><i class="fa fa-navicon"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                        <div style="padding-left:20px;padding-right:20px">
+                                            @RenderBody()
+                                        </div>
                                     </div>
-                                    @RenderBody()
                                 </div>
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
-        </div>
 </body>
 </html>
 

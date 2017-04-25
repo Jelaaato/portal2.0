@@ -9,7 +9,7 @@ namespace Portal.Models.Helpers
 {
     public class AuditAttribute : ActionFilterAttribute
     {
-        public override void OnActionExecuting(ActionExecutingContext auditContext)
+        public override void OnResultExecuted(ResultExecutedContext auditContext)
         {
             var request = auditContext.HttpContext.Request;
 
@@ -27,7 +27,7 @@ namespace Portal.Models.Helpers
             ctx.audit_trail.Add(audit);
             ctx.SaveChanges();
 
-            base.OnActionExecuting(auditContext);
+            base.OnResultExecuted(auditContext);
         }
     }
 }

@@ -6,7 +6,7 @@
 {
 <div id="tbl-wrapper2">
     <div class="table-responsive">
-        <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;" id="resultContainer">
+        <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;">
             <thead class="table-bordered" style="background-color:#73AE6A;">
                 <tr>
                     <th style="text-align:center;font-weight:400;">Date Recorded</th>
@@ -17,7 +17,16 @@
                 </tr>
             </thead>
             <tbody class="table-bordered" style="color:black;">
-                <tr></tr>
+               @foreach (var item in Model)
+               {
+                <tr>
+                    <td>@Html.DisplayFor(model => item.recorded_date_time)</td>
+                    <td>@Html.DisplayFor(model => item.diagnosis)</td>
+                    <td>@Html.DisplayFor(model => item.code)</td>
+                    <td>@Html.DisplayFor(model => item.coding_system)</td>
+                    <td>@Html.DisplayFor(model => item.coding_type)</td>
+                </tr>
+               }
             </tbody>
         </table>
     </div>

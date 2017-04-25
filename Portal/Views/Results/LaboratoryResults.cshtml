@@ -50,7 +50,7 @@
                                     <td>@file.Name.Splitter('_', 5).Splitter('.', 0)</td>
                                     <td>@file.Name.Splitter('_', 1)</td>
                                     <td>
-                                        <a href="@Url.Action("ValidatePassword", "Validate", new { id = @file.Name.Splitter('_', 3), accessed_in = "browser"})">View Result</a>
+                                        <a href="@Url.Action("ValidatePassword", "Validate", new { id = @file.Name.Splitter('_', 3)})">View Result</a>
                                         <div class="modal fade" id="alllabresult@(file.Name.Splitter('_', 3))" role="dialog" tabindex="-1" data-backdrop="false">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">

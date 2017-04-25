@@ -30,14 +30,14 @@
         <div class="col-lg-12">
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#allergies" role="tab" data-toggle="tab">Allergies</a></li>
-                <li role="presentation"><a href="#diagnosis" role="tab" data-toggle="tab">Medications</a></li>
-                <li role="presentation"><a href="#hospitalizations" role="tab" data-toggle="tab">Diagnosis</a></li>
-                <li role="presentation"><a href="#medications" role="tab" data-toggle="tab">Previous Surgeries</a></li>
-                <li role="presentation"><a href="#surgeries" role="tab" data-toggle="tab">Previous Hospitalizations</a></li>
+                <li role="presentation"><a href="#diagnosis" role="tab" data-toggle="tab">Diagnosis</a></li>
+                <li role="presentation"><a href="#medications" role="tab" data-toggle="tab">Medications</a></li>
+                <li role="presentation"><a href="#surgeries" role="tab" data-toggle="tab">Previous Surgeries</a></li>
+                <li role="presentation"><a href="#hospitalizations" role="tab" data-toggle="tab">Previous Hospitalizations</a></li>
             </ul>
 
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="allergies">
+                <div class="tab-pane fade in active" id="allergies">
                     @if (ViewBag.DisplayPartialViews == "true")
                     { 
                         @Html.Action("OMCPAllergies", "Reports")
@@ -47,7 +47,7 @@
                         <h5>No available records</h5>
                     }
                 </div>
-                <div role="tabpanel" class="tab-pane" id="diagnosis">
+                <div class="tab-pane" id="diagnosis">
                     @if (ViewBag.DisplayPartialViews == "true")
                     {
                     @Html.Action("OMCPDiagnosis", "Reports")
@@ -57,30 +57,30 @@
                         <h5>No available records</h5>
                     }
                 </div>
-                <div role="tabpanel" class="tab-pane" id="hospitalizations">
+                <div class="tab-pane" id="medications">
+                    @if (ViewBag.DisplayPartialViews == "true")
+                    {
+                        @Html.Action("OMCPMedications", "Reports")
+                    }
+                    else
+                    {
+                        <h5>No available records</h5>
+                    }
+                </div>
+                <div class="tab-pane" id="surgeries">
+                    @if (ViewBag.DisplayPartialViews == "true")
+                    {
+                        @Html.Action("OMCPSurgeries", "Reports")
+                    }
+                    else
+                    {
+                        <h5>No available records</h5>
+                    }
+                </div>
+                <div class="tab-pane" id="hospitalizations">
                     @if (ViewBag.DisplayPartialViews == "true")
                     {
                     @Html.Action("OMCPHospitalizations", "Reports")
-                    }
-                    else
-                    {
-                        <h5>No available records</h5>
-                    }
-                </div>
-                <div role="tabpanel" class="tab-pane" id="medications">
-                    @if (ViewBag.DisplayPartialViews == "true")
-                    {
-                    @Html.Action("OMCPMedications", "Reports")
-                    }
-                    else
-                    {
-                        <h5>No available records</h5>
-                    }
-                </div>
-                <div role="tabpanel" class="tab-pane" id="surgeries">
-                    @if (ViewBag.DisplayPartialViews == "true")
-                    {
-                    @Html.Action("OMCPSurgeries", "Reports")
                     }
                     else
                     {

@@ -1,9 +1,9 @@
-﻿@model IEnumerable<Portal.Models.IdentityDBModel_TemporaryLogin_.Users>
-@using Portal.Models.IdentityDBModel_TemporaryLogin_;
+﻿@model IEnumerable<Portal.Models.IdentityDBModel_TemporaryLogin_.roles>
 @{
-    ViewBag.Title = "ViewUsers";
+    ViewBag.Title = "User Roles";
     Layout = "~/Views/Shared/_ModuleLayout.cshtml";
 }
+
 <br /><br />
 <div class="row">
     <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
@@ -11,7 +11,7 @@
         {
             <div class="form-group">
                 <div class="input-group">
-                    @Html.TextBox("search", ViewBag.CurrentFilter as String, new { @placeholder = "Search User ID", @class = "form-control" })
+                    @Html.TextBox("search", ViewBag.CurrentFilter as String, new { @placeholder = "Search Role", @class = "form-control" })
                     <span class="input-group-btn"><button type="submit" class="btn" style="background-color:#00A640;color:white;"><i class="fa fa-search"></i></button></span>
                 </div>
             </div>
@@ -24,20 +24,26 @@
     <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;" id="resultContainer">
         <thead class="table-bordered" style="background-color:#73AE6A;">
             <tr>
-                <th style="text-align:center;font-weight:400;">User ID</th>
+                <th style="text-align:center;font-weight:400;">Role</th>
                 <th style="text-align:center;font-weight:400;">Action</th>
             </tr>
         </thead>
         <tbody class="table-bordered" style="color:black;">
             @if (Model.Count() == 0)
             {
-                <tr><td class="text-center">No User Accounts</td></tr>
+                <tr><td class="text-center">No Roles</td></tr>
             }
-            @foreach (Users user in Model)
+            @foreach (Portal.Models.IdentityDBModel_TemporaryLogin_.roles role in Model)
             {
                 <tr>
-                    <td>@user.UserName</td>
+                    <td>@role.Name</td>
                     <td>
+                        <a href="@Url.Action("EditRole", new { id = role.Id })">
+                            <span class="fa fa-edit"></span>
+                        </a>
+                        <a href="@Url.Action("AddToRole", new { id = role.Id })">
+                            <span class="fa fa-plus"></span>
+                        </a>
                         <a data-toggle="modal" href="#deleteconfirmation">
                             <span class="fa fa-trash-o"></span>
                         </a>
@@ -49,7 +55,10 @@
                                         <span class="text-center subtext" style="color:#00A640;font-size:14px;">Are you sure?</span>
                                     </div>
                                     <div class="modal-body">
-                                        @Html.ActionLink("Delete", "Delete", new { id = user.Id }, new { @class = "btn btn-block btn-danger" })
+                                        @using (Html.BeginForm("DeleteRole", "Admin", new { id = role.Id }, FormMethod.Post))
+                                        {
+                                            <button type="submit" class="btn btn-block btn-danger">Okay</button>
+                                        }
                                         <br />
                                         <a href="@Url.Action("Index")" class="btn btn-block btn-default">Cancel</a>
                                     </div>
@@ -61,6 +70,9 @@
             }
         </tbody>
     </table>
+</div>
+<div class="generate-PDF hidden-xs">
+    <a class="btn generate-PDF-Btn" href="@Url.Action("CreateRole", "Admin")">Add New Role</a>
 </div>
 
 @foreach (var message in Vereyon.Web.FlashMessage.Retrieve(Html.ViewContext.HttpContext))
@@ -85,6 +97,3 @@
         });
     </script>
 }
-
-
-

@@ -6,7 +6,7 @@
 {
 <div id="tbl-wrapper4">
     <div class="table-responsive">
-        <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;" id="resultContainer">
+        <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;">
             <thead class="table-bordered" style="background-color:#73AE6A;">
                 <tr>
                     <th style="text-align:center;font-weight:400;">Date</th>
@@ -14,7 +14,13 @@
                 </tr>
             </thead>
             <tbody class="table-bordered" style="color:black;">
-                <tr></tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(model => item.note_date)</td>
+                        <td>@Html.DisplayFor(model => item.details)</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
