@@ -20,7 +20,7 @@ namespace Portal.Models.Helpers
                 date_time = DateTime.Now,
                 ip_address = request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? request.UserHostAddress,
                 user_id = (request.IsAuthenticated) ? auditContext.HttpContext.User.Identity.Name : "Anonymous",
-                action = request.RawUrl
+                action = request.RawUrl.GetActionBasedOnUrl()
             };
 
             audit_entities ctx = new audit_entities();

@@ -34,6 +34,7 @@
                 <th style="text-align:center;font-weight:400;">IP Address</th>
                 <th style="text-align:center;font-weight:400;">Location</th>
                 <th style="text-align:center;font-weight:400;">Application</th>
+                <th style="text-align:center;font-weight:400;">Application Type</th>
                 <th style="text-align:center;font-weight:400;">Date and Time</th>
             </tr>
         </thead>
@@ -49,7 +50,8 @@
                         <td>@(item.os_version == null ? "Not applicable" : item.os_version)</td>
                         <td>@(item.ip_address == null ? "Not applicable" : item.ip_address)</td>
                         <td>@(item.location == null ? "Not applicable" : item.location)</td>
-                        <td>@item.application_id.GetApplicationType()</td>
+                        <td>@item.application_id.GetApplicationName()</td>
+                        <td>@item.application_id.GetApplicationType().ToUpper()</td>
                         <td>@item.date_time</td>
                     </tr>
                 }

@@ -1,4 +1,5 @@
 ﻿using Portal.Models.BusinessLogic;
+using Portal.Models.Helpers;
 using Portal.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace Portal.Controllers
         private Files files = new Files();
 
         [Authorize(Roles = "Patient, Doctor")]
+        [Audit]
         public ActionResult LaboratoryResults(string fileid, bool? isvalidated, LaboratoryModel model, DateTime? minDate)
         {
             string path = Server.MapPath("~/Results/Laboratory");
