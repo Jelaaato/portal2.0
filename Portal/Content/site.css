@@ -454,6 +454,21 @@ a {
     text-align:center;
 }
 
+.tooltip-wrapper {
+    height:auto;
+    border-left: 1px solid #FFE033;
+    background-color:#acacac;
+    position:absolute;
+    z-index:1;
+    visibility:hidden;
+}
+
+.tooltip-text {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:12px;
+    color:black;
+}
+
 @media (max-width: 767px) {
     .header {
         font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

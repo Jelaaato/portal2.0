@@ -280,6 +280,8 @@
     <Content Include="Scripts\bootstrap\bootstrap.min.js" />
     <Content Include="Content\opensourcedll\sidr\jquery.sidr.js" />
     <Content Include="Content\opensourcedll\sidr\jquery.sidr.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jQuery\jquery-3.1.1.js" />
     <Content Include="Scripts\jQuery\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jQuery\jquery-3.1.1.slim.js" />
