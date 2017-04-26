@@ -26,5 +26,6 @@ namespace Portal.Models.AuditModel
         }
     
         public virtual DbSet<audit_trail> audit_trail { get; set; }
+        public virtual DbSet<application> applications { get; set; }
     }
 }

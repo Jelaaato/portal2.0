@@ -317,6 +317,9 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\APIModel\Register.cs" />
     <Compile Include="Models\APIModel\RegisterUserModel.cs" />
+    <Compile Include="Models\AuditModel\application.cs">
+      <DependentUpon>AuditTrailModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AuditModel\AuditTrailModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

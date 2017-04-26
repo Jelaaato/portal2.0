@@ -47,5 +47,14 @@ namespace Portal.Models.Helpers
 
             return username;
         }
+
+        public static string GetApplicationType(this int application_id)
+        {
+            audit_entities db = new audit_entities();
+
+            var app_type = db.applications.Where(a => a.application_id == application_id).Select(a => a.application_name).First();
+
+            return app_type;
+        }
     }
 }
