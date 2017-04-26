@@ -17,6 +17,7 @@
           <Property Name="middle_name" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="display_name" Type="varchar" MaxLength="500" />
           <Property Name="date_of_birth" Type="datetime" Nullable="false" />
+          <Property Name="age" Type="int" Nullable="false" />
           <Property Name="gender" Type="varchar" MaxLength="50" />
           <Property Name="marital_status" Type="varchar" MaxLength="50" />
           <Property Name="nationality" Type="varchar" MaxLength="150" />
@@ -35,9 +36,14 @@
           <Property Name="reaction" Type="varchar" MaxLength="150" />
           <Property Name="reaction_cause_status" Type="varchar" MaxLength="100" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IntegrationDB.dbo.patient_diagnosis' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="patient_diagnosis">
           <Key>
             <PropertyRef Name="patient_visit_id" />
+            
+            
+            
           </Key>
           <Property Name="patient_visit_id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="patient_id" Type="uniqueidentifier" Nullable="false" />
@@ -157,10 +163,29 @@
         <EntityContainer Name="ReportsModelStoreContainer">
           <EntitySet Name="patient" EntityType="Self.patient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="patient_allergies" EntityType="Self.patient_allergies" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="patient_diagnosis" EntityType="Self.patient_diagnosis" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="patient_medications" EntityType="Self.patient_medications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="patient_previous_hospitalizations" EntityType="Self.patient_previous_hospitalizations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="patient_previous_surgeries" EntityType="Self.patient_previous_surgeries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="patient_diagnosis" EntityType="Self.patient_diagnosis" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [patient_diagnosis].[patient_visit_id] AS [patient_visit_id], 
+    [patient_diagnosis].[patient_id] AS [patient_id], 
+    [patient_diagnosis].[patient_medical_coding_id] AS [patient_medical_coding_id], 
+    [patient_diagnosis].[hospital_number] AS [hospital_number], 
+    [patient_diagnosis].[actual_visit_date_time] AS [actual_visit_date_time], 
+    [patient_diagnosis].[display_name] AS [display_name], 
+    [patient_diagnosis].[visit_type] AS [visit_type], 
+    [patient_diagnosis].[charge_type] AS [charge_type], 
+    [patient_diagnosis].[coding_type] AS [coding_type], 
+    [patient_diagnosis].[coding_system] AS [coding_system], 
+    [patient_diagnosis].[code] AS [code], 
+    [patient_diagnosis].[diagnosis] AS [diagnosis], 
+    [patient_diagnosis].[recorded_date_time] AS [recorded_date_time], 
+    [patient_diagnosis].[active_flag] AS [active_flag], 
+    [patient_diagnosis].[primary_flag] AS [primary_flag], 
+    [patient_diagnosis].[current_visit_diagnostic_flag] AS [current_visit_diagnostic_flag]
+    FROM [dbo].[patient_diagnosis] AS [patient_diagnosis]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_patient_allergies_patient" Association="Self.FK_patient_allergies_patient">
             <End Role="patient" EntitySet="patient" />
             <End Role="patient_allergies" EntitySet="patient_allergies" />
@@ -208,6 +233,7 @@
           <NavigationProperty Name="patient_medications" Relationship="Self.FK_patient_medications_patient" FromRole="patient" ToRole="patient_medications" />
           <NavigationProperty Name="patient_previous_hospitalizations" Relationship="Self.FK_patient_previous_hospitalizations_patient" FromRole="patient" ToRole="patient_previous_hospitalizations" />
           <NavigationProperty Name="patient_previous_surgeries" Relationship="Self.FK_patient_previous_surgeries_patient" FromRole="patient" ToRole="patient_previous_surgeries" />
+          <Property Name="age" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="patient_allergies">
           <Key>
@@ -382,6 +408,7 @@
           <EntitySetMapping Name="patients">
             <EntityTypeMapping TypeName="ReportsModel.patient">
               <MappingFragment StoreEntitySet="patient">
+                <ScalarProperty Name="age" ColumnName="age" />
                 <ScalarProperty Name="patient_id" ColumnName="patient_id" />
                 <ScalarProperty Name="hospital_number" ColumnName="hospital_number" />
                 <ScalarProperty Name="registration_date" ColumnName="registration_date" />

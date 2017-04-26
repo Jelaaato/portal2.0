@@ -36,6 +36,7 @@ namespace Portal.Models.Reports
         public string nationality { get; set; }
         public string highest_education_level { get; set; }
         public string occupation { get; set; }
+        public int age { get; set; }
     
         public virtual ICollection<patient_allergies> patient_allergies { get; set; }
         public virtual ICollection<patient_diagnosis> patient_diagnosis { get; set; }
