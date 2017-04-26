@@ -34,7 +34,7 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                            @Html.TextBoxFor(a => a.username, new { @class = "form-control customtooltip", @placeholder = "USER ID" })
+                                            @Html.TextBoxFor(a => a.username, new { @class = "form-control customtooltip", @placeholder = "USER ID", @id = "userID"})
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -92,3 +92,31 @@
         });
     </script>
 }
+
+<script>
+    $('#userID').on('click', function () {
+        $.notify({
+            icon: 'fa fa-exclamation-circle',
+            title: '&nbsp; REMINDER: DESIGNATED USER ID<br/><br>',
+            message: '<strong>Patients</strong> : Hospital Number<br/>' +
+                     '<strong>Doctors</strong> : 4-Digit Employee Number<br/>' +
+                     '<strong>Employees</strong> : Employee ID (Format: *-**-**-****)</br>'
+        }, {
+            type: 'info',
+            showProgressbar: true,
+            animate: {
+                enter: 'animated fadeInRight',
+                exit: 'animated fadeOutRight'
+            },
+            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert" style="text-align:justify;">' +
+		                    '<button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="color:black;font-size:12px;"><span class="fa fa-close"></span></button>' +
+                            '<span data-notify="icon"></span>' +
+	                        '<span data-notify="title">{1}</span>' +
+		                    '<span data-notify="message" class="notification" style="font-size:14px;">{2}</span>' +
+		                    '<div class="progress" data-notify="progressbar">' +
+			                    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+		                    '</div>' +
+	                  '</div>'
+        });
+    })
+</script>
