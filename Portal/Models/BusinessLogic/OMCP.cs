@@ -90,7 +90,7 @@ namespace Portal.Models.BusinessLogic
 
         public PdfPTable ImageHeader()
         {
-            Image logo = Image.GetInstance(@"C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\Portal\Images\pdf_logo.png");
+            Image logo = Image.GetInstance(@"C:\pdf_logo.png");
             //Image logo = Image.GetInstance(@"C:\inetpub\wwwroot\pdf_logo.png");
 
             PdfPTable headerImg = new PdfPTable(1);
