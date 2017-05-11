@@ -31,15 +31,23 @@ namespace Portal.Controllers
             if (ModelState.IsValid)
             {
                 Users user = await UserManager.FindAsync(model.username, model.password);
+
                 if (user == null)
                 {
                     FlashMessage.Danger("Invalid User ID or Password");
                 }
                 else
                 {
-                    ClaimsIdentity claimsident = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-                    await SignInAsync(user, isPersistent: false);
-                    return RedirectToLocal(returnUrl);
+                    if (user.UserName.checkUserDisplayName())
+                    {
+                        ClaimsIdentity claimsident = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+                        await SignInAsync(user, isPersistent: false);
+                        return RedirectToLocal(returnUrl);
+                    }
+                    else
+                    {
+                        FlashMessage.Danger("User Activation is currently on process.");
+                    }
                 }
             }
             var error = (from item in ModelState

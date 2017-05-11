@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LabResultModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IntegrationDB.dbo.patient_lab_result_header' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="patient_lab_result_header">
+          <Key>
+            <PropertyRef Name="patient_id" />
+            <PropertyRef Name="hospital_number" />
+            <PropertyRef Name="lab_work_order_id" />
+            <PropertyRef Name="patient_name" />
+            <PropertyRef Name="date_of_birth" />
+            <PropertyRef Name="age" />
+            <PropertyRef Name="sex" />
+            <PropertyRef Name="requesting_physician" />
+            <PropertyRef Name="patient_area" />
+            <PropertyRef Name="service_category" />
+            <PropertyRef Name="lab_orderable_name" />
+            <PropertyRef Name="order_group" />
+            <PropertyRef Name="order_date_time" />
+            <PropertyRef Name="doc_emp_nr" />
+            <PropertyRef Name="chief_pathologist" />
+          </Key>
+          <Property Name="patient_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="hospital_number" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="lab_work_order_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="patient_name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="date_of_birth" Type="datetime" Nullable="false" />
+          <Property Name="age" Type="int" Nullable="false" />
+          <Property Name="sex" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="requesting_physician" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="patient_area" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="service_category" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="lab_orderable_name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="order_group" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="order_date_time" Type="datetime" Nullable="false" />
+          <Property Name="reported_date_time" Type="datetime" />
+          <Property Name="doc_emp_nr" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="med_tech" Type="varchar" MaxLength="250" />
+          <Property Name="chief_pathologist" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IntegrationDB.dbo.patient_lab_results' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="patient_lab_results">
+          <Key>
+            <PropertyRef Name="hospital_number" />
+            <PropertyRef Name="test" />
+            <PropertyRef Name="order_group" />
+            <PropertyRef Name="lab_work_order_id" />
+          </Key>
+          <Property Name="hospital_number" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="test" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="result" Type="varchar" MaxLength="150" />
+          <Property Name="UOM" Type="varchar" MaxLength="50" />
+          <Property Name="reference_range" Type="varchar" MaxLength="100" />
+          <Property Name="order_group" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="lab_work_order_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="seq_num" Type="smallint" />
+        </EntityType>
+        <EntityContainer Name="LabResultModelStoreContainer">
+          <EntitySet Name="patient_lab_result_header" EntityType="Self.patient_lab_result_header" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [patient_lab_result_header].[patient_id] AS [patient_id], 
+    [patient_lab_result_header].[hospital_number] AS [hospital_number], 
+    [patient_lab_result_header].[lab_work_order_id] AS [lab_work_order_id], 
+    [patient_lab_result_header].[patient_name] AS [patient_name], 
+    [patient_lab_result_header].[date_of_birth] AS [date_of_birth], 
+    [patient_lab_result_header].[age] AS [age], 
+    [patient_lab_result_header].[sex] AS [sex], 
+    [patient_lab_result_header].[requesting_physician] AS [requesting_physician], 
+    [patient_lab_result_header].[patient_area] AS [patient_area], 
+    [patient_lab_result_header].[service_category] AS [service_category], 
+    [patient_lab_result_header].[lab_orderable_name] AS [lab_orderable_name], 
+    [patient_lab_result_header].[order_group] AS [order_group], 
+    [patient_lab_result_header].[order_date_time] AS [order_date_time], 
+    [patient_lab_result_header].[reported_date_time] AS [reported_date_time], 
+    [patient_lab_result_header].[doc_emp_nr] AS [doc_emp_nr], 
+    [patient_lab_result_header].[med_tech] AS [med_tech], 
+    [patient_lab_result_header].[chief_pathologist] AS [chief_pathologist]
+    FROM [dbo].[patient_lab_result_header] AS [patient_lab_result_header]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="patient_lab_results" EntityType="Self.patient_lab_results" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [patient_lab_results].[hospital_number] AS [hospital_number], 
+    [patient_lab_results].[test] AS [test], 
+    [patient_lab_results].[result] AS [result], 
+    [patient_lab_results].[UOM] AS [UOM], 
+    [patient_lab_results].[reference_range] AS [reference_range], 
+    [patient_lab_results].[order_group] AS [order_group], 
+    [patient_lab_results].[lab_work_order_id] AS [lab_work_order_id], 
+    [patient_lab_results].[seq_num] AS [seq_num]
+    FROM [dbo].[patient_lab_results] AS [patient_lab_results]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LabResultModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="results_entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="patient_lab_result_header" EntityType="LabResultModel.patient_lab_result_header" />
+          <EntitySet Name="patient_lab_results" EntityType="LabResultModel.patient_lab_results" />
+        </EntityContainer>
+        <EntityType Name="patient_lab_result_header">
+          <Key>
+            <PropertyRef Name="patient_id" />
+            <PropertyRef Name="hospital_number" />
+            <PropertyRef Name="lab_work_order_id" />
+            <PropertyRef Name="patient_name" />
+            <PropertyRef Name="date_of_birth" />
+            <PropertyRef Name="age" />
+            <PropertyRef Name="sex" />
+            <PropertyRef Name="requesting_physician" />
+            <PropertyRef Name="patient_area" />
+            <PropertyRef Name="service_category" />
+            <PropertyRef Name="lab_orderable_name" />
+            <PropertyRef Name="order_group" />
+            <PropertyRef Name="order_date_time" />
+            <PropertyRef Name="doc_emp_nr" />
+            <PropertyRef Name="chief_pathologist" />
+          </Key>
+          <Property Name="patient_id" Type="Guid" Nullable="false" />
+          <Property Name="hospital_number" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="lab_work_order_id" Type="Guid" Nullable="false" />
+          <Property Name="patient_name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="age" Type="Int32" Nullable="false" />
+          <Property Name="sex" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="requesting_physician" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="patient_area" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="service_category" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="lab_orderable_name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="order_group" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="order_date_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="reported_date_time" Type="DateTime" Precision="3" />
+          <Property Name="doc_emp_nr" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="med_tech" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="chief_pathologist" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="patient_lab_results">
+          <Key>
+            <PropertyRef Name="hospital_number" />
+            <PropertyRef Name="test" />
+            <PropertyRef Name="order_group" />
+            <PropertyRef Name="lab_work_order_id" />
+          </Key>
+          <Property Name="hospital_number" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="test" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="result" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="UOM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="reference_range" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="order_group" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="lab_work_order_id" Type="Guid" Nullable="false" />
+          <Property Name="seq_num" Type="Int16" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LabResultModelStoreContainer" CdmEntityContainer="results_entities">
+          <EntitySetMapping Name="patient_lab_result_header">
+            <EntityTypeMapping TypeName="LabResultModel.patient_lab_result_header">
+              <MappingFragment StoreEntitySet="patient_lab_result_header">
+                <ScalarProperty Name="chief_pathologist" ColumnName="chief_pathologist" />
+                <ScalarProperty Name="med_tech" ColumnName="med_tech" />
+                <ScalarProperty Name="doc_emp_nr" ColumnName="doc_emp_nr" />
+                <ScalarProperty Name="reported_date_time" ColumnName="reported_date_time" />
+                <ScalarProperty Name="order_date_time" ColumnName="order_date_time" />
+                <ScalarProperty Name="order_group" ColumnName="order_group" />
+                <ScalarProperty Name="lab_orderable_name" ColumnName="lab_orderable_name" />
+                <ScalarProperty Name="service_category" ColumnName="service_category" />
+                <ScalarProperty Name="patient_area" ColumnName="patient_area" />
+                <ScalarProperty Name="requesting_physician" ColumnName="requesting_physician" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="patient_name" ColumnName="patient_name" />
+                <ScalarProperty Name="lab_work_order_id" ColumnName="lab_work_order_id" />
+                <ScalarProperty Name="hospital_number" ColumnName="hospital_number" />
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patient_lab_results">
+            <EntityTypeMapping TypeName="LabResultModel.patient_lab_results">
+              <MappingFragment StoreEntitySet="patient_lab_results">
+                <ScalarProperty Name="seq_num" ColumnName="seq_num" />
+                <ScalarProperty Name="lab_work_order_id" ColumnName="lab_work_order_id" />
+                <ScalarProperty Name="order_group" ColumnName="order_group" />
+                <ScalarProperty Name="reference_range" ColumnName="reference_range" />
+                <ScalarProperty Name="UOM" ColumnName="UOM" />
+                <ScalarProperty Name="result" ColumnName="result" />
+                <ScalarProperty Name="test" ColumnName="test" />
+                <ScalarProperty Name="hospital_number" ColumnName="hospital_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

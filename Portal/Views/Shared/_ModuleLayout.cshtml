@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Portal.Models.Helpers
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -26,7 +27,7 @@
                 <br />
                 <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;REPORTS</span></a>
                 <a href="@Url.Action("OMCP", "Reports")" class="sub-menu"><span class="sub-menu-font">OMCP</span></a>
-                <a href="#" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+                <a href="#" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
             </div>
         }
         else if (User.IsInRole("Patient") || User.IsInRole("Doctor"))
@@ -37,10 +38,10 @@
                 <br />
                 <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;RESULTS</span></a>
                 <a href="@Url.Action("LaboratoryResults", "Results")" class="sub-menu"><span class="sub-menu-font">Laboratory</span></a>
-                <a href="#" class="sub-menu"><span class="sub-menu-font">Radiology</span></a>
-                <a href="#" class="sub-menu"><span class="sub-menu-font">Diagnosis</span></a>
-                <a href="#" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;REPORTS</span></a>
-                <a href="#" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+                <a href="#" data-placement="top" title="Coming Soon" class="sub-menu"><span class="sub-menu-font">Radiology</span></a>
+                <a href="#" data-placement="top" title="Coming Soon" class="sub-menu"><span class="sub-menu-font">Diagnosis</span></a>
+                <a href="#" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;REPORTS</span></a>
+                <a href="#" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
             </div>
         }
         else if (User.IsInRole("Administrator"))
@@ -63,7 +64,7 @@
             <br />
             <br />
             <br />
-            <span class="visible-xs" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:15px;">Welcome, @User.Identity.Name</span>
+            <span class="visible-xs" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:15px;">Welcome, @User.Identity.Name.GetUserDisplayName()</span>
             <br />
             <a href="#" class="menu"><span class="menu-font">ACCOUNT</span></a>
             <a href="@Url.Action("ChangePassword", "Account")" class="sub-menu"><span class="sub-menu-font">Change Password</span></a>
@@ -81,7 +82,7 @@
                             <br />
                             <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;REPORTS</span></a>
                             <a href="@Url.Action("OMCP", "Reports")" class="sub-menu"><span class="sub-menu-font">OMCP</span></a>
-                            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+                            <a href="#" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
                         </div>
                     }
                     else if (User.IsInRole("Patient") || User.IsInRole("Doctor"))
@@ -91,10 +92,10 @@
                             <br />
                             <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;RESULTS</span></a>
                             <a href="@Url.Action("LaboratoryResults", "Results")" class="sub-menu"><span class="sub-menu-font">Laboratory</span></a>
-                            <a href="#" class="sub-menu"><span class="sub-menu-font">Radiology</span></a>
-                            <a href="#" class="sub-menu"><span class="sub-menu-font">Diagnosis</span></a>
-                            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;REPORTS</span></a>
-                            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+                            <a href="#" data-placement="top" title="Coming Soon" class="sub-menu"><span class="sub-menu-font">Radiology</span></a>
+                            <a href="#" data-placement="top" title="Coming Soon" class="sub-menu"><span class="sub-menu-font">Diagnosis</span></a>
+                            <a href="#" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;REPORTS</span></a>
+                            <a href="#" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
                         </div>
                     }
                     else if (User.IsInRole("Administrator"))
@@ -126,7 +127,7 @@
                                                         </a>
                                                     </div>
                                                     <ul class="nav navbar-nav navbar-right hidden-xs hidden-sm">
-                                                        <li><a href="#" class="user" id="toggleUserSidebar">Welcome @User.Identity.Name</a></li>
+                                                        <li><a href="#" class="user" id="toggleUserSidebar">Welcome @User.Identity.Name.GetUserDisplayName()</a></li>
                                                     </ul>
                                                     <ul class="nav navbar-nav navbar-right visible-xs visible-sm">
                                                         <li>

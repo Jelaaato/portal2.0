@@ -1,6 +1,7 @@
 ﻿using Portal.Models.AuditModel;
 using Portal.Models.FileRetentionModel;
 using Portal.Models.IdentityDBModel_TemporaryLogin_;
+using Portal.Models.UserDisplayNameModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -80,6 +81,31 @@ namespace Portal.Models.Helpers
             {
                 return "";
             }
+        }
+
+        public static string GetUserDisplayName(this string userid)
+        {
+            user_entities db = new user_entities();
+
+            var display_name = db.user_display_name.Where(a => a.user_id == userid).Select(a => a.username).First();
+
+            return display_name;
+        }
+
+        public static bool checkUserDisplayName(this string userid)
+        {
+            user_entities db = new user_entities();
+
+            var isExists = db.user_display_name.Any(a => a.user_id == userid);
+
+            return isExists;
+        }
+
+        public static string RemoveNonNumericChar(this string value)
+        {
+            string transformedString = value.Replace("-", string.Empty);
+
+            return transformedString;
         }
     }
 }

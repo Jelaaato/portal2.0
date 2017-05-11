@@ -21,5 +21,7 @@ namespace Portal.Models.ViewModels
         public IEnumerable<FileInfo> hematology { get; set; }
         public IEnumerable<FileInfo> chemistry { get; set; }
         public IEnumerable<FileInfo> clinicalMicroscopy { get; set; }
+
+        public IEnumerable<patient_lab_result_header> patient_lab_header { get; set; }
     }
 }

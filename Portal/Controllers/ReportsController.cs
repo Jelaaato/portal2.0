@@ -19,6 +19,7 @@ namespace Portal.Controllers
         // GET: Reports
 
         private OMCP omcp = new OMCP();
+        private CreatePDF createpdf = new CreatePDF();
 
         private int pageSize;
         private int pageNumber;
@@ -231,7 +232,7 @@ namespace Portal.Controllers
                 Document doc = new Document();
                 MemoryStream mst = new MemoryStream();
 
-                omcp.InitializePDF(doc, mst);
+                createpdf.InitializePDF(doc, mst);
 
                 Chunk hr = new Chunk(new LineSeparator());
 
@@ -246,7 +247,7 @@ namespace Portal.Controllers
                 #region tables
 
                 //Patient Demographics Header
-                PdfPTable tblHeader1 = omcp.CreateTable(4);
+                PdfPTable tblHeader1 = createpdf.CreateTable(4);
                 tblHeader1.DefaultCell.Border = Rectangle.NO_BORDER;
                 tblHeader1.DefaultCell.Padding = 2;
 
@@ -259,7 +260,7 @@ namespace Portal.Controllers
                     tblHeader1.AddCell(new Phrase("Date of Birth:", valueFont));
                     tblHeader1.AddCell(new Phrase(item.date_of_birth.ToString("yyyy-MM-dd"), valueFont));
                     tblHeader1.AddCell(new Phrase("Age:", valueFont));
-                    tblHeader1.AddCell(new Phrase("21" + " y.o", valueFont));
+                    tblHeader1.AddCell(new Phrase(item.age + " y.o", valueFont));
                     tblHeader1.AddCell(new Phrase("Gender:", valueFont));
                     tblHeader1.AddCell(new Phrase(item.gender, valueFont));
                     tblHeader1.AddCell(new Phrase(" "));
@@ -267,7 +268,7 @@ namespace Portal.Controllers
                 }
 
                 //Patient Allergies
-                PdfPTable tblAllergies = omcp.CreateTable(3);
+                PdfPTable tblAllergies = createpdf.CreateTable(3);
 
                 if (allergies.Count() != 0)
                 {
@@ -291,7 +292,7 @@ namespace Portal.Controllers
                 
 
                 //Patient Diagnosis
-                PdfPTable tblDiagnosis = omcp.CreateTable(5);
+                PdfPTable tblDiagnosis = createpdf.CreateTable(5);
 
                 if (diagnosis.Count() != 0)
                 {
@@ -319,7 +320,7 @@ namespace Portal.Controllers
                 
 
                 //Patient Medications
-                PdfPTable tblMedications = omcp.CreateTable(2);
+                PdfPTable tblMedications = createpdf.CreateTable(2);
 
                 if (medications.Count() != 0)
                 {
@@ -340,7 +341,7 @@ namespace Portal.Controllers
                 }
 
                 //Patient Hospitalizations
-                PdfPTable tblHospitalizations = omcp.CreateTable(3);
+                PdfPTable tblHospitalizations = createpdf.CreateTable(3);
 
                 if (previous_hospitalizations.Count() != 0)
                 {
@@ -363,7 +364,7 @@ namespace Portal.Controllers
                 }
 
                 //Patient Surgeries
-                PdfPTable tblSurgeries = omcp.CreateTable(1);
+                PdfPTable tblSurgeries = createpdf.CreateTable(1);
 
                 if (previous_surgeries.Count() != 0)
                 {
@@ -386,7 +387,7 @@ namespace Portal.Controllers
 
                 #region Add Tables to Document
 
-                doc.Add(omcp.ImageHeader());
+                doc.Add(createpdf.ImageHeader());
                 doc.Add(new Paragraph("\n"));
                 doc.Add(tblHeader1);
                 doc.Add(hr);

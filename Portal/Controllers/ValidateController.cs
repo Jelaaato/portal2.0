@@ -23,29 +23,25 @@ namespace Portal.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult ValidatePassword(LaboratoryModel model, string id, string accessed_in)
+        public ActionResult ValidatePassword(LaboratoryModel model, Guid id, string accessed_in)
         {
             if (ModelState.IsValid)
             {
                 var user = UserManager.Find(User.Identity.Name, model.password);
                 if (user != null && accessed_in == "mobile")
                 {
-                    string path = Server.MapPath("~/Results/Laboratory/");
-                    DirectoryInfo dir = new DirectoryInfo(path);
-
-                    var filename = dir.GetFiles("*.pdf*").Where(a => a.Name.Contains(id)).Select(b => b.Name).First();
-                    return File(path + filename, "application/pdf");
+                    return RedirectToAction("ViewResult", "Results", new { lab_work_order_id = id, isvalidated = model.isValidated });
 
                 }
                 else if (user != null && accessed_in == "browser")
                 {
                     model.isValidated = true;
-                    return RedirectToAction("LaboratoryResults", "Results", new { fileid = id, isvalidated = model.isValidated });
+                    return RedirectToAction("ViewResult", "Results", new { lab_work_order_id = id, isvalidated = model.isValidated });
                 }
                 else
                 {
                     model.isValidated = false;
-                    ModelState.AddModelError("", "Invalid Password");
+                    FlashMessage.Danger("Invalid Password");
                 }
             }
             var error = (from item in ModelState

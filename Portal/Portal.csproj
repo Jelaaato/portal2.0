@@ -264,6 +264,40 @@
       <DependentUpon>FileRetentionModel.edmx</DependentUpon>
       <LastGenOutput>FileRetentionModel.cs</LastGenOutput>
     </Content>
+    <EntityDeploy Include="Models\Results\LabResultsModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LabResultsModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Results\LabResultsModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LabResultsModel.edmx</DependentUpon>
+      <LastGenOutput>LabResultsModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Results\LabResultsModel.edmx.diagram">
+      <DependentUpon>LabResultsModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Results\LabResultsModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LabResultsModel.edmx</DependentUpon>
+      <LastGenOutput>LabResultsModel.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\UserDisplayNameModel\UserDisplayNameModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>UserDisplayNameModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\UserDisplayNameModel\UserDisplayNameModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>UserDisplayNameModel.edmx</DependentUpon>
+      <LastGenOutput>UserDisplayNameModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\UserDisplayNameModel\UserDisplayNameModel.edmx.diagram">
+      <DependentUpon>UserDisplayNameModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\UserDisplayNameModel\UserDisplayNameModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>UserDisplayNameModel.edmx</DependentUpon>
+      <LastGenOutput>UserDisplayNameModel.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\portal.pubxml" />
     <None Include="Scripts\jQuery\jquery-3.1.1.intellisense.js" />
     <Content Include="Images\background.jpg" />
@@ -338,9 +372,11 @@
     <Compile Include="Models\AuditModel\audit_trail.cs">
       <DependentUpon>AuditTrailModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BusinessLogic\CreatePDF.cs" />
     <Compile Include="Models\BusinessLogic\Files.cs" />
     <Compile Include="Models\BusinessLogic\Laboratory.cs" />
     <Compile Include="Models\BusinessLogic\OMCP.cs" />
+    <Compile Include="Models\BusinessLogic\Results.cs" />
     <Compile Include="Models\FileRetentionModel\file.cs">
       <DependentUpon>FileRetentionModel.tt</DependentUpon>
     </Compile>
@@ -404,6 +440,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ReportsModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Results\LabResultsModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LabResultsModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Results\LabResultsModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LabResultsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Results\LabResultsModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LabResultsModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Results\patient_lab_results.cs">
+      <DependentUpon>LabResultsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Results\patient_lab_result_header.cs">
+      <DependentUpon>LabResultsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Results\ResultsReferenceModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -421,6 +478,24 @@
     </Compile>
     <Compile Include="Models\Results\results_reference.cs">
       <DependentUpon>ResultsReferenceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserDisplayNameModel\UserDisplayNameModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserDisplayNameModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserDisplayNameModel\UserDisplayNameModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserDisplayNameModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserDisplayNameModel\UserDisplayNameModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserDisplayNameModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserDisplayNameModel\user_display_name.cs">
+      <DependentUpon>UserDisplayNameModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\ResultsModel.cs" />
     <Compile Include="Models\ViewModels\RetentionModel.cs" />
