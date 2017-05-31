@@ -1,0 +1,81 @@
+﻿@model Portal.Models.ViewModels.ReportsModel.PaymentRemittanceModel
+
+@{
+    ViewBag.Title = "PaymentRemittance";
+    Layout = "~/Views/Shared/_ModuleLayout.cshtml";
+}
+
+<br /><br />
+
+<div class="row">
+    @using (Html.BeginForm("PaymentRemittance", "Reports", FormMethod.Post))
+    {
+        <div class="col-lg-5">
+            <div class="form-group">
+                <div class="input-group" date id="eventstartdate">
+                    @Html.TextBoxFor(a => a.start_date, new { @placeholder = "Date From", @class = "form-control" })
+                    <span class="input-group-addon" style="background-color:white !important;">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+                <div class="form-group">
+                    <div class="input-group" date id="eventenddate">
+                        @Html.TextBoxFor(a => a.end_date, new { @placeholder = "Date To", @class = "form-control" })
+                        <span class="input-group-addon" style="background-color:white !important;">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+        </div>
+        <div class="col-lg-2">
+            <button type="submit">Search</button>
+        </div>
+    }
+</div>
+
+<br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+<br />
+    <div class="table-responsive">
+        <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;" id="resultContainer">
+            <thead class="table-bordered" style="background-color:rgba(31,150,102, 0.8);">
+                <tr>
+                    <th style="text-align:center;font-weight:400;">Payout Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="table-bordered" style="color:black;">
+                @foreach (var item in Model.payment_remittance_header)
+                {
+                    <tr>
+                        <td>@item.period_date.ToShortDateString()</td>
+                        <td>
+                            <a href="@Url.Action("GeneratePaymentRemittanceReport", "Reports", new { id = @item.period_id, payout_date = @item.period_date, name = @item.dname, tax_rate = @item.tax_rate })" target="_blank">View Remittance</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#eventstartdate').datetimepicker({
+            format: 'L'
+        });
+        $('#eventenddate').datetimepicker({
+            useCurrent: false,
+            format: 'L'
+        });
+        $("#eventstartdate").on("dp.change", function (e) {
+            $('#eventenddate').data("DateTimePicker").minDate(e.date);
+        });
+        $("#eventenddate").on("dp.change", function (e) {
+            $('#eventstartdate').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+</script>

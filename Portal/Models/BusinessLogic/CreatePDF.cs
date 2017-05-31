@@ -10,12 +10,12 @@ namespace Portal.Models.BusinessLogic
 {
     public class CreatePDF
     {
-        public void InitializePDF(Document doc, MemoryStream mst)
+        public void InitializePDF(Document doc, MemoryStream mst, Rectangle pagesize)
         {
             PdfWriter writer = PdfWriter.GetInstance(doc, mst);
             writer.CloseStream = false;
 
-            doc.SetPageSize(PageSize.A4);
+            doc.SetPageSize(pagesize);
 
             doc.Open();
         }
@@ -40,6 +40,12 @@ namespace Portal.Models.BusinessLogic
             headerImg.AddCell(logo);
 
             return headerImg;
+        }
+
+        public Font SetFont(string family, int size, int style)
+        {
+            var customFont = FontFactory.GetFont(family, size, style);
+            return customFont;
         }
     }
 }

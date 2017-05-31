@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PaymentRemittanceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="payment_period">
+          <Key>
+            <PropertyRef Name="period_id" />
+          </Key>
+          <Property Name="period_id" Type="int" Nullable="false" />
+          <Property Name="period_text" Type="char" MaxLength="10" />
+          <Property Name="period_date" Type="datetime" Nullable="false" />
+          <Property Name="processed_date" Type="datetime" />
+          <Property Name="pay_date" Type="datetime" />
+          <Property Name="total_amount" Type="money" />
+          <Property Name="payment_period_status_rcd" Type="nchar" MaxLength="10" />
+          <Property Name="active_flag" Type="bit" />
+          <Property Name="authorization_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="payment_remittance">
+          <Key>
+            <PropertyRef Name="payment_period_detail_id" />
+          </Key>
+          <Property Name="payment_period_detail_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="processed_datetime" Type="datetime" Nullable="false" />
+          <Property Name="period_id" Type="int" Nullable="false" />
+          <Property Name="charge_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="charge_date" Type="datetime" />
+          <Property Name="employee_nr" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="dname" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="department_name" Type="varchar" MaxLength="200" />
+          <Property Name="period_date" Type="datetime" Nullable="false" />
+          <Property Name="vat_rate" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="tax_rate" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="charge_amount" Type="money" />
+          <Property Name="gross_amount" Type="money" Nullable="false" />
+          <Property Name="prev_paid_amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="split_discount_amount_scd" Type="money" Nullable="false" />
+          <Property Name="split_discount_amount_oth" Type="money" Nullable="false" />
+          <Property Name="split_adjustment_amount" Type="money" Nullable="false" />
+          <Property Name="split_net_amount" Type="money" Nullable="false" />
+          <Property Name="split_vat_amount" Type="money" Nullable="false" />
+          <Property Name="split_tax_base_amount" Type="money" Nullable="false" />
+          <Property Name="split_tax_rate" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="split_tax_amount" Type="money" Nullable="false" />
+          <Property Name="split_merchant_discount" Type="money" Nullable="false" />
+          <Property Name="split_credited_amount" Type="money" Nullable="false" />
+          <Property Name="policy_group" Type="nvarchar" MaxLength="30" />
+          <Property Name="pname" Type="varchar" MaxLength="200" />
+          <Property Name="scd_flag" Type="tinyint" />
+          <Property Name="item_desc" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityContainer Name="PaymentRemittanceModelStoreContainer">
+          <EntitySet Name="payment_period" EntityType="Self.payment_period" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payment_remittance" EntityType="Self.payment_remittance" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PaymentRemittanceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="payment_remittance">
+          <Key>
+            <PropertyRef Name="payment_period_detail_id" />
+          </Key>
+          <Property Name="payment_period_detail_id" Type="Guid" Nullable="false" />
+          <Property Name="processed_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="period_id" Type="Int32" Nullable="false" />
+          <Property Name="charge_id" Type="Guid" Nullable="false" />
+          <Property Name="employee_nr" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="dname" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="department_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="period_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="vat_rate" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="tax_rate" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="charge_amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="gross_amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="prev_paid_amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="split_discount_amount_scd" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="split_discount_amount_oth" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="split_adjustment_amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="split_net_amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="split_vat_amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="split_tax_base_amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="split_tax_rate" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="split_tax_amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="split_merchant_discount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="split_credited_amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="policy_group" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="pname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="scd_flag" Type="Byte" />
+          <Property Name="item_desc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="charge_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="payment_remittance_entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="payment_remittance" EntityType="Self.payment_remittance" />
+          <EntitySet Name="payment_period" EntityType="PaymentRemittanceModel.payment_period" />
+        </EntityContainer>
+        <EntityType Name="payment_period">
+          <Key>
+            <PropertyRef Name="period_id" />
+          </Key>
+          <Property Name="period_id" Type="Int32" Nullable="false" />
+          <Property Name="period_text" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="period_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="processed_date" Type="DateTime" Precision="3" />
+          <Property Name="pay_date" Type="DateTime" Precision="3" />
+          <Property Name="total_amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="payment_period_status_rcd" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="active_flag" Type="Boolean" />
+          <Property Name="authorization_date" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PaymentRemittanceModelStoreContainer" CdmEntityContainer="payment_remittance_entities">
+          <EntitySetMapping Name="payment_remittance">
+            <EntityTypeMapping TypeName="PaymentRemittanceModel.payment_remittance">
+              <MappingFragment StoreEntitySet="payment_remittance">
+                <ScalarProperty Name="charge_date" ColumnName="charge_date" />
+                <ScalarProperty Name="payment_period_detail_id" ColumnName="payment_period_detail_id" />
+                <ScalarProperty Name="processed_datetime" ColumnName="processed_datetime" />
+                <ScalarProperty Name="period_id" ColumnName="period_id" />
+                <ScalarProperty Name="charge_id" ColumnName="charge_id" />
+                <ScalarProperty Name="employee_nr" ColumnName="employee_nr" />
+                <ScalarProperty Name="dname" ColumnName="dname" />
+                <ScalarProperty Name="department_name" ColumnName="department_name" />
+                <ScalarProperty Name="period_date" ColumnName="period_date" />
+                <ScalarProperty Name="vat_rate" ColumnName="vat_rate" />
+                <ScalarProperty Name="tax_rate" ColumnName="tax_rate" />
+                <ScalarProperty Name="charge_amount" ColumnName="charge_amount" />
+                <ScalarProperty Name="gross_amount" ColumnName="gross_amount" />
+                <ScalarProperty Name="prev_paid_amount" ColumnName="prev_paid_amount" />
+                <ScalarProperty Name="split_discount_amount_scd" ColumnName="split_discount_amount_scd" />
+                <ScalarProperty Name="split_discount_amount_oth" ColumnName="split_discount_amount_oth" />
+                <ScalarProperty Name="split_adjustment_amount" ColumnName="split_adjustment_amount" />
+                <ScalarProperty Name="split_net_amount" ColumnName="split_net_amount" />
+                <ScalarProperty Name="split_vat_amount" ColumnName="split_vat_amount" />
+                <ScalarProperty Name="split_tax_base_amount" ColumnName="split_tax_base_amount" />
+                <ScalarProperty Name="split_tax_rate" ColumnName="split_tax_rate" />
+                <ScalarProperty Name="split_tax_amount" ColumnName="split_tax_amount" />
+                <ScalarProperty Name="split_merchant_discount" ColumnName="split_merchant_discount" />
+                <ScalarProperty Name="split_credited_amount" ColumnName="split_credited_amount" />
+                <ScalarProperty Name="policy_group" ColumnName="policy_group" />
+                <ScalarProperty Name="pname" ColumnName="pname" />
+                <ScalarProperty Name="scd_flag" ColumnName="scd_flag" />
+                <ScalarProperty Name="item_desc" ColumnName="item_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payment_period">
+            <EntityTypeMapping TypeName="PaymentRemittanceModel.payment_period">
+              <MappingFragment StoreEntitySet="payment_period">
+                <ScalarProperty Name="authorization_date" ColumnName="authorization_date" />
+                <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+                <ScalarProperty Name="payment_period_status_rcd" ColumnName="payment_period_status_rcd" />
+                <ScalarProperty Name="total_amount" ColumnName="total_amount" />
+                <ScalarProperty Name="pay_date" ColumnName="pay_date" />
+                <ScalarProperty Name="processed_date" ColumnName="processed_date" />
+                <ScalarProperty Name="period_date" ColumnName="period_date" />
+                <ScalarProperty Name="period_text" ColumnName="period_text" />
+                <ScalarProperty Name="period_id" ColumnName="period_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

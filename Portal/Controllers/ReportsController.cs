@@ -11,6 +11,8 @@ using iTextSharp.text;
 using System.IO;
 using iTextSharp.text.pdf.draw;
 using iTextSharp.text.pdf;
+using Portal.Models.ViewModels;
+using Portal.Models.Reports;
 
 namespace Portal.Controllers
 {
@@ -19,6 +21,7 @@ namespace Portal.Controllers
         // GET: Reports
 
         private OMCP omcp = new OMCP();
+        private PaymentRemittance paymentRemittance = new PaymentRemittance();
         private CreatePDF createpdf = new CreatePDF();
 
         private int pageSize;
@@ -232,7 +235,7 @@ namespace Portal.Controllers
                 Document doc = new Document();
                 MemoryStream mst = new MemoryStream();
 
-                createpdf.InitializePDF(doc, mst);
+                createpdf.InitializePDF(doc, mst, PageSize.A4);
 
                 Chunk hr = new Chunk(new LineSeparator());
 
@@ -444,6 +447,195 @@ namespace Portal.Controllers
                 FlashMessage.Info("There is no report to be generated, please search for a hospital number first.");
                 return RedirectToAction("OMCP");
             }
+        }
+
+        [Authorize(Roles = "Doctor")]
+        public ActionResult PaymentRemittance(ReportsModel.PaymentRemittanceModel model)
+        {
+                model.payment_remittance_header = paymentRemittance.GetLatestPaymentRemittanceHeader(HttpContext.User.Identity.Name).Take(1);
+                model.payment_period = paymentRemittance.PopulatePaymentPeriodDropdown();
+                return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult PaymentRemittance(DateTime? datefrom, DateTime? dateto, ReportsModel.PaymentRemittanceModel model)
+        {
+            model.payment_remittance_header = paymentRemittance.GetPaymentRemittanceHeaderByDate(HttpContext.User.Identity.Name, model.start_date, model.end_date);
+
+            return View(model);
+        }
+
+        [Authorize(Roles = "Doctor")]
+        public ActionResult GeneratePaymentRemittanceReport(int id, DateTime payout_date, string name, decimal tax_rate)
+        {
+            IEnumerable<payment_remittance> payment_remittance = paymentRemittance.GetPaymentRemittance(HttpContext.User.Identity.Name, id);
+
+            Document doc = new Document();
+            MemoryStream mst = new MemoryStream();
+
+            createpdf.InitializePDF(doc, mst, PageSize.A4.Rotate());
+
+            Chunk hr = new Chunk(new LineSeparator());
+
+            int[] headerwidth = { 50, 20 };
+            int[] contentwidth = { 18, 16, 9, 8, 8, 8, 9, 8, 8, 8, 5, 8, 8, 8 };
+
+            #region Fonts
+
+            var headerFont = FontFactory.GetFont("Arial", 9);
+            var contentFont = FontFactory.GetFont("Arial", 7);
+            var defaultFont = FontFactory.GetFont("Arial", 8, Font.BOLD);
+            var titleFont = FontFactory.GetFont("Arial", 11, Font.BOLD);
+            var valueFont = FontFactory.GetFont("Arial", 11);
+            var amountFont = FontFactory.GetFont("Arial", 8, Font.BOLD);
+
+            #endregion
+
+            #region tables
+
+            PdfPTable headerTbl = createpdf.CreateTable(2);
+            headerTbl.DefaultCell.Border = Rectangle.NO_BORDER;
+            headerTbl.SetWidths(headerwidth);
+            headerTbl.DefaultCell.Padding = 5;
+
+            headerTbl.AddCell(new Phrase("Employee ID : " + HttpContext.User.Identity.Name, headerFont));
+            headerTbl.AddCell(new Phrase("Payout / Withholding Date: " + payout_date.ToShortDateString(), headerFont));
+            headerTbl.AddCell(new Phrase(name, titleFont));
+            headerTbl.AddCell(new Phrase(""));
+            headerTbl.AddCell(new Phrase("TIN: " + tax_rate.ToString("N") + " / " + ((tax_rate > 1) ? "VAT" : "NON-VAT"), headerFont));
+            headerTbl.AddCell(new Phrase(""));
+
+            PdfPTable mainTbl = createpdf.CreateTable(14);
+            mainTbl.DefaultCell.Border = Rectangle.NO_BORDER;
+            mainTbl.DefaultCell.Padding = 2;
+            mainTbl.SetWidths(contentwidth);
+
+            mainTbl.AddCell(new Phrase("Patient Name", defaultFont));
+            mainTbl.AddCell(new Phrase("Description", defaultFont));
+            mainTbl.AddCell(new Phrase("Date Charged", defaultFont));
+            mainTbl.AddCell(new Phrase("Amounts", defaultFont));
+            mainTbl.AddCell(new Phrase("SCD   Discounts", defaultFont));
+            mainTbl.AddCell(new Phrase("Other Discounts", defaultFont));
+            mainTbl.AddCell(new Phrase("Adjustment", defaultFont));
+            mainTbl.AddCell(new Phrase("PF Bill", defaultFont));
+            mainTbl.AddCell(new Phrase("Amount  of VAT", defaultFont));
+            mainTbl.AddCell(new Phrase("Taxable Amount", defaultFont));
+            mainTbl.AddCell(new Phrase("WH      Tax Rate", defaultFont));
+            mainTbl.AddCell(new Phrase("WH       Amount", defaultFont));
+            mainTbl.AddCell(new Phrase("Merchant Discount", defaultFont));
+            mainTbl.AddCell(new Phrase("Credited Amount", defaultFont));
+
+            PdfPTable contentTbl = createpdf.CreateTable(14);
+            contentTbl.DefaultCell.Border = Rectangle.NO_BORDER;
+            contentTbl.DefaultCell.Padding = 3;
+            contentTbl.SetWidths(contentwidth);
+
+            foreach (var payment in payment_remittance)
+            {
+                contentTbl.AddCell(new Phrase(payment.pname, createpdf.SetFont("Arial", 7, Font.BOLD)));
+                contentTbl.AddCell(new Phrase(payment.item_desc, createpdf.SetFont("Arial", 7, Font.BOLD)));
+                contentTbl.AddCell(new Phrase((payment.charge_date == null) ? "" : payment.charge_date.Value.ToShortDateString(), contentFont));
+                contentTbl.AddCell(new Phrase(payment.charge_amount.Value.ToString("N"), createpdf.SetFont("Arial", 7, Font.BOLD)));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("Previous Credits", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase(payment.prev_paid_amount.Value.ToString("N"), contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("       " + payment.policy_group, createpdf.SetFont("Arial", 7, Font.BOLD)));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase(payment.gross_amount.ToString("N"), contentFont));
+                contentTbl.AddCell(new Phrase(payment.split_discount_amount_scd.ToString("N"), contentFont));
+                contentTbl.AddCell(new Phrase(payment.split_discount_amount_oth.ToString("N"), contentFont));
+                contentTbl.AddCell(new Phrase(payment.split_adjustment_amount.ToString("N"), contentFont));
+                contentTbl.AddCell(new Phrase(payment.split_net_amount.ToString("N"), contentFont));
+                contentTbl.AddCell(new Phrase(payment.split_vat_amount.ToString("N"), contentFont));
+                contentTbl.AddCell(new Phrase(payment.split_tax_base_amount.ToString("N"), contentFont));
+                contentTbl.AddCell(new Phrase((int)(payment.split_tax_rate * 100) + "%", contentFont));
+                contentTbl.AddCell(new Phrase(payment.split_tax_amount.ToString("N"), contentFont));
+                contentTbl.AddCell(new Phrase(payment.split_merchant_discount.ToString("N"), contentFont));
+                contentTbl.AddCell(new Phrase(payment.split_credited_amount.ToString("N"), contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("Remaining Balance", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont)); //Remaining Balance 0.00
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+                contentTbl.AddCell(new Phrase("", contentFont));
+            }
+
+            
+
+            PdfPTable totalTbl = createpdf.CreateTable(14);
+            totalTbl.DefaultCell.Border = Rectangle.NO_BORDER;
+            totalTbl.DefaultCell.Padding = 2;
+            totalTbl.SetWidths(contentwidth);
+
+            totalTbl.AddCell(new Phrase("GRAND TOTAL: ", defaultFont));
+            totalTbl.AddCell(new Phrase("Count: " + paymentRemittance.GetRemittanceCount(HttpContext.User.Identity.Name, payout_date), defaultFont));
+            totalTbl.AddCell(new Phrase("", defaultFont));
+            totalTbl.AddCell(new Phrase(paymentRemittance.GetTotalAmountofCharges(HttpContext.User.Identity.Name, id).Value.ToString("N"), amountFont));
+            totalTbl.AddCell(new Phrase(paymentRemittance.GetTotalAmountofSCDdiscount(HttpContext.User.Identity.Name, id).ToString("N"), amountFont));
+            totalTbl.AddCell(new Phrase(paymentRemittance.GetTotalAmountofOthdiscount(HttpContext.User.Identity.Name, id).ToString("N"), amountFont));
+            totalTbl.AddCell(new Phrase(paymentRemittance.GetTotalAmountofAdjustment(HttpContext.User.Identity.Name, id).ToString("N"), amountFont));
+            totalTbl.AddCell(new Phrase(paymentRemittance.GetTotalAmountofPF(HttpContext.User.Identity.Name, id).ToString("N"), amountFont));
+            totalTbl.AddCell(new Phrase(paymentRemittance.GetTotalAmountofVatAmount(HttpContext.User.Identity.Name, id).ToString("N"), amountFont));
+            totalTbl.AddCell(new Phrase(paymentRemittance.GetTotalAmountofTaxBaseAmount(HttpContext.User.Identity.Name, id).ToString("N"), amountFont));
+            totalTbl.AddCell(new Phrase("", defaultFont));
+            totalTbl.AddCell(new Phrase(paymentRemittance.GetTotalAmountofTaxAmount(HttpContext.User.Identity.Name, id).ToString("N"), amountFont));
+            totalTbl.AddCell(new Phrase(paymentRemittance.GetTotalAmountofMerchantDiscount(HttpContext.User.Identity.Name, id).ToString("N"), amountFont));
+            totalTbl.AddCell(new Phrase(paymentRemittance.GetTotalAmountofCreditedAmount(HttpContext.User.Identity.Name, id).ToString("N"), amountFont));
+
+            #endregion
+
+            doc.Add(createpdf.ImageHeader());
+            doc.Add(new Paragraph("\n"));
+            doc.Add(new Phrase("PAYMENT REMITTANCE ADVICE", valueFont));
+            doc.Add(new Paragraph("\n"));
+            doc.Add(new Paragraph("\n"));
+            doc.Add(headerTbl);
+            doc.Add(new Paragraph("\n"));
+            doc.Add(mainTbl);
+            doc.Add(new Paragraph("\n"));
+            doc.Add(contentTbl);
+            doc.Add(hr);
+            doc.Add(new Paragraph("\n"));
+            doc.Add(totalTbl);
+            doc.Add(new Paragraph("\n"));
+
+            doc.Close();
+
+            mst.Flush();
+            mst.Position = 0;
+
+            Response.AddHeader("content-disposition", string.Format("inline; filename={0}", "Payment Remittance Advice"));
+            return File(mst, "application/pdf");
         }
     }
 }

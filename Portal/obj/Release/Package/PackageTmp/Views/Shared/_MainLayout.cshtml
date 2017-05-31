@@ -4,16 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
+    <link href="~/Content/opensourcedll/slidebars/slidebars.css" rel="stylesheet" />
+    <script src="~/Scripts/jQuery/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/bootstrap/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
     <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
     <link href="~/Content/fontawesome/font-awesome.css" rel="stylesheet" />
     <link href="~/Content/site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/opensourcedll/slidebars/slidebars.css" rel="stylesheet" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    <script src="~/Scripts/jQuery/jquery-3.1.1.min.js"></script>
-    <script src="~/Scripts/bootstrap/bootstrap.min.js"></script>
     <script src="~/Content/opensourcedll/slidebars/slidebars.min.js"></script>
     <link href="~/Content/opensourcedll/animate/animate.css" rel="stylesheet" />
     <script src="~/Content/opensourcedll/notify/bootstrap-notify.min.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
 
@@ -30,7 +33,7 @@
             <a href="#" data-toggle="tooltip" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
         </div>
     }
-    else if(User.IsInRole("Patient") || User.IsInRole("Doctor"))
+    else if(User.IsInRole("Patient"))
     {
         <div off-canvas="sideBar left reveal">
             <span class="close-button" id="closeBtn">&times;</span>
@@ -44,7 +47,22 @@
             <a href="#" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
         </div>
     }
-    else if(User.IsInRole("Administrator"))
+    else if (User.IsInRole("Doctor"))
+    {
+        <div off-canvas="sideBar left reveal">
+            <span class="close-button" id="closeBtn">&times;</span>
+            <br />
+            <br />
+            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;RESULTS</span></a>
+            <a href="@Url.Action("LaboratoryResults", "Results")" class="sub-menu"><span class="sub-menu-font">Laboratory</span></a>
+            <a href="#" data-placement="top" title="Coming Soon" class="sub-menu"><span class="sub-menu-font">Radiology</span></a>
+            <a href="#" data-placement="top" title="Coming Soon" class="sub-menu"><span class="sub-menu-font">Diagnosis</span></a>
+            <a href="#" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;REPORTS</span></a>
+            <a href="@Url.Action("PaymentRemittance", "Reports")" class="sub-menu"><span class="sub-menu-font">Payment Remittance</span></a>
+            <a href="#" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+        </div>
+    }
+    else if (User.IsInRole("Administrator"))
     {
         <div off-canvas="sideBar left reveal">
             <span class="close-button" id="closeBtn">&times;</span>

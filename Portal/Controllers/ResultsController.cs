@@ -186,7 +186,7 @@ namespace Portal.Controllers
             Document doc = new Document();
             MemoryStream mst = new MemoryStream();
 
-            createpdf.InitializePDF(doc, mst);
+            createpdf.InitializePDF(doc, mst, PageSize.A4);
 
             Chunk hr = new Chunk(new LineSeparator());
 
