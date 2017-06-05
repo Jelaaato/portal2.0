@@ -11,8 +11,9 @@
         <div class="col-lg-6 col-lg-offset-3">
             <div class="form-group">
                 <div class="input-group date">
-                    @Html.TextBoxFor(a => a.period_date, new { @placeholder = "Select Payout Period", @class = "form-control", @id = "payoutDate"})
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i>
+                    @Html.TextBoxFor(a => a.period_date, new { @placeholder = "Select Payout Period", @class = "form-control", @id = "payoutDate" })
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-calendar"></i>
                     </span>
                 </div>
             </div>
@@ -44,26 +45,3 @@
         </table>
     </div>
 </div>
-
-
-<script>
-    $(function () {
-        $('.input-group.date').datepicker({
-            format: "mm/yyyy",
-            startView: 2,
-            minViewMode: 1,
-            maxViewMode: 3,
-            autoclose: true
-        }).on("changeDate", function () {
-            var payoutDate = $('#payoutDate').val()
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("PaymentRemittance", "Reports")',
-                data: { period_date: payoutDate },
-                success: function (data) {
-                    $('#remittanceContainer').html(data);
-                }
-            });
-        });
-    });
-</script>

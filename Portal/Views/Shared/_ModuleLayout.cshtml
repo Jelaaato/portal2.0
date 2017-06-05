@@ -228,4 +228,25 @@
         });
     });
 
+    $(function () {
+        $('.input-group.date').datepicker({
+            format: "mm/yyyy",
+            startView: 2,
+            minViewMode: 1,
+            maxViewMode: 3,
+            autoclose: true,
+            startDate: "01/2017"
+        }).on("changeDate", function () {
+            var payoutDate = $('#payoutDate').val()
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("PaymentRemittance", "Reports")',
+                data: { period_date: payoutDate },
+                success: function (data) {
+                    $('#remittanceContainer').html(data);
+                }
+            });
+        });
+    });
+
 </script>
