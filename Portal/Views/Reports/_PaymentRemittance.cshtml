@@ -1,0 +1,23 @@
+﻿
+<div class="table-responsive">
+    <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;">
+        <thead class="table-bordered" style="background-color:rgba(31,150,102, 0.8);">
+            <tr>
+                <th style="text-align:center;font-weight:400;">Payout Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="table-bordered" style="color:black;">
+            @foreach (var item in Model.payment_remittance_header)
+            {
+                <tr>
+                    <td>@item.period_date.ToShortDateString()</td>
+                    <td>
+                        <a href="@Url.Action("GeneratePaymentRemittanceReport", "Reports", new { id = @item.period_id, payout_date = @item.period_date, name = @item.dname, tax_rate = @item.tax_rate })" target="_blank">View Remittance</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

@@ -458,11 +458,14 @@ namespace Portal.Controllers
         }
 
         [HttpPost]
-        public ActionResult PaymentRemittance(DateTime? datefrom, DateTime? dateto, ReportsModel.PaymentRemittanceModel model)
+        public ActionResult PaymentRemittance(int? page, ReportsModel.PaymentRemittanceModel model)
         {
-            model.payment_remittance_header = paymentRemittance.GetPaymentRemittanceHeaderByDate(HttpContext.User.Identity.Name, model.start_date, model.end_date);
+            model.start_date = new DateTime(model.period_date.Value.Year, model.period_date.Value.Month, 1);
+            model.end_date = model.start_date.Value.AddMonths(1).AddDays(-1);
 
-            return View(model);
+            model.payment_remittance_header = paymentRemittance.GetPaymentRemittanceHeaderByDate(HttpContext.User.Identity.Name, model.start_date, model.end_date).ToList();
+
+            return PartialView("_PaymentRemittance", model);
         }
 
         [Authorize(Roles = "Doctor")]

@@ -8,39 +8,22 @@
 <br /><br />
 
 <div class="row">
-    @using (Html.BeginForm("PaymentRemittance", "Reports", FormMethod.Post))
-    {
-        <div class="col-lg-5">
+        <div class="col-lg-6 col-lg-offset-3">
             <div class="form-group">
-                <div class="input-group" date id="eventstartdate">
-                    @Html.TextBoxFor(a => a.start_date, new { @placeholder = "Date From", @class = "form-control" })
-                    <span class="input-group-addon" style="background-color:white !important;">
-                        <span class="glyphicon glyphicon-calendar"></span>
+                <div class="input-group date">
+                    @Html.TextBoxFor(a => a.period_date, new { @placeholder = "Select Payout Period", @class = "form-control", @id = "payoutDate"})
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i>
                     </span>
                 </div>
             </div>
         </div>
-        <div class="col-lg-5">
-                <div class="form-group">
-                    <div class="input-group" date id="eventenddate">
-                        @Html.TextBoxFor(a => a.end_date, new { @placeholder = "Date To", @class = "form-control" })
-                        <span class="input-group-addon" style="background-color:white !important;">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                    </div>
-                </div>
-        </div>
-        <div class="col-lg-2">
-            <button type="submit">Search</button>
-        </div>
-    }
 </div>
 
-<br /><br /><br /><br /><br /><br /><br /><br /><br />
-
 <br />
+<div id="remittanceContainer">
+    <h5 style="text-align:left;">Latest Payment Remittance Advice</h5>
     <div class="table-responsive">
-        <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;" id="resultContainer">
+        <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;">
             <thead class="table-bordered" style="background-color:rgba(31,150,102, 0.8);">
                 <tr>
                     <th style="text-align:center;font-weight:400;">Payout Date</th>
@@ -60,22 +43,27 @@
             </tbody>
         </table>
     </div>
+</div>
 
 
-<script type="text/javascript">
+<script>
     $(function () {
-        $('#eventstartdate').datetimepicker({
-            format: 'L'
-        });
-        $('#eventenddate').datetimepicker({
-            useCurrent: false,
-            format: 'L'
-        });
-        $("#eventstartdate").on("dp.change", function (e) {
-            $('#eventenddate').data("DateTimePicker").minDate(e.date);
-        });
-        $("#eventenddate").on("dp.change", function (e) {
-            $('#eventstartdate').data("DateTimePicker").maxDate(e.date);
+        $('.input-group.date').datepicker({
+            format: "mm/yyyy",
+            startView: 2,
+            minViewMode: 1,
+            maxViewMode: 3,
+            autoclose: true
+        }).on("changeDate", function () {
+            var payoutDate = $('#payoutDate').val()
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("PaymentRemittance", "Reports")',
+                data: { period_date: payoutDate },
+                success: function (data) {
+                    $('#remittanceContainer').html(data);
+                }
+            });
         });
     });
 </script>

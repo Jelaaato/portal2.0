@@ -144,15 +144,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-datetimepicker.css" />
-    <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap\bootstrap-theme.css" />
     <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap\bootstrap.css" />
     <Content Include="Content\bootstrap\bootstrap.min.css" />
-    <Content Include="Content\daterangepicker\daterangepicker.css" />
-    <Content Include="Scripts\daterangepicker\daterangepicker.js" />
-    <Content Include="Scripts\daterangepicker\moment.min.js" />
+    <Content Include="Content\datepicker\bootstrap-datepicker.css" />
+    <Content Include="Content\datepicker\bootstrap-datepicker.standalone.css" />
     <Content Include="Content\fontawesome\font-awesome.css" />
     <Content Include="Content\fontawesome\font-awesome.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -396,8 +393,6 @@
     <Content Include="Content\bootstrap\bootstrap.less" />
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
-    <Content Include="Content\bootstrap-datetimepicker-build.less" />
-    <Content Include="Content\_bootstrap-datetimepicker.less" />
     <None Include="Properties\PublishProfiles\portal.pubxml" />
     <None Include="Scripts\jQuery\jquery-3.1.1.intellisense.js" />
     <Content Include="Images\background.jpg" />
@@ -410,14 +405,13 @@
     <Content Include="Images\logo.png" />
     <Content Include="Images\nurse.jpg" />
     <Content Include="Images\stethoscope.jpg" />
-    <Content Include="Scripts\bootstrap-datetimepicker.js" />
-    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap\bootstrap.js" />
     <Content Include="Scripts\bootstrap\bootstrap.min.js" />
     <Content Include="Content\opensourcedll\sidr\jquery.sidr.js" />
     <Content Include="Content\opensourcedll\sidr\jquery.sidr.min.js" />
+    <Content Include="Scripts\datepicker\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jQuery\jquery-3.1.1.js" />
@@ -425,10 +419,6 @@
     <Content Include="Scripts\jQuery\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jQuery\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\moment-with-locales.js" />
-    <Content Include="Scripts\moment-with-locales.min.js" />
-    <Content Include="Scripts\moment.js" />
-    <Content Include="Scripts\moment.min.js" />
     <Content Include="Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_MainLayout.cshtml" />
@@ -665,6 +655,7 @@
     <Content Include="Views\Admin\AddToRole.cshtml" />
     <Content Include="Views\Admin\Audit.cshtml" />
     <Content Include="Views\Reports\PaymentRemittance.cshtml" />
+    <Content Include="Views\Reports\_PaymentRemittance.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

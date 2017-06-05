@@ -12,7 +12,7 @@ namespace Portal.Models.ViewModels
         public class PaymentRemittanceModel
         {
             public SelectList payment_period { get; set; }
-            public DateTime period_date { get; set; }
+            public DateTime? period_date { get; set; }
 
             public DateTime? start_date { get; set; }
             public DateTime? end_date { get; set; }
