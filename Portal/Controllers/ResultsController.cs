@@ -78,7 +78,7 @@ namespace Portal.Controllers
                             model.patient_lab_header = lab.GetAllPatientHeader(HttpContext.User.Identity.Name).Where(a => a.patient_name.IndexOf(search, StringComparison.OrdinalIgnoreCase) != -1).OrderByDescending(a => a.order_date_time);
                             model.fileID = fileid;
                             model.isValidated = isvalidated;
-                            return PartialView("_LabResult", model);
+                            return View(model);
                         }
                         else
                         {
@@ -97,7 +97,7 @@ namespace Portal.Controllers
                             model.patient_lab_header = lab.GetAllPatientHeaderForDoctor(HttpContext.User.Identity.Name).Where(a => a.patient_name.IndexOf(search, StringComparison.OrdinalIgnoreCase) != -1).OrderByDescending(a => a.order_date_time);
                             model.fileID = fileid;
                             model.isValidated = isvalidated;
-                            return PartialView("_LabResult", model);
+                            return View(model);
                         }
                         else
                         {
@@ -119,7 +119,7 @@ namespace Portal.Controllers
                             model.patient_lab_header = lab.GetPatientHeader(HttpContext.User.Identity.Name, lab_order_name).Where(a => a.patient_name.Contains(search)).OrderByDescending(a => a.order_date_time);
                             model.fileID = fileid;
                             model.isValidated = isvalidated;
-                            return PartialView("_LabResult", model);
+                            return View(model);
                         }
                         else
                         {
@@ -138,7 +138,7 @@ namespace Portal.Controllers
                             model.patient_lab_header = lab.GetPatientHeaderForDoctor(HttpContext.User.Identity.Name, lab_order_name).Where(a => a.patient_name.IndexOf(search, StringComparison.OrdinalIgnoreCase) != -1).OrderByDescending(a => a.order_date_time);
                             model.fileID = fileid;
                             model.isValidated = isvalidated;
-                            return PartialView("_LabResult", model);
+                            return View(model);
                         }
                         else
                         {

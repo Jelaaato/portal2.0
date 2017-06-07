@@ -8,19 +8,30 @@
             <div class="row">
                 @using (Html.BeginForm("LaboratoryResults", "Results", FormMethod.Post))
                 {
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            @Html.DropDownListFor(a => a.lab_order_name, new SelectList(Model.results_references, "Value", "Text"), new { @class = "form-control", id = "lab_type_options" })
-                        </div>
-                    </div>
-                    @*<div class="col-lg-8">
-                        <div class="form-group">
-                            <div class="input-group">
-                                @Html.TextBox("search", ViewBag.CurrentFilter as String, new { @placeholder = "Search", @class = "form-control" })
-                                <span class="input-group-btn"><button type="submit" class="btn" style="background-color:#01B06B;color:white;"><i class="fa fa-search"></i></button></span>
+                    if (User.IsInRole("Patient"))
+                    {
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                @Html.DropDownListFor(a => a.lab_order_name, new SelectList(Model.results_references, "Value", "Text"), new { @class = "form-control", id = "lab_type_options" })
                             </div>
                         </div>
-                    </div>*@
+                    }
+                    else
+                    {
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                @Html.DropDownListFor(a => a.lab_order_name, new SelectList(Model.results_references, "Value", "Text"), new { @class = "form-control", id = "lab_type_options" })
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    @Html.TextBox("search", ViewBag.CurrentFilter as String, new { @placeholder = "Search", @class = "form-control" })
+                                    <span class="input-group-btn"><button type="submit" class="btn" style="background-color:#01B06B;color:white;"><i class="fa fa-search"></i></button></span>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 }
             </div>
 

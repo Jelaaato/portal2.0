@@ -14,9 +14,18 @@ namespace Portal.Models.BusinessLogic
 
         private DateTime GetLatestPeriodDate(string employee_nr)
         {
-            DateTime latestPeriodDate = payment_remittance.payment_remittance.Where(a => a.employee_nr == employee_nr).OrderByDescending(a => a.period_date).Select(a => a.period_date).First();
+            DateTime latestPeriodDate;
+            latestPeriodDate = payment_remittance.payment_remittance.Where(a => a.employee_nr == employee_nr).OrderByDescending(a => a.period_date).Select(a => a.period_date).FirstOrDefault();
 
-            return latestPeriodDate;
+            if (latestPeriodDate != null)
+            {
+                return latestPeriodDate;
+            }
+            else
+            {
+                latestPeriodDate = payment_remittance.payment_period.OrderByDescending(a => a.period_date).Select(a => a.period_date).FirstOrDefault();
+                return latestPeriodDate;
+            }
         }
 
         public IEnumerable<payment_remittance> GetPaymentRemittance(string employee_nr, int period_id)
@@ -30,8 +39,6 @@ namespace Portal.Models.BusinessLogic
 
         public IEnumerable<ReportsModel.PaymentRemittanceHeader> GetPaymentRemittanceHeaderByDate(string employee_nr, DateTime? datefrom, DateTime? dateto)
         {
-            //var payment_remittances = payment_remittance.payment_remittance.Where(a => a.employee_nr == employee_nr && (a.period_date >= datefrom && a.period_date <= dateto)).ToList();
-
             var payment_remittance_bydate = (from p in payment_remittance.payment_remittance
                                               where (p.employee_nr == employee_nr) &&
                                               (p.period_date >= datefrom && p.period_date <= dateto)
