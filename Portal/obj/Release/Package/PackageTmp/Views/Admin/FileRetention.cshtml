@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Portal.Models.FileRetentionModel.file_retention>
+@using Portal.Models.Helpers
+@{
+    ViewBag.Title = "FileRetention";
+    Layout = "~/Views/Shared/_ModuleLayout.cshtml";
+}
+    @*<div class="container">*@
+        <br /><br />
+        <div class="table-responsive">
+            <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;" id="resultContainer">
+                <thead class="table-bordered" style="background-color:rgba(31,150,102, 0.8);">
+                    <tr>
+                        <th style="text-align:center;font-weight:400;">File Type</th>
+                        <th style="text-align:center;font-weight:400;">Retention Period</th>
+                        <th style="text-align:center;font-weight:400;">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="table-bordered" style="color:black;">
+                    @foreach (var period in Model)
+                    {
+                        <tr>
+                            <td>@period.file_id.GetFileTypeName()</td>
+                            <td>@period.retention_period.ReturnAbsoluteValue() days</td>
+                            <td>
+                                <a href="@Url.Action("EditFileRetention", new { id = period.retention_id })">
+                                    <span class="fa fa-edit"></span>
+                                </a>
+                                <a data-toggle="modal" href="#deleteconfirmation">
+                                    <span class="fa fa-trash-o"></span>
+                                </a>
+                                <div class="modal fade" id="deleteconfirmation" role="dialog" tabindex="-1">
+                                    <div class="modal-dialog modal-sm">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" data-toggle="tooltip" title="Close"><span class="fa fa-close"></span></button>
+                                                <span class="text-center subtext" style="color:#00A640;font-size:14px;">Are you sure?</span>
+                                            </div>
+                                            <div class="modal-body">
+                                                @using (Html.BeginForm("DeleteFileRetention", "Admin", new { id = period.retention_id }, FormMethod.Post))
+                                                {
+                                                    <button type="submit" class="btn btn-block btn-danger">Okay</button>
+                                                }
+                                                <br />
+                                                <a href="@Url.Action("FileRetention")" class="btn btn-block btn-default">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="generate-PDF hidden-xs">
+            <a class="btn generate-PDF-Btn" href="@Url.Action("AddFileRetention", "Admin")">Set New Retention Period</a>
+        </div>
+    @*</div>*@
+
+

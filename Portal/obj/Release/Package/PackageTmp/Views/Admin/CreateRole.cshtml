@@ -1,0 +1,52 @@
+﻿@model string
+@{
+    ViewBag.Title = "Create Role";
+    Layout = "~/Views/Shared/_FormsLayout.cshtml";
+}
+
+<div class="mobile-wrapper">
+    <div class="form-bottom">
+        <div class="form-box" style="background-color:white;box-shadow: rgba(0,0,0, 0.2) 6px 6px;">
+            <span style="color:#73AE6A;font-size:16px;text-align:center;" class="subtext">Create New Role</span>
+            <br /><br />
+            @Html.ValidationSummary(true)
+            <br />
+
+            @using (Html.BeginForm(new { returnUrl = ViewBag.returnUrl }))
+            {
+                <div class="form-group">
+                    <input name="name" value="@Model" class="form-control" placeholder="ROLE NAME" />
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-block regular-btn" type="submit">PROCEED</button>
+                </div>
+                <div class="form-group">
+                    <center><a href="@Url.Action("UserRoles", "Admin")"><span class="subtext" style="color:#73AE6A;">Cancel</span></a></center>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@foreach (var message in Vereyon.Web.FlashMessage.Retrieve(Html.ViewContext.HttpContext))
+{
+    <script>
+        $.notify({
+            message: '@message.Message'
+        }, {
+            type: 'danger',
+            animate: {
+                enter: 'animated fadeInRight',
+                exit: 'animated fadeOutRight'
+            },
+            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+		                    '<button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="color:black;font-size:12px;"><span class="fa fa-close"></span></button>' +
+		                    '<span data-notify="message" class="notification">{2}</span>' +
+		                    '<div class="progress" data-notify="progressbar">' +
+			                    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+		                    '</div>' +
+	                  '</div>'
+        });
+    </script>
+}
+

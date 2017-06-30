@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UserDisplayNameModelStoreContainer" CdmEntityContainer="user_entities">
+    <EntitySetMapping Name="user_display_name">
+      <EntityTypeMapping TypeName="UserDisplayNameModel.user_display_name">
+        <MappingFragment StoreEntitySet="user_display_name">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

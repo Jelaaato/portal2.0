@@ -1,0 +1,248 @@
+﻿@using Portal.Models.Helpers
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/opensourcedll/slidebars/slidebars.css" rel="stylesheet" />
+    <script src="~/Scripts/jQuery/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/bootstrap/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/datepicker/bootstrap-datepicker.min.js"></script>
+    <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/datepicker/bootstrap-datepicker.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/site.css" rel="stylesheet" type="text/css" />
+    <script src="~/Content/opensourcedll/slidebars/slidebars.min.js"></script>
+    <link href="~/Content/opensourcedll/animate/animate.css" rel="stylesheet" />
+    <link href="~/Content/opensourcedll/sidebar/simple-sidebar.css" rel="stylesheet" /> 
+    <script src="~/Content/opensourcedll/notify/bootstrap-notify.min.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+        @if (User.IsInRole("Employee"))
+        {
+            <div off-canvas="sideBar left reveal">
+                <span class="close-button" id="closeBtn">&times;</span>
+                <br />
+                <br />
+                <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;REPORTS</span></a>
+                <a href="@Url.Action("OMCP", "Reports")" class="sub-menu"><span class="sub-menu-font">OMCP</span></a>
+                <a href="#" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+            </div>
+        }
+        else if (User.IsInRole("Patient"))
+        {
+            <div off-canvas="sideBar left reveal">
+                <span class="close-button" id="closeBtn">&times;</span>
+                <br />
+                <br />
+                <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;RESULTS</span></a>
+                <a href="@Url.Action("LaboratoryResults", "Results")" class="sub-menu"><span class="sub-menu-font">Laboratory</span></a>
+                <a href="#" data-placement="top" title="Coming Soon" class="sub-menu"><span class="sub-menu-font">Radiology</span></a>
+                <a href="#" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;REPORTS</span></a>
+                <a href="#" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+            </div>
+        }
+        else if (User.IsInRole("Doctor"))
+        {
+            <div off-canvas="sideBar left reveal">
+                <span class="close-button" id="closeBtn">&times;</span>
+                <br />
+                <br />
+                <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;RESULTS</span></a>
+                <a href="@Url.Action("LaboratoryResults", "Results")" class="sub-menu"><span class="sub-menu-font">Laboratory</span></a>
+                <a href="#" data-placement="top" title="Coming Soon" class="sub-menu"><span class="sub-menu-font">Radiology</span></a>
+                <a href="#" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;REPORTS</span></a>
+                <a href="@Url.Action("PaymentRemittance", "Reports")" class="sub-menu"><span class="sub-menu-font">Payment Remittance</span></a>
+                <a href="#" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+            </div>
+        }
+        else if (User.IsInRole("Administrator"))
+        {
+            <div off-canvas="sideBar left reveal">
+                <span class="close-button" id="closeBtn">&times;</span>
+                <br />
+                <br />
+                <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;USER MANAGEMENT</span></a>
+                <a href="@Url.Action("UserRoles", "Admin")" class="sub-menu"><span class="sub-menu-font">User Roles</span></a>
+                <a href="@Url.Action("DeleteUsers", "Admin")" class=" sub-menu"><span class="sub-menu-font">Delete Users</span></a>
+                <a href="#" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;PREFERENCES</span></a>
+                <a href="@Url.Action("FileRetention", "Admin")" class="sub-menu"><span class="sub-menu-font">File Retention</span></a>
+                <a href="#" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+                <a href="@Url.Action("Audit", "Admin")" class="sub-menu"><span class="sub-menu-font">Audit Trail</span></a>
+            </div>
+        }
+        <div off-canvas="userSidebar right push">
+            <span class="close-button" id="userCloseBtn">&times;</span>
+            <br />
+            <br />
+            <br />
+            <span class="visible-xs" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:15px;">Welcome, @User.Identity.Name.GetUserDisplayName()</span>
+            <br />
+            <a href="#" class="menu"><span class="menu-font">ACCOUNT</span></a>
+            <a href="@Url.Action("ChangePassword", "Account")" class="sub-menu"><span class="sub-menu-font">Change Password</span></a>
+            <a href="@Url.Action("Logout", "Account")" class="sub-menu"><span class="sub-menu-font">Log Out</span></a>
+        </div>
+
+
+        <div canvas="container">
+            <div id="wrapper">
+                <div id="sidebar-wrapper">
+                    @if (User.IsInRole("Employee"))
+                    {
+                        <div>
+                            <br />
+                            <br />
+                            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;REPORTS</span></a>
+                            <a href="@Url.Action("OMCP", "Reports")" class="sub-menu"><span class="sub-menu-font">OMCP</span></a>
+                            <a href="#" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+                        </div>
+                    }
+                    else if (User.IsInRole("Patient"))
+                    {
+                        <div>
+                            <br />
+                            <br />
+                            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;RESULTS</span></a>
+                            <a href="@Url.Action("LaboratoryResults", "Results")" class="sub-menu"><span class="sub-menu-font">Laboratory</span></a>
+                            <a href="#" data-placement="top" title="Coming Soon" class="sub-menu"><span class="sub-menu-font">Radiology</span></a>
+                            <a href="#" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;REPORTS</span></a>
+                            <a href="#" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+                        </div>
+                    }
+                    else if (User.IsInRole("Doctor"))
+                    {
+                        <div>
+                            <br />
+                            <br />
+                            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;RESULTS</span></a>
+                            <a href="@Url.Action("LaboratoryResults", "Results")" class="sub-menu"><span class="sub-menu-font">Laboratory</span></a>
+                            <a href="#" data-placement="top" title="Coming Soon" class="sub-menu"><span class="sub-menu-font">Radiology</span></a>
+                            <a href="#" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;REPORTS</span></a>
+                            <a href="@Url.Action("PaymentRemittance", "Reports")" class="sub-menu"><span class="sub-menu-font">Payment Remittance</span></a>
+                            <a href="#" data-placement="top" title="Coming Soon" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+                        </div>
+                    }
+                    else if (User.IsInRole("Administrator"))
+                    {
+                        <div>
+                            <br />
+                            <br />
+                            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-flask"></i>&nbsp;USER MANAGEMENT</span></a>
+                            <a href="@Url.Action("UserRoles", "Admin")" class="sub-menu"><span class="sub-menu-font">User Roles</span></a>
+                            <a href="@Url.Action("DeleteUsers", "Admin")" class=" sub-menu"><span class="sub-menu-font">Delete Users</span></a>
+                            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-file-o"></i>&nbsp;PREFERENCES</span></a>
+                            <a href="@Url.Action("FileRetention", "Admin")" class="sub-menu"><span class="sub-menu-font">File Retention</span></a>
+                            <a href="#" class="menu"><span class="menu-font"><i class="fa fa-plus-square"></i>&nbsp;OTHERS</span></a>
+                            <a href="@Url.Action("Audit", "Admin")" class="sub-menu"><span class="sub-menu-font">Audit Trail</span></a>
+                        </div>
+                    }
+                </div>
+                    <div id="page-content-wrapper">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12" style="padding-left:0 !important;padding-right:0 !important;">
+                                        <div class="lab-overlay-1">
+                                            <div style="padding-left:30px;padding-right:30px;">
+                                                <nav class="navbar navbar-inverse custom-nav">
+                                                    <div class="navbar-header">
+                                                        <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                                                            <span class="logo hidden-xs hidden-sm">Asian Hospital and Medical Center</span>
+                                                            <span class="logo visible-xs visible-sm">AHMC</span>
+                                                        </a>
+                                                    </div>
+                                                    <ul class="nav navbar-nav navbar-right hidden-xs hidden-sm">
+                                                        <li><a href="#" class="user" id="toggleUserSidebar">Welcome @User.Identity.Name.GetUserDisplayName()</a></li>
+                                                    </ul>
+                                                    <ul class="nav navbar-nav navbar-right visible-xs visible-sm">
+                                                        <li>
+                                                            <a href="#" class="user" id="toggleUserSidebarMobile" style="position:fixed !important;top:2px !important;right:35px !important;font-size:60px;"><i class="fa fa-user-circle-o"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="user" id="toggleSidebarMobile" style="position:fixed !important;top:2px !important;right:15px !important;font-size:60px;"><i class="fa fa-navicon"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                        <div style="padding-left:20px;padding-right:20px">
+                                            @RenderBody()
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+</body>
+</html>
+
+<script>
+    jQuery(document).ready(function () {
+        $(".loader").fadeOut("slow");
+        var controller = new slidebars();
+        controller.init();
+
+        //controller.open('sideBar');
+
+        $('#toggleSidebar').on('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            controller.toggle('sideBar');
+        });
+
+        $('#toggleSidebarMobile').on('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            controller.toggle('sideBar');
+        });
+
+        $('#toggleUserSidebar').on('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            controller.toggle('userSidebar');
+        });
+
+        $('#toggleUserSidebarMobile').on('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            controller.toggle('userSidebar');
+        });
+
+        $('#closeBtn').on('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            controller.toggle('sideBar');
+        });
+
+        $('#userCloseBtn').on('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            controller.toggle('userSidebar');
+        });
+    });
+
+    $(function () {
+        $('.input-group.date').datepicker({
+            format: "mm/yyyy",
+            startView: 2,
+            minViewMode: 1,
+            maxViewMode: 3,
+            autoclose: true,
+            startDate: "01/2017"
+        }).on("changeDate", function () {
+            var payoutDate = $('#payoutDate').val()
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("PaymentRemittance", "Reports")',
+                data: { period_date: payoutDate },
+                success: function (data) {
+                    $('#remittanceContainer').html(data);
+                }
+            });
+        });
+    });
+
+</script>

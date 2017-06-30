@@ -1,0 +1,63 @@
+﻿@model Portal.Models.ViewModels.ReportsModel.PaymentRemittanceModel
+
+@{
+    ViewBag.Title = "PaymentRemittance";
+    Layout = "~/Views/Shared/_ModuleLayout.cshtml";
+}
+
+<br /><br />
+@if (Model.payment_remittance_header.Count() != 1)
+{
+    <h3>
+        "Your payment remittance is not yet available.<br />
+         Please wait for a moment."
+    </h3>
+}
+else { 
+<div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <div class="form-group">
+                <div class="input-group date">
+                    @Html.TextBoxFor(a => a.period_date, new { @placeholder = "Select Payout Period", @class = "form-control", @id = "payoutDate" })
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+</div>
+
+<br />
+
+<div id="remittanceContainer">
+    <h5 style="text-align:left;">Latest Payment Remittance Advice</h5>
+    <div class="table-responsive">
+        <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;">
+            <thead class="table-bordered" style="background-color:rgba(31,150,102, 0.8);">
+                <tr>
+                    <th style="text-align:center;font-weight:400;">Payout Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="table-bordered" style="color:black;">
+                @foreach (var item in Model.payment_remittance_header)
+                {
+                    <tr>
+                        <td>@item.period_date.ToShortDateString()</td>
+                        <td>
+                            <a href="@Url.Action("GeneratePaymentRemittanceReport", "Reports", new { id = @item.period_id, payout_date = @item.period_date, name = @item.dname, tax_rate = @item.tax_rate })" target="_blank">View Remittance</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+}
+
+<script>
+    @if (Model.payment_remittance_header.Count() != 1)
+    {
+       @:setTimeout(function () { window.location.reload(1); }, 30000);
+    }
+</script>

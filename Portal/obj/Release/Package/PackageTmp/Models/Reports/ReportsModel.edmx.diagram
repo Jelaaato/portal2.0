@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="63aba3f10d6a4627958f9a6cb4f60e13" Name="Diagram1">
+        <EntityTypeShape EntityType="ReportsModel.patient" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReportsModel.patient_allergies" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReportsModel.patient_diagnosis" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReportsModel.patient_medications" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReportsModel.patient_previous_hospitalizations" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReportsModel.patient_previous_surgeries" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
+        <AssociationConnector Association="ReportsModel.FK_patient_allergies_patient" ManuallyRouted="false" />
+        <AssociationConnector Association="ReportsModel.FK_patient_diagnosis_patient" ManuallyRouted="false" />
+        <AssociationConnector Association="ReportsModel.FK_patient_medications_patient" ManuallyRouted="false" />
+        <AssociationConnector Association="ReportsModel.FK_patient_previous_hospitalizations_patient" ManuallyRouted="false" />
+        <AssociationConnector Association="ReportsModel.FK_patient_previous_surgeries_patient" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

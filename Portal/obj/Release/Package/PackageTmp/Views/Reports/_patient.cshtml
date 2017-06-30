@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Portal.Models.Reports.patient>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="col-lg-5 col-md-5 col-sm-5 hidden-xs">
+            <span class="fa fa-user-circle fa-5x" style="float:right;"></span>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6" style="padding-top:10px;">
+            @foreach (var item in Model)
+            {
+                <span style="float:left;font-size:14px;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight:500;">@item.display_name</span><br />
+                <span style="float:left;">@item.hospital_number &nbsp;<span style="font-weight:bold;">|</span></span>
+                <span style="float:left;">&nbsp;@item.gender &nbsp;<span style="font-weight:bold;">|</span></span>
+                <span style="float:left;">&nbsp;<i class="fa fa-birthday-cake"></i>&nbsp; @item.date_of_birth.ToShortDateString()</span>
+            }
+        </div>
+
+    </div>
+</div>
+    

@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ReportsModelStoreContainer" CdmEntityContainer="reports_entities">
+    <EntitySetMapping Name="patients">
+      <EntityTypeMapping TypeName="ReportsModel.patient">
+        <MappingFragment StoreEntitySet="patient">
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="hospital_number" ColumnName="hospital_number" />
+          <ScalarProperty Name="registration_date" ColumnName="registration_date" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+          <ScalarProperty Name="display_name" ColumnName="display_name" />
+          <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="marital_status" ColumnName="marital_status" />
+          <ScalarProperty Name="nationality" ColumnName="nationality" />
+          <ScalarProperty Name="highest_education_level" ColumnName="highest_education_level" />
+          <ScalarProperty Name="occupation" ColumnName="occupation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="patient_allergies">
+      <EntityTypeMapping TypeName="ReportsModel.patient_allergies">
+        <MappingFragment StoreEntitySet="patient_allergies">
+          <ScalarProperty Name="patient_adverse_reaction_cause_id" ColumnName="patient_adverse_reaction_cause_id" />
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="hospital_number" ColumnName="hospital_number" />
+          <ScalarProperty Name="display_name" ColumnName="display_name" />
+          <ScalarProperty Name="cause" ColumnName="cause" />
+          <ScalarProperty Name="reaction" ColumnName="reaction" />
+          <ScalarProperty Name="reaction_cause_status" ColumnName="reaction_cause_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="patient_diagnosis">
+      <EntityTypeMapping TypeName="ReportsModel.patient_diagnosis">
+        <MappingFragment StoreEntitySet="patient_diagnosis">
+          <ScalarProperty Name="patient_visit_id" ColumnName="patient_visit_id" />
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="patient_medical_coding_id" ColumnName="patient_medical_coding_id" />
+          <ScalarProperty Name="hospital_number" ColumnName="hospital_number" />
+          <ScalarProperty Name="actual_visit_date_time" ColumnName="actual_visit_date_time" />
+          <ScalarProperty Name="display_name" ColumnName="display_name" />
+          <ScalarProperty Name="visit_type" ColumnName="visit_type" />
+          <ScalarProperty Name="charge_type" ColumnName="charge_type" />
+          <ScalarProperty Name="coding_type" ColumnName="coding_type" />
+          <ScalarProperty Name="coding_system" ColumnName="coding_system" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="diagnosis" ColumnName="diagnosis" />
+          <ScalarProperty Name="recorded_date_time" ColumnName="recorded_date_time" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+          <ScalarProperty Name="primary_flag" ColumnName="primary_flag" />
+          <ScalarProperty Name="current_visit_diagnostic_flag" ColumnName="current_visit_diagnostic_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="patient_medications">
+      <EntityTypeMapping TypeName="ReportsModel.patient_medications">
+        <MappingFragment StoreEntitySet="patient_medications">
+          <ScalarProperty Name="note_id" ColumnName="note_id" />
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="hospital_number" ColumnName="hospital_number" />
+          <ScalarProperty Name="display_name" ColumnName="display_name" />
+          <ScalarProperty Name="details" ColumnName="details" />
+          <ScalarProperty Name="note_date" ColumnName="note_date" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="patient_previous_hospitalizations">
+      <EntityTypeMapping TypeName="ReportsModel.patient_previous_hospitalizations">
+        <MappingFragment StoreEntitySet="patient_previous_hospitalizations">
+          <ScalarProperty Name="patient_visit_id" ColumnName="patient_visit_id" />
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="hospital_number" ColumnName="hospital_number" />
+          <ScalarProperty Name="actual_visit_date_time" ColumnName="actual_visit_date_time" />
+          <ScalarProperty Name="closure_date_time" ColumnName="closure_date_time" />
+          <ScalarProperty Name="display_name" ColumnName="display_name" />
+          <ScalarProperty Name="visit_type" ColumnName="visit_type" />
+          <ScalarProperty Name="visit_type_group" ColumnName="visit_type_group" />
+          <ScalarProperty Name="charge_type" ColumnName="charge_type" />
+          <ScalarProperty Name="primary_service" ColumnName="primary_service" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="patient_previous_surgeries">
+      <EntityTypeMapping TypeName="ReportsModel.patient_previous_surgeries">
+        <MappingFragment StoreEntitySet="patient_previous_surgeries">
+          <ScalarProperty Name="creation_date_time" ColumnName="creation_date_time" />
+          <ScalarProperty Name="previous_surgery_id" ColumnName="previous_surgery_id" />
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="hospital_number" ColumnName="hospital_number" />
+          <ScalarProperty Name="display_name" ColumnName="display_name" />
+          <ScalarProperty Name="previous_surgeries" ColumnName="previous_surgeries" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

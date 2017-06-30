@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReportsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="patient">
+    <Key>
+      <PropertyRef Name="patient_id" />
+    </Key>
+    <Property Name="patient_id" Type="Guid" Nullable="false" />
+    <Property Name="hospital_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="registration_date" Type="DateTime" Precision="3" />
+    <Property Name="last_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="first_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="middle_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="display_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="marital_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nationality" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="highest_education_level" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="occupation" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="patient_allergies" Relationship="Self.FK_patient_allergies_patient" FromRole="patient" ToRole="patient_allergies" />
+    <NavigationProperty Name="patient_diagnosis" Relationship="Self.FK_patient_diagnosis_patient" FromRole="patient" ToRole="patient_diagnosis" />
+    <NavigationProperty Name="patient_medications" Relationship="Self.FK_patient_medications_patient" FromRole="patient" ToRole="patient_medications" />
+    <NavigationProperty Name="patient_previous_hospitalizations" Relationship="Self.FK_patient_previous_hospitalizations_patient" FromRole="patient" ToRole="patient_previous_hospitalizations" />
+    <NavigationProperty Name="patient_previous_surgeries" Relationship="Self.FK_patient_previous_surgeries_patient" FromRole="patient" ToRole="patient_previous_surgeries" />
+    <Property Name="age" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="patient_allergies">
+    <Key>
+      <PropertyRef Name="patient_adverse_reaction_cause_id" />
+    </Key>
+    <Property Name="patient_adverse_reaction_cause_id" Type="Guid" Nullable="false" />
+    <Property Name="patient_id" Type="Guid" Nullable="false" />
+    <Property Name="hospital_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="display_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="cause" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="reaction" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="reaction_cause_status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="patient" Relationship="Self.FK_patient_allergies_patient" FromRole="patient_allergies" ToRole="patient" />
+  </EntityType>
+  <EntityType Name="patient_diagnosis">
+    <Key>
+      <PropertyRef Name="patient_visit_id" />
+    </Key>
+    <Property Name="patient_visit_id" Type="Guid" Nullable="false" />
+    <Property Name="patient_id" Type="Guid" Nullable="false" />
+    <Property Name="patient_medical_coding_id" Type="Guid" Nullable="false" />
+    <Property Name="hospital_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="actual_visit_date_time" Type="DateTime" Precision="3" />
+    <Property Name="display_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="visit_type" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="charge_type" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="coding_type" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="coding_system" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="diagnosis" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="recorded_date_time" Type="DateTime" Precision="3" />
+    <Property Name="active_flag" Type="Boolean" />
+    <Property Name="primary_flag" Type="Boolean" />
+    <Property Name="current_visit_diagnostic_flag" Type="Boolean" />
+    <NavigationProperty Name="patient" Relationship="Self.FK_patient_diagnosis_patient" FromRole="patient_diagnosis" ToRole="patient" />
+  </EntityType>
+  <EntityType Name="patient_medications">
+    <Key>
+      <PropertyRef Name="note_id" />
+    </Key>
+    <Property Name="note_id" Type="Guid" Nullable="false" />
+    <Property Name="patient_id" Type="Guid" Nullable="false" />
+    <Property Name="hospital_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="display_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="details" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="note_date" Type="DateTime" Precision="3" />
+    <Property Name="active_flag" Type="Boolean" />
+    <NavigationProperty Name="patient" Relationship="Self.FK_patient_medications_patient" FromRole="patient_medications" ToRole="patient" />
+  </EntityType>
+  <EntityType Name="patient_previous_hospitalizations">
+    <Key>
+      <PropertyRef Name="patient_visit_id" />
+    </Key>
+    <Property Name="patient_visit_id" Type="Guid" Nullable="false" />
+    <Property Name="patient_id" Type="Guid" Nullable="false" />
+    <Property Name="hospital_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="actual_visit_date_time" Type="DateTime" Precision="3" />
+    <Property Name="closure_date_time" Type="DateTime" Precision="3" />
+    <Property Name="display_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="visit_type" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="visit_type_group" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="charge_type" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="primary_service" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="patient" Relationship="Self.FK_patient_previous_hospitalizations_patient" FromRole="patient_previous_hospitalizations" ToRole="patient" />
+  </EntityType>
+  <EntityType Name="patient_previous_surgeries">
+    <Key>
+      <PropertyRef Name="previous_surgery_id" />
+    </Key>
+    <Property Name="previous_surgery_id" Type="Guid" Nullable="false" />
+    <Property Name="patient_id" Type="Guid" Nullable="false" />
+    <Property Name="hospital_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="display_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="previous_surgeries" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="patient" Relationship="Self.FK_patient_previous_surgeries_patient" FromRole="patient_previous_surgeries" ToRole="patient" />
+    <Property Name="creation_date_time" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="FK_patient_allergies_patient">
+    <End Role="patient" Type="Self.patient" Multiplicity="1" />
+    <End Role="patient_allergies" Type="Self.patient_allergies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="patient">
+        <PropertyRef Name="patient_id" />
+      </Principal>
+      <Dependent Role="patient_allergies">
+        <PropertyRef Name="patient_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_patient_diagnosis_patient">
+    <End Role="patient" Type="Self.patient" Multiplicity="1" />
+    <End Role="patient_diagnosis" Type="Self.patient_diagnosis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="patient">
+        <PropertyRef Name="patient_id" />
+      </Principal>
+      <Dependent Role="patient_diagnosis">
+        <PropertyRef Name="patient_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_patient_medications_patient">
+    <End Role="patient" Type="Self.patient" Multiplicity="1" />
+    <End Role="patient_medications" Type="Self.patient_medications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="patient">
+        <PropertyRef Name="patient_id" />
+      </Principal>
+      <Dependent Role="patient_medications">
+        <PropertyRef Name="patient_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_patient_previous_hospitalizations_patient">
+    <End Role="patient" Type="Self.patient" Multiplicity="1" />
+    <End Role="patient_previous_hospitalizations" Type="Self.patient_previous_hospitalizations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="patient">
+        <PropertyRef Name="patient_id" />
+      </Principal>
+      <Dependent Role="patient_previous_hospitalizations">
+        <PropertyRef Name="patient_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_patient_previous_surgeries_patient">
+    <End Role="patient" Type="Self.patient" Multiplicity="1" />
+    <End Role="patient_previous_surgeries" Type="Self.patient_previous_surgeries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="patient">
+        <PropertyRef Name="patient_id" />
+      </Principal>
+      <Dependent Role="patient_previous_surgeries">
+        <PropertyRef Name="patient_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="reports_entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="patients" EntityType="Self.patient" />
+    <EntitySet Name="patient_allergies" EntityType="Self.patient_allergies" />
+    <EntitySet Name="patient_diagnosis" EntityType="Self.patient_diagnosis" />
+    <EntitySet Name="patient_medications" EntityType="Self.patient_medications" />
+    <EntitySet Name="patient_previous_hospitalizations" EntityType="Self.patient_previous_hospitalizations" />
+    <EntitySet Name="patient_previous_surgeries" EntityType="Self.patient_previous_surgeries" />
+    <AssociationSet Name="FK_patient_allergies_patient" Association="Self.FK_patient_allergies_patient">
+      <End Role="patient" EntitySet="patients" />
+      <End Role="patient_allergies" EntitySet="patient_allergies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_patient_diagnosis_patient" Association="Self.FK_patient_diagnosis_patient">
+      <End Role="patient" EntitySet="patients" />
+      <End Role="patient_diagnosis" EntitySet="patient_diagnosis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_patient_medications_patient" Association="Self.FK_patient_medications_patient">
+      <End Role="patient" EntitySet="patients" />
+      <End Role="patient_medications" EntitySet="patient_medications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_patient_previous_hospitalizations_patient" Association="Self.FK_patient_previous_hospitalizations_patient">
+      <End Role="patient" EntitySet="patients" />
+      <End Role="patient_previous_hospitalizations" EntitySet="patient_previous_hospitalizations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_patient_previous_surgeries_patient" Association="Self.FK_patient_previous_surgeries_patient">
+      <End Role="patient" EntitySet="patients" />
+      <End Role="patient_previous_surgeries" EntitySet="patient_previous_surgeries" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

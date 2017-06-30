@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PaymentRemittanceModelStoreContainer" CdmEntityContainer="payment_remittance_entities">
+    <EntitySetMapping Name="payment_remittance">
+      <EntityTypeMapping TypeName="PaymentRemittanceModel.payment_remittance">
+        <MappingFragment StoreEntitySet="payment_remittance">
+          <ScalarProperty Name="charge_date" ColumnName="charge_date" />
+          <ScalarProperty Name="payment_period_detail_id" ColumnName="payment_period_detail_id" />
+          <ScalarProperty Name="processed_datetime" ColumnName="processed_datetime" />
+          <ScalarProperty Name="period_id" ColumnName="period_id" />
+          <ScalarProperty Name="charge_id" ColumnName="charge_id" />
+          <ScalarProperty Name="employee_nr" ColumnName="employee_nr" />
+          <ScalarProperty Name="dname" ColumnName="dname" />
+          <ScalarProperty Name="department_name" ColumnName="department_name" />
+          <ScalarProperty Name="period_date" ColumnName="period_date" />
+          <ScalarProperty Name="vat_rate" ColumnName="vat_rate" />
+          <ScalarProperty Name="tax_rate" ColumnName="tax_rate" />
+          <ScalarProperty Name="charge_amount" ColumnName="charge_amount" />
+          <ScalarProperty Name="gross_amount" ColumnName="gross_amount" />
+          <ScalarProperty Name="prev_paid_amount" ColumnName="prev_paid_amount" />
+          <ScalarProperty Name="split_discount_amount_scd" ColumnName="split_discount_amount_scd" />
+          <ScalarProperty Name="split_discount_amount_oth" ColumnName="split_discount_amount_oth" />
+          <ScalarProperty Name="split_adjustment_amount" ColumnName="split_adjustment_amount" />
+          <ScalarProperty Name="split_net_amount" ColumnName="split_net_amount" />
+          <ScalarProperty Name="split_vat_amount" ColumnName="split_vat_amount" />
+          <ScalarProperty Name="split_tax_base_amount" ColumnName="split_tax_base_amount" />
+          <ScalarProperty Name="split_tax_rate" ColumnName="split_tax_rate" />
+          <ScalarProperty Name="split_tax_amount" ColumnName="split_tax_amount" />
+          <ScalarProperty Name="split_merchant_discount" ColumnName="split_merchant_discount" />
+          <ScalarProperty Name="split_credited_amount" ColumnName="split_credited_amount" />
+          <ScalarProperty Name="policy_group" ColumnName="policy_group" />
+          <ScalarProperty Name="pname" ColumnName="pname" />
+          <ScalarProperty Name="scd_flag" ColumnName="scd_flag" />
+          <ScalarProperty Name="item_desc" ColumnName="item_desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="payment_period">
+      <EntityTypeMapping TypeName="PaymentRemittanceModel.payment_period">
+        <MappingFragment StoreEntitySet="payment_period">
+          <ScalarProperty Name="authorization_date" ColumnName="authorization_date" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+          <ScalarProperty Name="payment_period_status_rcd" ColumnName="payment_period_status_rcd" />
+          <ScalarProperty Name="total_amount" ColumnName="total_amount" />
+          <ScalarProperty Name="pay_date" ColumnName="pay_date" />
+          <ScalarProperty Name="processed_date" ColumnName="processed_date" />
+          <ScalarProperty Name="period_date" ColumnName="period_date" />
+          <ScalarProperty Name="period_text" ColumnName="period_text" />
+          <ScalarProperty Name="period_id" ColumnName="period_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

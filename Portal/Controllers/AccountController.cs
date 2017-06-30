@@ -11,6 +11,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
 using Vereyon.Web;
 using Portal.Models.Helpers;
+using Portal.Models.BusinessLogic;
+using System.Net;
 
 namespace Portal.Controllers
 {
@@ -38,7 +40,7 @@ namespace Portal.Controllers
                 }
                 else
                 {
-                    if (user.UserName.checkUserDisplayName())
+                    if (user.UserName.checkDumpingStatus() == HttpStatusCode.OK)
                     {
                         ClaimsIdentity claimsident = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
                         await SignInAsync(user, isPersistent: false);
@@ -210,6 +212,8 @@ namespace Portal.Controllers
                 ModelState.AddModelError("", error);
             }
         }
+
+        //Helpers
 
         private UsersManager UserManager
         {

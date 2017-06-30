@@ -11,6 +11,8 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace Portal.Controllers
 {
@@ -24,135 +26,83 @@ namespace Portal.Controllers
 
         [Authorize(Roles = "Patient, Doctor")]
         [Audit]
-        public ActionResult LaboratoryResults(string fileid, bool? isvalidated, LaboratoryModel model, DateTime? minDate)
+        public ActionResult LaboratoryResults(LaboratoryModel model, string currentfilter, string search, string lab_order_name, DateTime? minDate, int? page)
         {
-            var retention_period = lab.GetRetentionPeriod(1);
-
-            if (retention_period == 0)
+            if (search != null)
             {
-                minDate = DateTime.Today.AddDays(-30);
+                page = 1;
             }
             else
             {
-                minDate = DateTime.Today.AddDays(retention_period);
+                search = currentfilter;
             }
 
-            if (User.IsInRole("Patient"))
-            {
-                model.results_references = lab.PopulateResultsDropdown();
-                model.patient_lab_header = lab.GetAllPatientHeader(HttpContext.User.Identity.Name);
-                return View(model);
-            }
-            else
-            {
-                model.results_references = lab.PopulateResultsDropdown();
-                model.patient_lab_header = lab.GetAllPatientHeaderForDoctor(HttpContext.User.Identity.Name);
-                return View(model);
-            }
-        }
+            ViewBag.CurrentFilter = search;
 
-        [HttpPost]
-        [Authorize(Roles = "Patient, Doctor")]
-        public ActionResult LaboratoryResults(string fileid, bool? isvalidated, string search, string lab_order_name, LaboratoryModel model, DateTime? minDate)
-        {
-            var retention_period = lab.GetRetentionPeriod(2);
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
 
-            if (retention_period == 0)
+            if (lab_order_name == "All Laboratory Results" || string.IsNullOrEmpty(lab_order_name))
             {
-                minDate = DateTime.Today.AddDays(30);
-            }
-            else
-            {
-                minDate = DateTime.Today.AddDays(retention_period);
-            }
-
-            //if (Request.IsAjaxRequest())
-            //{
-                if (lab_order_name == "All Laboratory Results")
+                if (User.IsInRole("Patient"))
                 {
-                    if (User.IsInRole("Patient"))
+                    if (!String.IsNullOrEmpty(search))
                     {
-                        if (search != null)
-                        {
-                            model.results_references = lab.PopulateResultsDropdown();
-                            model.patient_lab_header = lab.GetAllPatientHeader(HttpContext.User.Identity.Name).Where(a => a.patient_name.IndexOf(search, StringComparison.OrdinalIgnoreCase) != -1).OrderByDescending(a => a.order_date_time);
-                            model.fileID = fileid;
-                            model.isValidated = isvalidated;
-                            return View(model);
-                        }
-                        else
-                        {
-                            model.results_references = lab.PopulateResultsDropdown();
-                            model.patient_lab_header = lab.GetAllPatientHeader(HttpContext.User.Identity.Name);
-                            model.fileID = fileid;
-                            model.isValidated = isvalidated;
-                            return PartialView("_LabResult", model);
-                        }
+                        model.results_references = lab.PopulateResultsDropdown();
+                        model.patient_lab_header = lab.GetAllPatientHeader(HttpContext.User.Identity.Name).Where(a => a.patient_name.IndexOf(search, StringComparison.OrdinalIgnoreCase) != -1).OrderByDescending(a => a.order_date_time).ToPagedList(pageNumber, pageSize);
                     }
                     else
                     {
-                        if (search != null)
-                        {
-                            model.results_references = lab.PopulateResultsDropdown();
-                            model.patient_lab_header = lab.GetAllPatientHeaderForDoctor(HttpContext.User.Identity.Name).Where(a => a.patient_name.IndexOf(search, StringComparison.OrdinalIgnoreCase) != -1).OrderByDescending(a => a.order_date_time);
-                            model.fileID = fileid;
-                            model.isValidated = isvalidated;
-                            return View(model);
-                        }
-                        else
-                        {
-                            model.results_references = lab.PopulateResultsDropdown();
-                            model.patient_lab_header = lab.GetAllPatientHeaderForDoctor(HttpContext.User.Identity.Name);
-                            model.fileID = fileid;
-                            model.isValidated = isvalidated;
-                            return PartialView("_LabResult", model);
-                        }
+                        model.results_references = lab.PopulateResultsDropdown();
+                        model.patient_lab_header = lab.GetAllPatientHeader(HttpContext.User.Identity.Name).ToPagedList(pageNumber, pageSize);
                     }
                 }
-                else 
+                else
                 {
-                    if (User.IsInRole("Patient"))
+                    if (!String.IsNullOrEmpty(search))
                     {
-                        if (search != null)
-                        {
-                            model.results_references = lab.PopulateResultsDropdown();
-                            model.patient_lab_header = lab.GetPatientHeader(HttpContext.User.Identity.Name, lab_order_name).Where(a => a.patient_name.Contains(search)).OrderByDescending(a => a.order_date_time);
-                            model.fileID = fileid;
-                            model.isValidated = isvalidated;
-                            return View(model);
-                        }
-                        else
-                        {
-                            model.results_references = lab.PopulateResultsDropdown();
-                            model.patient_lab_header = lab.GetPatientHeader(HttpContext.User.Identity.Name, lab_order_name);
-                            model.fileID = fileid;
-                            model.isValidated = isvalidated;
-                            return PartialView("_LabResult", model);
-                        }
+                        model.results_references = lab.PopulateResultsDropdown();
+                        model.patient_lab_header = lab.GetAllPatientHeaderForDoctor(HttpContext.User.Identity.Name).Where(a => a.patient_name.IndexOf(search, StringComparison.OrdinalIgnoreCase) != -1).OrderByDescending(a => a.order_date_time).ToPagedList(pageNumber, pageSize);
                     }
                     else
                     {
-                        if (search != null)
-                        {
-                            model.results_references = lab.PopulateResultsDropdown();
-                            model.patient_lab_header = lab.GetPatientHeaderForDoctor(HttpContext.User.Identity.Name, lab_order_name).Where(a => a.patient_name.IndexOf(search, StringComparison.OrdinalIgnoreCase) != -1).OrderByDescending(a => a.order_date_time);
-                            model.fileID = fileid;
-                            model.isValidated = isvalidated;
-                            return View(model);
-                        }
-                        else
-                        {
-                            model.results_references = lab.PopulateResultsDropdown();
-                            model.patient_lab_header = lab.GetPatientHeaderForDoctor(HttpContext.User.Identity.Name, lab_order_name);
-                            model.fileID = fileid;
-                            model.isValidated = isvalidated;
-                            return PartialView("_LabResult", model);
-                        }
+                        model.results_references = lab.PopulateResultsDropdown();
+                        model.patient_lab_header = lab.GetAllPatientHeaderForDoctor(HttpContext.User.Identity.Name).ToPagedList(pageNumber, pageSize);
                     }
                 }
-            //}
-
-            //return View(model);
+            }
+            else
+            {
+                ViewBag.CurrentLabOrder = lab_order_name;
+                ModelState.Clear();
+                if (User.IsInRole("Patient"))
+                {
+                    if (!String.IsNullOrEmpty(search))
+                    {
+                        model.results_references = lab.PopulateResultsDropdown();
+                        model.patient_lab_header = lab.GetPatientHeader(HttpContext.User.Identity.Name, lab_order_name).Where(a => a.patient_name.Contains(search)).OrderByDescending(a => a.order_date_time).ToPagedList(pageNumber, pageSize);
+                    }
+                    else
+                    {
+                        model.results_references = lab.PopulateResultsDropdown();
+                        model.patient_lab_header = lab.GetPatientHeader(HttpContext.User.Identity.Name, lab_order_name).ToPagedList(pageNumber, pageSize);
+                    }
+                }
+                else
+                {
+                    if (!String.IsNullOrEmpty(search))
+                    {
+                        model.results_references = lab.PopulateResultsDropdown();
+                        model.patient_lab_header = lab.GetPatientHeaderForDoctor(HttpContext.User.Identity.Name, lab_order_name).Where(a => a.patient_name.IndexOf(search, StringComparison.OrdinalIgnoreCase) != -1).OrderByDescending(a => a.order_date_time).ToPagedList(pageNumber, pageSize);
+                    }
+                    else
+                    {
+                        model.results_references = lab.PopulateResultsDropdown();
+                        model.patient_lab_header = lab.GetPatientHeaderForDoctor(HttpContext.User.Identity.Name, lab_order_name).ToPagedList(pageNumber, pageSize);
+                    }
+                }
+            }
+            return View(model);
         }
 
         public ActionResult Radiology()

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ResultsReferenceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="results_reference">
+    <Key>
+      <PropertyRef Name="result_id" />
+    </Key>
+    <Property Name="result_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="result_type" Type="varchar" MaxLength="150" />
+    <Property Name="lab_order" Type="varchar" MaxLength="150" />
+    <Property Name="lab_order_name" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityContainer Name="ResultsReferenceModelStoreContainer">
+    <EntitySet Name="results_reference" EntityType="Self.results_reference" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

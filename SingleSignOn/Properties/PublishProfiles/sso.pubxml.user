@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\inetpub\wwwroot\SingleSignOn</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>03/24/2017 11:20:26</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>03/24/2017 11:20:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
+      <publishTime>03/24/2017 11:20:16</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
+      <publishTime>03/24/2017 11:20:27</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
+      <publishTime>03/24/2017 11:20:17</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>03/24/2017 11:20:04</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>03/24/2017 11:20:04</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
+      <publishTime>03/24/2017 11:20:16</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>03/24/2017 11:20:16</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
+      <publishTime>03/24/2017 11:20:17</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>03/24/2017 11:03:59</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>03/24/2017 11:19:19</publishTime>
+    </File>
+    <File Include="bin/SingleSignOn.dll">
+      <publishTime>03/30/2017 10:53:29</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>03/24/2017 11:19:19</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>03/24/2017 11:03:58</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>03/24/2017 11:19:19</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.Owin.dll">
+      <publishTime>03/24/2017 11:19:19</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>03/24/2017 11:03:59</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>03/24/2017 11:03:59</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>03/24/2017 11:03:58</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Deployment.dll">
+      <publishTime>03/24/2017 11:03:58</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.dll">
+      <publishTime>03/24/2017 11:03:58</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Razor.dll">
+      <publishTime>03/24/2017 11:03:58</publishTime>
+    </File>
+    <File Include="Content/bootstrap/bootstrap-theme.css">
+      <publishTime>03/24/2017 11:05:43</publishTime>
+    </File>
+    <File Include="Content/bootstrap/bootstrap-theme.css.map">
+      <publishTime>03/24/2017 11:05:43</publishTime>
+    </File>
+    <File Include="Content/bootstrap/bootstrap-theme.min.css">
+      <publishTime>03/24/2017 11:05:43</publishTime>
+    </File>
+    <File Include="Content/bootstrap/bootstrap-theme.min.css.map">
+      <publishTime>03/24/2017 11:05:43</publishTime>
+    </File>
+    <File Include="Content/bootstrap/bootstrap.css">
+      <publishTime>03/24/2017 11:05:43</publishTime>
+    </File>
+    <File Include="Content/bootstrap/bootstrap.css.map">
+      <publishTime>03/24/2017 11:05:43</publishTime>
+    </File>
+    <File Include="Content/bootstrap/bootstrap.min.css">
+      <publishTime>03/24/2017 11:05:43</publishTime>
+    </File>
+    <File Include="Content/bootstrap/bootstrap.min.css.map">
+      <publishTime>03/24/2017 11:05:43</publishTime>
+    </File>
+    <File Include="Content/fontawesome/font-awesome.css">
+      <publishTime>03/24/2017 11:12:21</publishTime>
+    </File>
+    <File Include="Content/fontawesome/font-awesome.min.css">
+      <publishTime>03/24/2017 11:12:21</publishTime>
+    </File>
+    <File Include="Content/pageloader/loader.css">
+      <publishTime>03/24/2017 11:07:15</publishTime>
+    </File>
+    <File Include="Content/site.css">
+      <publishTime>03/24/2017 11:07:30</publishTime>
+    </File>
+    <File Include="fonts/CustomFonts/SourceSansPro-Regular.ttf">
+      <publishTime>03/24/2017 11:08:57</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.eot">
+      <publishTime>03/24/2017 11:09:05</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.svg">
+      <publishTime>03/24/2017 11:09:05</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.ttf">
+      <publishTime>03/24/2017 11:09:05</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.woff">
+      <publishTime>03/24/2017 11:09:05</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.woff2">
+      <publishTime>03/24/2017 11:09:05</publishTime>
+    </File>
+    <File Include="fonts/FontAwesome.otf">
+      <publishTime>03/24/2017 11:09:05</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>03/24/2017 11:05:43</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>03/24/2017 11:05:43</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>03/24/2017 11:05:43</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>03/24/2017 11:05:43</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff2">
+      <publishTime>03/24/2017 11:05:43</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>03/24/2017 11:04:00</publishTime>
+    </File>
+    <File Include="Images/ahmc_background.png">
+      <publishTime>03/24/2017 11:09:40</publishTime>
+    </File>
+    <File Include="Images/balls.gif">
+      <publishTime>03/24/2017 11:09:40</publishTime>
+    </File>
+    <File Include="Images/footer.png">
+      <publishTime>03/24/2017 11:09:40</publishTime>
+    </File>
+    <File Include="Images/logo.png">
+      <publishTime>03/24/2017 11:09:40</publishTime>
+    </File>
+    <File Include="Images/squares.gif">
+      <publishTime>03/24/2017 11:09:40</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>03/24/2017 11:20:29</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap/bootstrap.js">
+      <publishTime>03/24/2017 11:05:43</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap/bootstrap.min.js">
+      <publishTime>03/24/2017 11:05:43</publishTime>
+    </File>
+    <File Include="Scripts/jQuery/jquery-3.1.1.js">
+      <publishTime>03/24/2017 11:05:36</publishTime>
+    </File>
+    <File Include="Scripts/jQuery/jquery-3.1.1.min.js">
+      <publishTime>03/24/2017 11:05:36</publishTime>
+    </File>
+    <File Include="Scripts/jQuery/jquery-3.1.1.min.map">
+      <publishTime>03/24/2017 11:05:36</publishTime>
+    </File>
+    <File Include="Scripts/jQuery/jquery-3.1.1.slim.js">
+      <publishTime>03/24/2017 11:05:36</publishTime>
+    </File>
+    <File Include="Scripts/jQuery/jquery-3.1.1.slim.min.js">
+      <publishTime>03/24/2017 11:05:36</publishTime>
+    </File>
+    <File Include="Scripts/jQuery/jquery-3.1.1.slim.min.map">
+      <publishTime>03/24/2017 11:05:36</publishTime>
+    </File>
+    <File Include="Views/Account/Login.cshtml">
+      <publishTime>03/24/2017 15:53:52</publishTime>
+    </File>
+    <File Include="Views/web.config">
+      <publishTime>03/24/2017 11:03:58</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>03/30/2017 10:52:34</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,58 @@
+﻿
+@font-face {
+    font-family: source-sans-pro;
+    src: url("../fonts/CustomFonts/SourceSansPro-Regular.ttf") format('truetype');
+}
+
+html, body {
+    height:100%;
+}
+
+.loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('../Images/balls.gif') 50% 50% no-repeat rgb(249,249,249);
+}
+
+.background {
+    background-color:#4BBF6B;
+    background-size: cover;
+    background-repeat : no-repeat;
+    background-attachment:fixed;
+    background-position: center center;
+}
+
+.form-box {
+    padding: 25px 25px 30px 25px;
+	background-color: white;
+	-moz-border-radius: 6px 6px 6px 6px; -webkit-border-radius: 6px 6px 6px 6px; border-radius: 6px 6px 6px 6px;
+	text-align: left;
+    font-family: source-sans-pro;
+    font-size:20px;
+    box-shadow: rgba(0,0,0, 0.2) 6px 6px;
+}
+
+.center-vertically {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+.subtext {
+    font-family:source-sans-pro;
+    font-size:14px;
+    text-transform:uppercase;
+    color:white;
+}
+
+.footer-text {
+    font-family:source-sans-pro;
+    font-size:13px;
+    color:#eaeaea;
+}
+

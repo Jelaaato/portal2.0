@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FileRetentionModelStoreContainer" CdmEntityContainer="file_retention_entities">
+    <EntitySetMapping Name="file_retention">
+      <EntityTypeMapping TypeName="FileRetentionModel.file_retention">
+        <MappingFragment StoreEntitySet="file_retention">
+          <ScalarProperty Name="retention_id" ColumnName="retention_id" />
+          <ScalarProperty Name="file_id" ColumnName="file_id" />
+          <ScalarProperty Name="retention_period" ColumnName="retention_period" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="files">
+      <EntityTypeMapping TypeName="FileRetentionModel.file">
+        <MappingFragment StoreEntitySet="files">
+          <ScalarProperty Name="file_id" ColumnName="file_id" />
+          <ScalarProperty Name="file_type" ColumnName="file_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

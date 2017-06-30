@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ResultsReferenceModelStoreContainer" CdmEntityContainer="resultsref_entities">
+    <EntitySetMapping Name="results_reference">
+      <EntityTypeMapping TypeName="ResultsReferenceModel.results_reference">
+        <MappingFragment StoreEntitySet="results_reference">
+          <ScalarProperty Name="result_id" ColumnName="result_id" />
+          <ScalarProperty Name="result_type" ColumnName="result_type" />
+          <ScalarProperty Name="lab_order" ColumnName="lab_order" />
+          <ScalarProperty Name="lab_order_name" ColumnName="lab_order_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FileRetentionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="file_retention">
+    <Key>
+      <PropertyRef Name="retention_id" />
+    </Key>
+    <Property Name="retention_id" Type="Guid" Nullable="false" />
+    <Property Name="file_id" Type="Int32" Nullable="false" />
+    <Property Name="retention_period" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="file">
+    <Key>
+      <PropertyRef Name="file_id" />
+    </Key>
+    <Property Name="file_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="file_type" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="file_retention_entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="file_retention" EntityType="Self.file_retention" />
+    <EntitySet Name="files" EntityType="Self.file" />
+  </EntityContainer>
+</Schema>

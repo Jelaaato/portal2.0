@@ -1,0 +1,102 @@
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\SingleSignOn.dll.config
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\SingleSignOn.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\SingleSignOn.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\EntityFramework.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\Microsoft.Owin.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\Microsoft.Owin.Security.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\Newtonsoft.Json.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\Owin.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Net.Http.Formatting.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Web.Helpers.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Web.Http.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Web.Http.Owin.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Web.Http.WebHost.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Web.Mvc.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Web.Razor.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Web.Webpages.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Web.Webpages.Razor.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\EntityFramework.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\Microsoft.Owin.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\Microsoft.Owin.Security.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Net.Http.Formatting.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Web.Http.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Web.Http.Owin.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Web.Razor.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Web.Webpages.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Web.Webpages.Razor.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Web.Helpers.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Web.Mvc.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\Newtonsoft.Json.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\bin\System.Web.Http.WebHost.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\obj\Debug\SingleSignOn.Migrations.IdentityDb.resources
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\obj\Debug\SingleSignOn.csproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\obj\Debug\SingleSignOn.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\WEBAPP\SingleSignOn\obj\Debug\SingleSignOn.pdb
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\SingleSignOn.dll.config
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\SingleSignOn.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\SingleSignOn.pdb
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\EntityFramework.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Microsoft.Owin.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Microsoft.Owin.Security.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Newtonsoft.Json.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Owin.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Net.Http.Formatting.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Web.Helpers.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Web.Http.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Web.Http.Owin.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Web.Http.WebHost.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Web.Mvc.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Web.Razor.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Web.Webpages.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Web.Webpages.Razor.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\EntityFramework.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Microsoft.Owin.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Microsoft.Owin.Security.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Net.Http.Formatting.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Web.Http.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Web.Http.Owin.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Web.Razor.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Web.Webpages.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Web.Webpages.Razor.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Web.Helpers.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Web.Mvc.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\Newtonsoft.Json.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\bin\System.Web.Http.WebHost.xml
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\obj\Debug\SingleSignOn.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\obj\Debug\SingleSignOn.Migrations.IdentityDb.resources
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\obj\Debug\SingleSignOn.csproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\obj\Debug\SingleSignOn.dll
+C:\Users\Administrator\Documents\Erjel Project Files (Web APP)\WEBAPP\SingleSignOn\obj\Debug\SingleSignOn.pdb

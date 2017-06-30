@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LabResultModelStoreContainer" CdmEntityContainer="results_entities">
+    <EntitySetMapping Name="patient_lab_result_header">
+      <EntityTypeMapping TypeName="LabResultModel.patient_lab_result_header">
+        <MappingFragment StoreEntitySet="patient_lab_result_header">
+          <ScalarProperty Name="chief_pathologist" ColumnName="chief_pathologist" />
+          <ScalarProperty Name="med_tech" ColumnName="med_tech" />
+          <ScalarProperty Name="doc_emp_nr" ColumnName="doc_emp_nr" />
+          <ScalarProperty Name="reported_date_time" ColumnName="reported_date_time" />
+          <ScalarProperty Name="order_date_time" ColumnName="order_date_time" />
+          <ScalarProperty Name="order_group" ColumnName="order_group" />
+          <ScalarProperty Name="lab_orderable_name" ColumnName="lab_orderable_name" />
+          <ScalarProperty Name="service_category" ColumnName="service_category" />
+          <ScalarProperty Name="patient_area" ColumnName="patient_area" />
+          <ScalarProperty Name="requesting_physician" ColumnName="requesting_physician" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+          <ScalarProperty Name="patient_name" ColumnName="patient_name" />
+          <ScalarProperty Name="lab_work_order_id" ColumnName="lab_work_order_id" />
+          <ScalarProperty Name="hospital_number" ColumnName="hospital_number" />
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="patient_lab_results">
+      <EntityTypeMapping TypeName="LabResultModel.patient_lab_results">
+        <MappingFragment StoreEntitySet="patient_lab_results">
+          <ScalarProperty Name="seq_num" ColumnName="seq_num" />
+          <ScalarProperty Name="lab_work_order_id" ColumnName="lab_work_order_id" />
+          <ScalarProperty Name="order_group" ColumnName="order_group" />
+          <ScalarProperty Name="reference_range" ColumnName="reference_range" />
+          <ScalarProperty Name="UOM" ColumnName="UOM" />
+          <ScalarProperty Name="result" ColumnName="result" />
+          <ScalarProperty Name="test" ColumnName="test" />
+          <ScalarProperty Name="hospital_number" ColumnName="hospital_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

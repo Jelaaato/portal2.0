@@ -1,0 +1,50 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model Portal.Models.ViewModels.LaboratoryModel
+
+<div class="table-responsive">
+    <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;">
+        <thead class="table-bordered" style="background-color:rgba(31,150,102, 0.8);">
+            <tr>
+                <th style="text-align:center;font-weight:400;">Service Category</th>
+                <th style="text-align:center;font-weight:400;">Lab Order</th>
+                <th style="text-align:center;font-weight:400;">Name</th>
+                <th style="text-align:center;font-weight:400;">Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="table-bordered" style="color:black;">
+            @foreach (var item in Model.patient_lab_header)
+            {
+                <tr>
+                    <td>@item.service_category</td>
+                    <td>@item.lab_orderable_name</td>
+                    <td>@item.patient_name</td>
+                    <td>@item.order_date_time</td>
+                    <td>
+                        <a href="@Url.Action("ValidatePassword", "Validate", new { id = @item.lab_work_order_id, accessed_in = "browser" })" target="_blank">View Result</a>
+                        @*<div class="modal fade" id="alllabresult@(file.Name.Splitter('_', 3))" role="dialog" tabindex="-1" data-backdrop="false">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" data-toggle="tooltip" title="Close"><i class="fa fa-remove"></i></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <embed src="~/Results/Laboratory/@file.Name" width="850" height="1000" type="application/pdf" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<center>
+    Page @(Model.patient_lab_header.PageCount < Model.patient_lab_header.PageNumber ? 0 : Model.patient_lab_header.PageNumber) of @Model.patient_lab_header.PageCount
+    @Html.PagedListPager(Model.patient_lab_header, page => Url.Action("LaboratoryResults", new { page, currentfilter = ViewBag.CurrentFilter, lab_order_name = ViewBag.CurrentLabOrder }))
+</center>
+
+
+

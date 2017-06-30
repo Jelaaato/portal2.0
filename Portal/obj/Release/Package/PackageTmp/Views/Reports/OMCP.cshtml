@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Portal.Models.Reports.patient>
+@using Vereyon.Web
+@{
+    ViewBag.Title = "OMCP";
+    Layout = "~/Views/Shared/_ModuleLayout.cshtml";
+}
+
+@*<div class="container">*@
+    <br /><br />
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
+            @using (Html.BeginForm())
+            {
+                <div class="form-group">
+                    <div class="input-group">
+                        @Html.TextBox("search", ViewBag.CurrentFilter as String, new { @placeholder = "Search Hospital Number", @class = "form-control" })
+                        <span class="input-group-btn"><button type="submit" class="btn" style="background-color:#01B06B;color:white;"><i class="fa fa-search"></i></button></span>
+                    </div>
+                </div>   
+            }
+        </div>
+    </div>
+    <br />
+    @if (ViewBag.DisplayPartialViews == "true")
+    {
+        @Html.Partial("_patient", Model)
+    }
+    <br /><br />
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#allergies" role="tab" data-toggle="tab">Allergies</a></li>
+                <li role="presentation"><a href="#diagnosis" role="tab" data-toggle="tab">Diagnosis</a></li>
+                <li role="presentation"><a href="#medications" role="tab" data-toggle="tab">Medications</a></li>
+                <li role="presentation"><a href="#surgeries" role="tab" data-toggle="tab">Previous Surgeries</a></li>
+                <li role="presentation"><a href="#hospitalizations" role="tab" data-toggle="tab">Previous Hospitalizations</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="allergies">
+                    @if (ViewBag.DisplayPartialViews == "true")
+                    { 
+                        @Html.Action("OMCPAllergies", "Reports")
+                    }
+                    else
+                    {
+                        <h5>No available records</h5>
+                    }
+                </div>
+                <div class="tab-pane" id="diagnosis">
+                    @if (ViewBag.DisplayPartialViews == "true")
+                    {
+                    @Html.Action("OMCPDiagnosis", "Reports")
+                    }
+                    else
+                    {
+                        <h5>No available records</h5>
+                    }
+                </div>
+                <div class="tab-pane" id="medications">
+                    @if (ViewBag.DisplayPartialViews == "true")
+                    {
+                        @Html.Action("OMCPMedications", "Reports")
+                    }
+                    else
+                    {
+                        <h5>No available records</h5>
+                    }
+                </div>
+                <div class="tab-pane" id="surgeries">
+                    @if (ViewBag.DisplayPartialViews == "true")
+                    {
+                        @Html.Action("OMCPSurgeries", "Reports")
+                    }
+                    else
+                    {
+                        <h5>No available records</h5>
+                    }
+                </div>
+                <div class="tab-pane" id="hospitalizations">
+                    @if (ViewBag.DisplayPartialViews == "true")
+                    {
+                    @Html.Action("OMCPHospitalizations", "Reports")
+                    }
+                    else
+                    {
+                        <h5>No available records</h5>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+@*</div>*@
+
+<div class="generate-PDF hidden-xs">
+        <a class="btn generate-PDF-Btn" href="@Url.Action("GenerateOMCPReport", "Reports")" target="_blank">Generate Report</a>
+</div>
+
+@foreach (var message in FlashMessage.Retrieve(Html.ViewContext.HttpContext))
+{
+    <script>
+        $.notify({
+            message: '@message.Message'
+        }, {
+            type: 'danger',
+            animate: {
+                enter: 'animated fadeInRight',
+                exit: 'animated fadeOutRight'
+            },
+            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+		                    '<button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="color:black;font-size:12px;"><span class="fa fa-close"></span></button>' +
+		                    '<span data-notify="message" class="notification">{2}</span>' +
+		                    '<div class="progress" data-notify="progressbar">' +
+			                    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+		                    '</div>' +
+	                  '</div>'
+        });
+    </script>
+}
+

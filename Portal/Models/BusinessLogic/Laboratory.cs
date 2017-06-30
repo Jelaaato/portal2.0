@@ -21,6 +21,8 @@ namespace Portal.Models.BusinessLogic
         private DirectoryInfo dir;
         private IEnumerable<FileInfo> files;
 
+        public string Currentuser { get => currentuser; set => currentuser = value; }
+
         #region PDF Methods
 
         // These are used when results are already in PDF Files
@@ -29,7 +31,7 @@ namespace Portal.Models.BusinessLogic
         {
             dir = new DirectoryInfo(path);
 
-            files = dir.GetFiles("*.pdf").Where(a => a.Name.Contains(currentuser) && a.Name.IndexOf(search, StringComparison.OrdinalIgnoreCase) != -1 && (a.CreationTime > minDate)).OrderByDescending(a => a.CreationTime);
+            files = dir.GetFiles("*.pdf").Where(a => a.Name.Contains(Currentuser) && a.Name.IndexOf(search, StringComparison.OrdinalIgnoreCase) != -1 && (a.CreationTime > minDate)).OrderByDescending(a => a.CreationTime);
 
             return files;
         }
@@ -38,7 +40,7 @@ namespace Portal.Models.BusinessLogic
         {
             dir = new DirectoryInfo(path);
 
-            files = dir.GetFiles("*.pdf").Where(a => a.Name.Contains(currentuser) && a.Name.Contains(lab_order_name) && a.Name.IndexOf(search, StringComparison.CurrentCultureIgnoreCase) == 3 && (a.CreationTime > minDate)).OrderByDescending(a => a.CreationTime);
+            files = dir.GetFiles("*.pdf").Where(a => a.Name.Contains(Currentuser) && a.Name.Contains(lab_order_name) && a.Name.IndexOf(search, StringComparison.CurrentCultureIgnoreCase) == 3 && (a.CreationTime > minDate)).OrderByDescending(a => a.CreationTime);
 
             return files;
         }
@@ -47,7 +49,7 @@ namespace Portal.Models.BusinessLogic
         {
             dir = new DirectoryInfo(path);
 
-            files = dir.GetFiles("*.pdf").Where(a => a.Name.Contains(currentuser) && a.Name.Contains(lab_order_name) && (a.CreationTime > minDate)).OrderByDescending(a => a.CreationTime);
+            files = dir.GetFiles("*.pdf").Where(a => a.Name.Contains(Currentuser) && a.Name.Contains(lab_order_name) && (a.CreationTime > minDate)).OrderByDescending(a => a.CreationTime);
 
             return files;
         }
@@ -56,7 +58,7 @@ namespace Portal.Models.BusinessLogic
         {
             dir = new DirectoryInfo(path);
 
-            files = dir.GetFiles("*.pdf").Where(a => a.Name.Contains(currentuser) && (a.CreationTime > minDate)).OrderByDescending(a => a.CreationTime);
+            files = dir.GetFiles("*.pdf").Where(a => a.Name.Contains(Currentuser) && (a.CreationTime > minDate)).OrderByDescending(a => a.CreationTime);
 
             return files;
         }
@@ -154,31 +156,33 @@ namespace Portal.Models.BusinessLogic
 
         public IEnumerable<patient_lab_result_header> GetAllPatientHeaderForDoctor(string doc_emp_nr)
         {
-            var allPatientHeaderForDoctor = results.patient_lab_result_header.Where(a => a.doc_emp_nr == doc_emp_nr).GroupBy(a => a.lab_work_order_id).Select(b => b.FirstOrDefault()).ToList();
+            var allPatientHeaderForDoctor = results.patient_lab_result_header.Where(a => a.doc_emp_nr == doc_emp_nr).GroupBy(a => a.lab_work_order_id).Select(b => b.FirstOrDefault()).OrderByDescending(a => a.reported_date_time);
+            //.ToList();
 
             return allPatientHeaderForDoctor;
         }
 
         public IEnumerable<patient_lab_result_header> GetPatientHeaderForDoctor(string doc_emp_nr, string lab_order_name)
         {
-            var allPatientHeaderForDoctor = results.patient_lab_result_header.Where(a => a.doc_emp_nr == doc_emp_nr && a.service_category == lab_order_name).GroupBy(a => a.lab_work_order_id).Select(b => b.FirstOrDefault()).ToList();
+            var allPatientHeaderForDoctor = results.patient_lab_result_header.Where(a => a.doc_emp_nr == doc_emp_nr && a.service_category == lab_order_name).GroupBy(a => a.lab_work_order_id).Select(b => b.FirstOrDefault()).OrderByDescending(a => a.reported_date_time);
+            //.ToList();
 
             return allPatientHeaderForDoctor;
         }
 
-        public IEnumerable<patient_lab_result_header> GetSearchResultsForDoctor(string search, string doc_emp_nr)
-        {
-            var searchResults = results.patient_lab_result_header.Where(a => a.doc_emp_nr == doc_emp_nr && a.patient_name.IndexOf(search, StringComparison.OrdinalIgnoreCase) != -1).GroupBy(a => a.lab_work_order_id).Select(b => b.FirstOrDefault()).OrderByDescending(a => a.order_date_time).ToList();
+        //public IEnumerable<patient_lab_result_header> GetSearchResultsForDoctor(string search, string doc_emp_nr)
+        //{
+        //    var searchResults = results.patient_lab_result_header.Where(a => a.doc_emp_nr == doc_emp_nr && a.patient_name.IndexOf(search, StringComparison.OrdinalIgnoreCase) != -1).GroupBy(a => a.lab_work_order_id).Select(b => b.FirstOrDefault()).OrderByDescending(a => a.order_date_time).ToList();
 
-            return searchResults;
-        }
+        //    return searchResults;
+        //}
 
-        public IEnumerable<patient_lab_result_header> GetSearchResultsByLabOrderForDoctor(string search, string doc_emp_nr, string lab_order_name)
-        {
-            var searchResults = results.patient_lab_result_header.Where(a => a.doc_emp_nr == doc_emp_nr && a.lab_orderable_name == lab_order_name).GroupBy(a => a.lab_work_order_id).Select(b => b.FirstOrDefault()).OrderByDescending(a => a.order_date_time).ToList();
+        //public IEnumerable<patient_lab_result_header> GetSearchResultsByLabOrderForDoctor(string search, string doc_emp_nr, string lab_order_name)
+        //{
+        //    var searchResults = results.patient_lab_result_header.Where(a => a.doc_emp_nr == doc_emp_nr && a.lab_orderable_name == lab_order_name).GroupBy(a => a.lab_work_order_id).Select(b => b.FirstOrDefault()).OrderByDescending(a => a.order_date_time).ToList();
 
-            return searchResults;
-        }
+        //    return searchResults;
+        //}
 
         #endregion
     }

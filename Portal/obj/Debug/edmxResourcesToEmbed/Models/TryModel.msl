@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TryModelStoreContainer" CdmEntityContainer="TryEntities">
+    <EntitySetMapping Name="applications">
+      <EntityTypeMapping TypeName="TryModel.application">
+        <MappingFragment StoreEntitySet="applications">
+          <ScalarProperty Name="application_id" ColumnName="application_id" />
+          <ScalarProperty Name="application_name" ColumnName="application_name" />
+          <ScalarProperty Name="application_type" ColumnName="application_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

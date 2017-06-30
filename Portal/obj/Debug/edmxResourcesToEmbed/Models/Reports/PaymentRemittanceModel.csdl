@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PaymentRemittanceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="payment_remittance">
+    <Key>
+      <PropertyRef Name="payment_period_detail_id" />
+    </Key>
+    <Property Name="payment_period_detail_id" Type="Guid" Nullable="false" />
+    <Property Name="processed_datetime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="period_id" Type="Int32" Nullable="false" />
+    <Property Name="charge_id" Type="Guid" Nullable="false" />
+    <Property Name="employee_nr" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="dname" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="department_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="period_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="vat_rate" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="tax_rate" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="charge_amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="gross_amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="prev_paid_amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="split_discount_amount_scd" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="split_discount_amount_oth" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="split_adjustment_amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="split_net_amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="split_vat_amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="split_tax_base_amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="split_tax_rate" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="split_tax_amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="split_merchant_discount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="split_credited_amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="policy_group" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="pname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="scd_flag" Type="Byte" />
+    <Property Name="item_desc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="charge_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="payment_remittance_entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="payment_remittance" EntityType="Self.payment_remittance" />
+    <EntitySet Name="payment_period" EntityType="PaymentRemittanceModel.payment_period" />
+  </EntityContainer>
+  <EntityType Name="payment_period">
+    <Key>
+      <PropertyRef Name="period_id" />
+    </Key>
+    <Property Name="period_id" Type="Int32" Nullable="false" />
+    <Property Name="period_text" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="period_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="processed_date" Type="DateTime" Precision="3" />
+    <Property Name="pay_date" Type="DateTime" Precision="3" />
+    <Property Name="total_amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="payment_period_status_rcd" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="active_flag" Type="Boolean" />
+    <Property Name="authorization_date" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>

@@ -44,7 +44,7 @@ namespace Portal.Controllers
                         var patient = omcp.GetPatient(search);
 
                         ViewBag.DisplayPartialViews = "true";
-                        ModelState.Clear();
+                        //ModelState.Clear();
                         return View(patient);
                     }
                     else

@@ -1,12 +1,12 @@
 ﻿@model Portal.Models.ViewModels.LaboratoryModel
-@using Portal.Models.Helpers
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Laboratory";
     Layout = "~/Views/Shared/_ModuleLayout.cshtml";
 }
             <br /><br />
             <div class="row">
-                @using (Html.BeginForm("LaboratoryResults", "Results", FormMethod.Post))
+                @using (Html.BeginForm("LaboratoryResults", "Results", FormMethod.Get))
                 {
                     if (User.IsInRole("Patient"))
                     {
@@ -43,8 +43,8 @@
             }
             else
             {
-                <div class="table-responsive">
-                    <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;" id="resultContainer">
+                <div class="table-responsive" id="resultContainer">
+                    <table class="table" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:white;text-align:center;">
                         <thead class="table-bordered" style="background-color:rgba(31,150,102, 0.8);">
                             <tr>
                                 <th style="text-align:center;font-weight:400;">Service Category</th>
@@ -82,25 +82,34 @@
                         </tbody>
                     </table>
                 </div>
+                <center>
+                    Page @(Model.patient_lab_header.PageCount < Model.patient_lab_header.PageNumber ? 0 : Model.patient_lab_header.PageNumber) of @Model.patient_lab_header.PageCount
+                    @Html.PagedListPager(Model.patient_lab_header, page => Url.Action("LaboratoryResults", new { page, currentfilter = ViewBag.CurrentFilter, lab_order_name = ViewBag.CurrentLabOrder }))
+                </center>
             }
 @*</div>*@
 
 <script>
-    @if (Model.isValidated == true)
+    @*@if (Model.isValidated == true)
     {
         @:$(document).ready(function () { $('#alllabresult@(Model.fileID)').modal('show'); })
     }
-    
+
     $('#lab_type_options').change(function () {
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: '@Url.Action("LaboratoryResults", "Results")',
             data: {
                 lab_order_name: $('#lab_type_options').val()
-            },
-            success: function (data) {
-                $('#resultContainer').html(data);
             }
         });
-    });
+    });*@
+
+    var baseUrl = '@Url.Action("LaboratoryResults", "Results")';
+
+    $('#lab_type_options').change(function () {
+        var lab_type = $('#lab_type_options').val();
+        var url = baseUrl + '?lab_order_name=' + lab_type
+        location.href = url;
+    })
 </script>
